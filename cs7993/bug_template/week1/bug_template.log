@@ -1,0 +1,373 @@
+./libming/src/blocks/fdbfont.c:353: o.ptr = o.buf = (char *)malloc(1);
+-----------------------------------------------------------------------------
+./libming/src/blocks/rect.c:147: if ( x+width > rect->maxX )
+-----------------------------------------------------------------------------
+./libming/src/blocks/rect.c:153: if ( y+width > rect->maxY )
+-----------------------------------------------------------------------------
+./libming/src/blocks/shape.c:1365: o.ptr = o.buf = (char *)malloc(1);
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:337: t=malloc(5); /* Rddd */
+./libming/util/decompile.c:338: sprintf(t,"R%d", act->p.RegisterNumber );
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:361: t=malloc(10); /* 32-bit decimal */
+./libming/util/decompile.c:362: sprintf(t,"%ld", act->p.Integer );
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:430: t=malloc(5); /* Rddd */
+./libming/util/decompile.c:431: sprintf(t,"R%d", act->p.RegisterNumber );
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:1921: for (j=0; n+j+i<maxn; j++)
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:2171: for (ccsize=0; ccsize+start<n_maxoff; ccsize++)	// count actions belonging to "case x:"
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:2252: while (i+cvsize < n_firstactions
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:2719: char *t=malloc(5); /* Rddd */
+./libming/util/decompile.c:2720: sprintf(t,"R%d", sact->CatchRegister );
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:2814: if (r+m < sactv2->RegisterCount)
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:2823: char *t=malloc(5); /* Rddd */
+./libming/util/decompile.c:2824: sprintf(t,"R%d", r );
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:2869: char *t=malloc(5); /* Rddd */
+./libming/util/decompile.c:2870: sprintf(t,"R%d", i );
+-----------------------------------------------------------------------------
+./libming/util/decompile.c:3157: while(action_cnt+n<maxn)
+-----------------------------------------------------------------------------
+./libming/util/main.c:168: if(m.size - fileOffset < minLength)
+-----------------------------------------------------------------------------
+./libming/util/makeswf.c:838: * 	- output will be "out.swf" unless -o <output> is used
+-----------------------------------------------------------------------------
+./php-src/ext/date/lib/parse_tz.c:329: tz->location.comments = timelib_malloc(2);
+-----------------------------------------------------------------------------
+./php-src/ext/date/php_date.c:1139: offset->abbr = timelib_malloc(9); /* GMTÂ±xxxx\0 */
+-----------------------------------------------------------------------------
+./php-src/ext/date/php_date.c:1351: offset->abbr = timelib_malloc(9); /* GMTÂ±xxxx\0 */
+-----------------------------------------------------------------------------
+./php-src/ext/dba/dba_db1.c:15: | Author: Shen Cheng-Da <cdsheen@gmail.com>                            |
+-----------------------------------------------------------------------------
+./php-src/ext/enchant/enchant.c:15: | Author: Pierre-Alain Joye <paj@pearfr.org>                           |
+-----------------------------------------------------------------------------
+./php-src/ext/exif/exif.c:3581: if (offset_base + NextDirOffset < offset_base || offset_base + NextDirOffset > offset_base+IFDlength) {
+-----------------------------------------------------------------------------
+./php-src/ext/exif/exif.c:4046: if (entry_offset + entry_length > dir_offset + ifd_size
+-----------------------------------------------------------------------------
+./php-src/ext/exif/exif.c:4057: if (dir_offset + ifd_size > ImageInfo->FileSize) {
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/cdf.c:312: DPRINTF(("%d: offset begin %p < end %p || %" SIZE_T_FORMAT "u"
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/cdf.c:399: if (pos + len > CDF_SEC_SIZE(h) * sst->sst_len) {
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/cdf.c:1047: if (o4 + l > left)
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/der.c:265: if (offs + tlen > nbytes)
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/der.c:362: while (p + x < ep) {
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/der.c:378: if (p + len > ep)
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/softmagic.c:1353: if (nbytes - offset < sizeof(*p))
+-----------------------------------------------------------------------------
+./php-src/ext/fileinfo/libmagic/softmagic.c:2000: if (slen + idx > ms->search.s_len)
+-----------------------------------------------------------------------------
+./php-src/ext/filter/logical_filters.c:110: if ((end - str > MAX_LENGTH_OF_LONG - 1) /* number too long */
+-----------------------------------------------------------------------------
+./php-src/ext/gd/libgd/gd_bmp.c:1058: if (rle_data - i < max_pixels) {
+-----------------------------------------------------------------------------
+./php-src/ext/gd/libgd/gd_gif_in.c:227: if (left + width > screen_width || top + height > screen_height) {
+-----------------------------------------------------------------------------
+./php-src/ext/gd/libgd/gd_interpolation.c:808: *  method - Interpolation method <gdInterpolationMethod>
+-----------------------------------------------------------------------------
+./php-src/ext/gd/libgd/gd_rotate.c:95: if ((i + iOffset >= 0) && (i + iOffset < dst->sx)) {
+-----------------------------------------------------------------------------
+./php-src/ext/hash/hash_gost.c:25: * derived from gost_compress() by Markku-Juhani Saarinen <mjos@ssh.fi>
+-----------------------------------------------------------------------------
+./php-src/ext/imap/php_imap.c:18: |          Kaj-Michael Lang    <milang@tal.org>                        |
+-----------------------------------------------------------------------------
+./php-src/ext/imap/php_imap.c:4307: if ((string[offset + i] == '=') && (string[offset + i + 1] == '?') && (offset + i < end)) {
+-----------------------------------------------------------------------------
+./php-src/ext/interbase/php_ibase_udf.c:55: *     SELECT * FROM <table> WHERE CALL_PHP1('soundex',<field>) NOT LIKE ?
+-----------------------------------------------------------------------------
+./php-src/ext/json/json_parser.tab.c:973: if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
+./php-src/ext/json/json_parser.tab.c:976: if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/big5.c:157: if (p + len > s) return (UChar* )p;
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/euc_jp.c:196: if (p + len > s) return (UChar* )p;
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/euc_kr.c:132: if (p + len > s) return (UChar* )p;
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/euc_tw.c:138: if (p + len > s) return (UChar* )p;
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regcomp.c:4847: if (i + len > OPT_EXACT_MAXLEN) {
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regcomp.c:4873: if (i + len > OPT_EXACT_MAXLEN) break;
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regerror.c:359: if (n + need < bufsize) {
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regexec.c:2180: if (pend - pstart > send - *s) return 0; /* or goto next_mem; */
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regexec.c:2320: if (stk - stk_base > MaxStackDepth) \
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regexec.c:4150: if (end + tlen1 > text_end)
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regexec.c:4456: if (p - str < reg->dmax) {
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regexec.c:4525: if (s - range < BM_BACKWARD_SEARCH_LENGTH_THRESHOLD)
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regparse.c:3080: if (STR_(node)->capa > 0 || (len + addlen > NODE_STRING_BUF_SIZE - 1)) {
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regparse.c:3408: if (n + inc_n > ONIG_MAX_MULTI_BYTE_RANGES_NUM)
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/regparse.c:6733: if (bufend + clen > buf + MAX_CALLOUT_ARG_BYTE_LENGTH)
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/oniguruma/src/sjis.c:229: if (p + len > s) return (UChar* )p;
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/php_unicode.c:66: for (m = 1; n + m < _ucprop_size && _ucprop_offsets[n + m] == 0xffff; m++)
+-----------------------------------------------------------------------------
+./php-src/ext/mbstring/php_unicode.c:138: if (table[2*idx] == code) {
+-----------------------------------------------------------------------------
+./php-src/ext/mysqli/mysqli_api.c:993: tmp = emalloc(11);
+-----------------------------------------------------------------------------
+./php-src/ext/odbc/php_odbc.c:979: result->values[i].value = (char *)emalloc(27);
+-----------------------------------------------------------------------------
+./php-src/ext/opcache/zend_file_cache.c:227: if (info->str_size + len > ZSTR_LEN((zend_string*)ZCG(mem))) {
+-----------------------------------------------------------------------------
+./php-src/ext/openssl/openssl.c:18: |          Pierre-Alain Joye <pierre@php.net>                          |
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_auto_possess.c:1223: if (code[1 + IMM2_SIZE] == OP_PROP || code[1 + IMM2_SIZE] == OP_NOTPROP)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:2307: /* Only in 32-bit mode can there be literals > META_END. A macros encapsulates
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:4843: slot[IMM2_SIZE+length] == 0) break;
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:4850: if (i >= cb->names_found)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:5832: code[1+LINK_SIZE] = (meta == META_COND_RNAME)? OP_RREF : OP_CREF;
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:5834: if (ng->number > cb->top_backref) cb->top_backref = ng->number;
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:5884: code[1+LINK_SIZE] = (meta == META_COND_RNAME)? OP_RREF : OP_CREF;
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:5891: if (lengthptr == NULL && !find_dupname_details(name, length, &index,
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:5943: code[1+LINK_SIZE] = (PCRE2_MAJOR == pptr[2] && PCRE2_MINOR == pptr[3])?
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:7125: ((tempcode[1 + IMM2_SIZE] == OP_PROP
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:7126: || tempcode[1 + IMM2_SIZE] == OP_NOTPROP)? 2 : 0);
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_compile.c:8101: if (code[1 + IMM2_SIZE] == OP_PROP || code[1 + IMM2_SIZE] == OP_NOTPROP)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_convert.c:218: if (p + clength > endp) return PCRE2_ERROR_NOMEMORY;
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_convert.c:346: if (p + clength > endp) return PCRE2_ERROR_NOMEMORY;
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_dfa_match.c:624: uint32_t revlen = (end_code[1+LINK_SIZE] == OP_REVERSE)? 1 + LINK_SIZE : 0;
+./php-src/ext/pcre/pcre2lib/pcre2_dfa_match.c:626: if (back <= gone_back)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_dfa_match.c:3725: if (end_subject - start_match < re->minlength) goto NOMATCH_EXIT;
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_dfa_match.c:3741: if (has_req_cu && end_subject - start_match < REQ_CU_MAX)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_find_bracket.c:129: if (code[1 + IMM2_SIZE] == OP_PROP || code[1 + IMM2_SIZE] == OP_NOTPROP)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_jit_compile.c:888: if (cc[1 + LINK_SIZE] == OP_CALLOUT || cc[1 + LINK_SIZE] == OP_CALLOUT_STR)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_jit_compile.c:11194: if (assert->framesize >= 0 && (ccbegin[1 + LINK_SIZE] == OP_ASSERT || ccbegin[1 + LINK_SIZE] == OP_ASSERTBACK))
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_jit_compile.c:11337: if ((ccbegin[1 + LINK_SIZE] == OP_ASSERT_NOT || ccbegin[1 + LINK_SIZE] == OP_ASSERTBACK_NOT) && assert->framesize >= 0)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_match.c:6568: if (end_subject - start_match < re->minlength)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_match.c:6592: if (has_req_cu && end_subject - start_match < REQ_CU_MAX)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_printint.c:513: if (code[1 + IMM2_SIZE] == OP_PROP || code[1 + IMM2_SIZE] == OP_NOTPROP)
+./php-src/ext/pcre/pcre2lib/pcre2_printint.c:520: if (*code != OP_TYPEEXACT) fprintf(f, "0,");
+./php-src/ext/pcre/pcre2lib/pcre2_printint.c:522: if (*code == OP_TYPEMINUPTO) fprintf(f, "?");
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:165: if (cc[1+LINK_SIZE] == OP_RECURSE && cc[2*(1+LINK_SIZE)] == OP_KET)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:329: cc += 2 + IMM2_SIZE + ((cc[1 + IMM2_SIZE] == OP_PROP
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:330: || cc[1 + IMM2_SIZE] == OP_NOTPROP)? 2 : 0);
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:393: if (cc[1 + IMM2_SIZE] == OP_PROP
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:394: || cc[1 + IMM2_SIZE] == OP_NOTPROP) cc += 2;
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:611: if ((d > 0 && (INT_MAX/d) < min) || UINT16_MAX - branchlength < min*d)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:1450: (tcode[1 + LINK_SIZE] & (XCL_MAP|XCL_NOT)) == XCL_NOT)
+-----------------------------------------------------------------------------
+./php-src/ext/pcre/pcre2lib/pcre2_study.c:1456: classmap = ((tcode[1 + LINK_SIZE] & XCL_MAP) == 0)? NULL :
+-----------------------------------------------------------------------------
+./php-src/ext/pdo_dblib/dblib_driver.c:267: id = emalloc(32);
+-----------------------------------------------------------------------------
+./php-src/ext/pdo_odbc/odbc_stmt.c:232: buf = emalloc(8192);
+-----------------------------------------------------------------------------
+./php-src/ext/pdo_odbc/odbc_stmt.c:638: S->cols[colno].data = emalloc(256);
+-----------------------------------------------------------------------------
+./php-src/ext/pdo_odbc/odbc_stmt.c:682: buf2 = emalloc(256);
+-----------------------------------------------------------------------------
+./php-src/ext/pgsql/pgsql.c:19: |          Chris Kings-Lynne <chriskl@php.net> (v3 protocol)           |
+-----------------------------------------------------------------------------
+./php-src/ext/pgsql/pgsql.c:856: for (s = (char *)str; s - str < len; ++s) {
+-----------------------------------------------------------------------------
+./php-src/ext/pgsql/pgsql.c:869: for (s = (char *)str; s - str < len; ++s) {
+-----------------------------------------------------------------------------
+./php-src/ext/phar/phar.c:975: if (buffer + tmp_len > endbuffer) {
+-----------------------------------------------------------------------------
+./php-src/ext/phar/phar_object.c:4105: new_state.cwd = (char*)emalloc(2);
+-----------------------------------------------------------------------------
+./php-src/ext/shmop/shmop.c:249: if (count < 0 || start > (INT_MAX - count) || start + count > shmop->size) {
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:17952: IdList *pColumns;       /* If this is an UPDATE OF <column-list> trigger,
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:17953: the <column-list> is stored here */
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:22186: void *p = sqlite3_malloc(10);
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:31147: if( iA>0 && LARGEST_INT64 - iA < iB ) return 1;
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:38868: lPath[i+len] = (c=='/')?'_':c;
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:46426: if( iOfst+iAmt>p->sz ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:46460: if( iOfst+iAmt>p->sz ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:46462: if( iOfst+iAmt>p->szMax
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:48799: if( pCache->iMaxKey - iLimit < pCache->nHash ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:64123: if( cbrk<iCellFirst || pc+size>usableSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:64187: if( size+pc > usableSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:64561: if( pc+sz>usableSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:67329: if( a+offset>pCur->info.nLocal ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:67413: if( a + offset > ovflSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:69198: if( pc+sz > pPage->pBt->usableSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:69528: if( pFree+sz>pEnd ) return 0;
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:71152: if( oldCell+szNew > pPage->aDataEnd ) return SQLITE_CORRUPT_BKPT;
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:76361: if( p->nOp + nOp > p->pParse->nOpAlloc && growOpArray(p, nOp) ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:85551: if( nByte+nZero>db->aLimit[SQLITE_LIMIT_LENGTH] ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:93663: if( iOff + nChunk > copy.endpoint.iOffset ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:107191: assert( pCol->affinity-SQLITE_AFF_BLOB < ArraySize(azType) );
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:109365: if( (u32)pSrc->nSrc+nExtra>pSrc->nAlloc ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:111947: if( p1+p2>len ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:112938: if( len<=nIn && memcmp(&zIn[nIn-len],azChar[i],len)==0 ) break;
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:112940: if( i>=nChar ) break;
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:112944: if( zCharSet ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:121034: if( pTab->nCol+regRow>pParse->nMem ) pParse->nMem = pTab->nCol + regRow;
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:124010: }else if( pDest->iSdst+nResultCol > pParse->nMem ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:127087: assert( pSrc->a[i+iFrom].fg.isTabFunc==0 );
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:129759: if( p->nData + need > p->nAlloc ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:134485: #define WHERE_COLUMN_RANGE 0x00000002  /* x<EXPR and/or x>EXPR */
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:140849: if( M + logK + safetyMargin < nIn + rLogSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:153285: if( prior + delay > tmout ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:159186: if( nPrefix+nSuffix>nAlloc ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:168777: if( nPrefix+nSuffix>pReader->nTermAlloc ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:169649: if( nData>0 && nData+nReq>p->nNodeSize ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:170353: if( nDoclist+nByte>pCsr->nBuffer ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/libsqlite/sqlite3.c:206923: if( iOff+nNew>pIter->pLeaf->nn ){
+-----------------------------------------------------------------------------
+./php-src/ext/sqlite3/sqlite3.c:1072: if (sqlite3_stream->position + count > sqlite3_stream->size) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/array.c:2823: if (low - high < step || step <= 0) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/array.c:2837: if (high - low < step || step <= 0) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/array.c:2857: /* lstep is a ulong so that comparisons to it don't overflow, i.e. low - high < lstep */
+-----------------------------------------------------------------------------
+./php-src/ext/standard/array.c:4306: if (pad_size_abs < 0 || pad_size_abs - input_size > Z_L(1048576)) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/base64.c:498: char *s = emalloc(10240), *sp;
+-----------------------------------------------------------------------------
+./php-src/ext/standard/basic_functions.c:6107: if (INT_MAX - str_len < ZEND_MMAP_AHEAD) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/crypt_sha256.c:3: /* Windows VC++ port by Pierre Joye <pierre@php.net> */
+-----------------------------------------------------------------------------
+./php-src/ext/standard/crypt_sha512.c:3: /* Windows VC++ port by Pierre Joye <pierre@php.net> */
+-----------------------------------------------------------------------------
+./php-src/ext/standard/datetime.c:48: str = emalloc(81);
+-----------------------------------------------------------------------------
+./php-src/ext/standard/dns.c:427: if (cp + n > end) { \
+-----------------------------------------------------------------------------
+./php-src/ext/standard/html.c:807: /* we're guaranteed there were valid digits, so *endptr > buf */
+-----------------------------------------------------------------------------
+./php-src/ext/standard/html.c:1412: if (maxlen - len < ent_len + 2 /* & and ; */) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/soundex.c:15: | Author: BjÃ¸rn Borud - Guardian Networks AS <borud@guardian.no>       |
+-----------------------------------------------------------------------------
+./php-src/ext/standard/string.c:1013: && current + breakchar_len < ZSTR_LEN(text)
+-----------------------------------------------------------------------------
+./php-src/ext/standard/string.c:3609: for (l = 0; (p + l < end1) && (q + l < end2) && (p[l] == q[l]); l++);
+-----------------------------------------------------------------------------
+./php-src/ext/standard/string.c:3634: if ((pos1 + max < len1) && (pos2 + max < len2)) {
+-----------------------------------------------------------------------------
+./php-src/ext/standard/string.c:4506: * Cheers/complaints/flames - Zeev Suraski <zeev@php.net>
+-----------------------------------------------------------------------------
+./php-src/ext/standard/var_unserializer.c:352: if (UNEXPECTED(p - start > MAX_LENGTH_OF_LONG - 1)
+-----------------------------------------------------------------------------
+./php-src/ext/standard/var_unserializer.c:356: || UNEXPECTED(result - neg > ZEND_LONG_MAX)) {
+-----------------------------------------------------------------------------
+./php-src/ext/zip/php_zip.c:15: | Author: Piere-Alain Joye <pierre@php.net>                            |
+-----------------------------------------------------------------------------
+./php-src/ext/zip/zip_stream.c:15: | Author: Piere-Alain Joye <pierre@php.net>                            |
+-----------------------------------------------------------------------------
+./php-src/main/fastcgi.c:1082: if (len + padding > FCGI_MAX_LENGTH) {
+-----------------------------------------------------------------------------
+./php-src/main/fastcgi.c:1132: if (len + padding > FCGI_MAX_LENGTH) {
+-----------------------------------------------------------------------------
+./php-src/main/streams/memory.c:57: if (ms->fpos + count > ms->fsize) {
+-----------------------------------------------------------------------------
+./php-src/sapi/fpm/fpm/fpm_main.c:850: "  -y, --fpm-config <file>\n"
+-----------------------------------------------------------------------------
+./php-src/sapi/litespeed/lsapi_main.c:972: if ( p - argv < argc ) {
+-----------------------------------------------------------------------------
+./php-src/sapi/litespeed/lsapilib.c:621: if ( *pBegin + keyLen + valLen > pEnd )
+-----------------------------------------------------------------------------
+./php-src/sapi/phpdbg/phpdbg_parser.c:1075: if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
+./php-src/sapi/phpdbg/phpdbg_parser.c:1078: if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_alloc.c:972: if (UNEXPECTED(heap->real_size + ZEND_MM_CHUNK_SIZE > heap->limit)) {
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_alloc.c:1789: if (UNEXPECTED(heap->real_size + new_size > heap->limit)) {
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_hash.c:2657: || (end - tmp > MAX_LENGTH_OF_LONG - 1) /* number too long */
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_virtual_cwd.c:313: retval = (char *) emalloc(2);
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_virtual_cwd.c:854: for (bufindex = 0; bufindex + substitutename_off < substitutename_len; bufindex++) {
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_virtual_cwd.c:1317: new_state.cwd = (char*)emalloc(1);
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_virtual_cwd.c:1326: new_state.cwd = (char*)emalloc(1);
+./php-src/Zend/zend_virtual_cwd.c:1334: memcpy(real_path, new_state.cwd, len);
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_virtual_cwd.c:1787: new_state.cwd = (char*)emalloc(1);
+-----------------------------------------------------------------------------
+./php-src/Zend/zend_virtual_cwd.c:1798: new_state.cwd = (char*)emalloc(1);
+-----------------------------------------------------------------------------

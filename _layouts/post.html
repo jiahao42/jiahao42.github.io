@@ -1,0 +1,36 @@
+---
+layout: common
+---
+<div class="above-post">
+<div class="textheader">
+  <h1 class="post-title">
+          {{ page.title }}
+          </h1>
+</div>
+  <span class = "post-date">
+      {{ page.date | date_to_string }}
+      </span>
+  <!-- <a class="extra back" href="javascript:history.back()">
+    <span style="font-size: 100%; font-weight: bold;">&larr;</span>
+    &nbsp;back</a> -->
+</div>
+<div class="content">
+<main>
+  <!-- begin content -->
+  {{ content }}
+  <!-- end content -->
+  </main>
+</div>
+<div class="below-post">
+{% if page.tags.size != 0 %}
+  <a class="meta">tagged:{% for tag in page.tags %} {{ tag }}{% if forloop.last == false %},{% endif %}{% endfor %}</a>
+{% endif %}
+<!-- disable the Big Ugly Author Block
+{% if page.author %}
+  {% if page.authorlink %}
+    <p class="author">&mdash;<a class="extra" href="{{ page.authorlink }}">{{ page.author}}</a></p>
+  {% else %}
+    <p class="author">&mdash;{{ page.author}}</p>
+  {% endif %}
+{% endif %} -->
+</div>

@@ -1,0 +1,114 @@
+@import "fonts.scss";
+
+$very-light-gray: #c5c8c6;
+$light-gray: #65737E;
+$gray: black;
+$dark-gray: #282a2e;
+$very-dark-gray: #1d1f21;
+
+$cyan: #8abeb7;
+$blue: #81a2be;
+$purple: #B48EAD;
+$green: #acc697;
+$red: #cc6666;
+$orange: #de935f;
+$light-orange: #EBCB8B;
+
+.term {
+    color: black;
+    font-family: $code-font-stack;
+
+    // grid for stuff like fake "ls" commands
+    &-grid {
+        display: grid;
+        grid-template-columns: 9rem 9rem 9rem 9rem;
+        // grid-gap: 2rem;
+        // padding-left: 1rem;
+    }
+        // grid for stuff like fake "ls" commands
+    &-grid-single {
+        display: grid;
+        // grid-gap: 2rem;
+        // padding-left: 1rem;
+    }
+
+    a { color: $gray; }
+}
+
+a {
+    font-family: $code-font-stack;
+
+    // fake "directories" - printed with a slash after
+    &.dir {
+        color: $blue;
+        &:after {
+            content: "/";
+            color: $gray;
+            border-bottom: none;
+            &:hover {
+                border-bottom: none;
+            }
+        }
+    }
+
+    // fake "files"
+    &.file {
+        color: $green;
+    }
+
+}
+
+// ul .term {
+//     list-style-type: none;
+//     padding: 4rem;
+//     margin: none;
+// }
+
+.prompt {
+    &.host {
+        &:after {
+            color: $light-gray;
+            content: " :: ";
+        }
+    }
+    &.path {
+        &:after {
+            color: $light-gray;
+            content: " $ ";
+        }
+    }
+}
+
+.blinking-cursor {
+  color: black;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+    from, to { color: transparent; }
+    50% {      color: black; }
+}
+
+@-moz-keyframes blink {
+  from, to { color: transparent; }
+  50% {      color: black; }
+}
+
+@-webkit-keyframes "blink" {
+    from, to { color: transparent; }
+    50% {      color: black; }
+}
+
+@-ms-keyframes "blink" {
+    from, to { color: transparent; }
+    50% {      color: black; }
+}
+
+@-o-keyframes "blink" {
+    from, to { color: transparent; }
+    50% {      color: black; }
+}
