@@ -3,14 +3,14 @@ permalink:        pretty
 # relative_permalinks: true
 
 # Setup
-title:            eliza's website
-url:              https://elizas.website
+title:            Jiahao's website
+url:              http://jiahao-cai.info
 paginate:         1
 baseurl:          /
 author:
-  name:           Eliza Weisman
-  url:            https://elizas.website
-  email:          eliza@elizas.website
+  name:           Jiahao Cai
+  url:            http://jiahao-cai.info
+  email:          jiahao.cai42@gmail.com
 
 exclude: ["website.sublime-project", "website.sublime-workspace", "*.log", "*.fdb_latexmk", "*.synctex.gz", "*.aux"]
 
