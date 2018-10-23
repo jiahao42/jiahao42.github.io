@@ -20,5 +20,6 @@ Sometimes I write articles (mostly in Chinese), and I publish them on [my blog](
 + e-mail: (dot (at jc4mf virginia) edu)
 
 ## Elsewhere
-+ <a class = "dir" href="https://github.com/jiahao42">github</a>
-+ profile on <a class = "dir" href="https://stackoverflow.com/users/story/5685664">stack overflow careers</a>
++ <a class = "dir" href="https://github.com/jiahao42">Github</a>
++ <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a>
++ profile on <a class = "dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow careers</a>
