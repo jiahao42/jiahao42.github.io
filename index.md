@@ -8,7 +8,7 @@ cmd: cat about.txt
 
 ## Who?
 
-I am a first year Master student in Department of Computer Science, Univeristy of Virginia.
+I am a first year Master student in the Department of Computer Science, Univeristy of Virginia.
 
 My research interest lies in Programming Language and Software Security. Currently, I am doing research with [Prof.Kwon](https://yonghwi-kwon.github.io) on software security.
 
