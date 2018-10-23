@@ -46,7 +46,7 @@ sass:
 # Navigation
 nav:
   - name:           "code"
-    href:           "https://github.com/hawkw"
+    href:           "https://github.com/jiahao42"
     kind:           "dir"
   - name:           "notes"
     href:           "/notes"
