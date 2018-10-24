@@ -1,6 +1,6 @@
 ---
 layout: term
-title: Jiahao's website
+title: Jiahao's homepage
 cmd: cat about.txt
 ---
 
