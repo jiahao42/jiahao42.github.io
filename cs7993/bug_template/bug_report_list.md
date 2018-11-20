@@ -1,4 +1,7 @@
-## Bug reports
+---
+title:
+  Bug reports
+---
 
 * [cJSON](#cJSON)
   * [Bug in cJSON.c cJSON_SetNumberHelper #138](#Bug in cJSON.c cJSON_SetNumberHelper #138)
@@ -19,7 +22,21 @@
   * Mongoose Embedded Web Server Library - Mongoose is more than an embedded webserver. It is a multi-protocol embedded networking library with functions including TCP, HTTP client and server, WebSocket client and server, MQTT client and broker and much more.
   * [websocket client bug #631](#websocket client bug #631)
 * [Firefox](#Firefox)
-  * [Iframe injection & content spoofing & scripts execution via json viewer, CVE-2018-5176](#CVE-2018-5176)
+  * [Iframe injection & content spoofing & scripts execution via json viewer](#CVE-2018-5176)
+    * [CVE-2018-5176](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176)
+* [poco](#poco)
+  * The POCO C++ Libraries are powerful cross-platform C++ libraries for building network- and internet-based applications that run on desktop, server, mobile, IoT, and embedded systems.
+  * [Zip Decompress Parent Path Injection #1968](#Zip Decompress Parent Path Injection #1968)
+* [CImg](#CImg)
+  * [other testcases lead to heap overflow by loading crafted images #185](#other testcases lead to heap overflow by loading crafted images #185)
+    * [CVE-2018-7640](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7640)
+* [ImageMagick](#ImageMagick)
+  * [heap-buffer-overflow in SVGStripString of svg.c #1336](#heap-buffer-overflow in SVGStripString of svg.c #1336)
+    * [CVE-2018-18023](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18023)
+  * [heap-buffer-overflow in EncodeImage of pict.c #1335](#heap-buffer-overflow in EncodeImage of pict.c #1335)
+    * [CVE-2018-18025](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18025)
+  * [heap-buffer-overflow in MagickCore #1156](#heap-buffer-overflow in MagickCore #1156)
+    * [CVE-2018-11625](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-11625)
 
 <a name="cJSON">
 
@@ -668,7 +685,7 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
 
 <a name="fix charef parsing #152">
 
-### 1. [fix charef parsing #152]]()
+### 1. [fix charef parsing #152]](https://github.com/lexborisov/myhtml/pull/152)
 
 [**Description**](https://github.com/lexborisov/myhtml/pull/152)
 
@@ -827,11 +844,10 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
                             (uc_b2 = hex_value (*++ state.ptr)) == 0xFF ||
 ```
 
-[**Full function:**](https://github.com/udp/json-parser/commit/b42439a2927a879f40698e4861e727c4265c13e6)
+[**Full function:**](https://github.com/udp/json-parser/blob/b42439a2927a879f40698e4861e727c4265c13e6/json.c#L221)
 
-```c
-//too long, omitted
-```
+Too long, omitted, see [here](https://github.com/udp/json-parser/blob/b42439a2927a879f40698e4861e727c4265c13e6/json.c#L221)
+
 
 **Comments**:
 
@@ -948,9 +964,9 @@ if (*url == '/') {
 
 ### Project Name: [Firefox](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176)
 
-<a name="CVE-2018-5176">
+<a name="Iframe injection & content spoofing & scripts execution via json viewer">
 
-### 1. [Iframe injection & content spoofing & scripts execution via json viewer, CVE-2018-5176]()
+### 1. [Iframe injection & content spoofing & scripts execution via json viewer](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176)
 
 [**Description**](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176)
 
@@ -987,23 +1003,88 @@ if (*url == '/') {
 ---
 
 
-<a name="">
+<a name="poco">
 
-### Project Name: []()
+### Project Name: [poco](https://github.com/pocoproject/poco)
 
-### 1. []()
+<a name="Zip Decompress Parent Path Injection #1968">
 
-[**Description**]()
+### 1. [Zip Decompress Parent Path Injection #1968](https://github.com/pocoproject/poco/issues/1968)
 
+[**Description**](https://github.com/pocoproject/poco/issues/1968)
 
+> By manipulation of the Zip input file header, the contents of the zip archive can be written to an arbitrary parent path of the user.
 
-[**Patch code:**]()
+> Expected behavior   
+> Throw an exception if filename contains a parent directory reference. isValidPath() (ZipCommon.cpp) should check if the filename contains a tilde character.
 
-```diff
+> Actual behavior   
+> By inserting a tilde-slash (~/) in the filename area of the zip header, files can be written to the user's home directory.
+
+> Steps to reproduce the problem   
+> Use the sample-unzip samle application as follows:
 
 ```
+$ ./sample-unzip -f vuln.zip SOME_OUT_DIR
+vuln.zip contains a file foo. foo includes the string bar
+```
 
-[**Full function:**]()
+
+
+[**Patch code:**](https://github.com/pocoproject/poco/commit/f5b2cf3dd6976ae53b2f3c9618b0087a0646cc7d)
+
+```diff
+Zip/src/Decompress.cpp
+@@ -80,7 +80,7 @@ bool Decompress::handleZipEntry(std::istream& zipStream, const ZipLocalFileHeade
+		{
+			std::string dirName = hdr.getFileName();
+			if (!ZipCommon::isValidPath(dirName))
+-				throw ZipException("Illegal entry name " + dirName + " containing parent directory reference");
++				throw ZipException("Illegal entry name " + dirName);
+			Poco::Path dir(_outDir, dirName);
+			dir.makeDirectory();
+			Poco::File aFile(dir);
+@@ -100,7 +100,7 @@ bool Decompress::handleZipEntry(std::istream& zipStream, const ZipLocalFileHeade
+		}
+ 		if (!ZipCommon::isValidPath(fileName))
+-			throw ZipException("Illegal entry name " + fileName + " containing parent directory reference");
++			throw ZipException("Illegal entry name " + fileName);
+ 		Poco::Path file(fileName);
+		file.makeFile();
+
+Zip/src/ZipCommon.cpp
+@@ -21,15 +22,26 @@ namespace Zip {
+ bool ZipCommon::isValidPath(const std::string& path)
+{
++ 	if (!Path(path).isRelative())
++		return false;
++	if (path == "..")
++		return false;
+-	if (path.compare(0, 3, "../") == 0)
++	if ((path.size() >= 3) && path.compare(0, 3, "../") == 0)
++		return false;
++	if ((path.size() >= 3) && path.compare(0, 3, "..\\") == 0)
++		return false;
++	if (path.find("/../") != std::string::npos)
++		return false;
++	if (path.find("\\..\\") != std::string::npos)
++		return false;
++	if (path.find("/..\\") != std::string::npos)
+		return false;
+-	if (path.compare(0, 3, "..\\") == 0)
++	if (path.find("\\../") != std::string::npos)
+		return false;
+-	if (path.find("/..") != std::string::npos)
++	if ((path.size() >= 2) && path.compare(0, 2, "~/") == 0)
+		return false;
+-	if (path.find("\\..") != std::string::npos)
++	if (path.size() > 0 && (path[0] == '/' || path[0] == '\\'))
+		return false;
+	return true;
+}
+```
+
+[**Full function:**](https://github.com/pocoproject/poco/commit/f5b2cf3dd6976ae53b2f3c9618b0087a0646cc7d)
 
 ```c
 
@@ -1015,27 +1096,219 @@ if (*url == '/') {
 ---
 
 
-<a name="">
+<a name="CImg">
 
-### Project Name: []()
+### Project Name: [CImg](https://github.com/dtschump/CImg)
 
-### 1. []()
+<a name="other testcases lead to heap overflow by loading crafted images #185">
 
-[**Description**]()
+### 1. [other testcases lead to heap overflow by loading crafted images #185](https://github.com/dtschump/CImg/issues/185)
 
+[**Description**](https://github.com/dtschump/CImg/issues/185)
 
+> An issue was discovered in CImg v.220. A heap-based buffer over-read in load_bmp in CImg.h occurs when loading a crafted bmp image, a different vulnerability than CVE-2018-7588. This is in a Monochrome case, aka case 1.
 
 [**Patch code:**]()
 
 ```diff
-
+@@ -48331,7 +48331,7 @@ namespace cimg_library_suffixed {
+      if (header_size>40) cimg::fseek(nfile,header_size - 40,SEEK_CUR);
+       const int
+-        dx_bytes = (bpp==1)?(dx/8 + (dx%8?1:0)):((bpp==4)?(dx/2 + (dx%2)):(dx*bpp/8)),
++        dx_bytes = (bpp==1)?(dx/8 + (dx%8?1:0)):((bpp==4)?(dx/2 + (dx%2)):(int)((longT)dx*bpp/8)),
+        align_bytes = (4 - dx_bytes%4)%4;
+      const ulongT
+        cimg_iobuffer = (ulongT)24*1024*1024,
+@@ -48363,10 +48363,10 @@ namespace cimg_library_suffixed {
+      }
+       // Read pixel data
+-      assign(dx,cimg::abs(dy),1,3);
++      assign(dx,cimg::abs(dy),1,3,0);
+      switch (bpp) {
+-      case 1 : { // Monochrome
++        for (int y = height() - 1; y>=0; --y) {
+        if (colormap._width>=2) for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+@@ -48384,7 +48384,7 @@ namespace cimg_library_suffixed {
+        }
+      } break;
+      case 4 : { // 16 colors
+-        for (int y = height() - 1; y>=0; --y) {
++        if (colormap._width>=16) for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+@@ -48402,8 +48402,8 @@ namespace cimg_library_suffixed {
+          ptrs+=align_bytes;
+        }
+      } break;
+-      case 8 : { //  256 colors
+-        for (int y = height() - 1; y>=0; --y) {
++      case 8 : { // 256 colors
++        if (colormap._width>=256) for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
 ```
 
-[**Full function:**]()
+[**Full function:**](https://github.com/dtschump/CImg/commit/10af1e8c1ad2a58a0a3342a856bae63e8f257abb)
+
+The function is too long, see [here](https://github.com/dtschump/CImg/commit/10af1e8c1ad2a58a0a3342a856bae63e8f257abb)
+
+**Comments**:
+
+---
+
+
+
+<a name="ImageMagick">
+
+### Project Name: [ImageMagick](https://github.com/ImageMagick/ImageMagick)
+
+<a name="heap-buffer-overflow in SVGStripString of svg.c #1336">
+
+### 1. [heap-buffer-overflow in SVGStripString of svg.c #1336](https://github.com/ImageMagick/ImageMagick/issues/1336)
+
+[**Description**](https://github.com/ImageMagick/ImageMagick/issues/1336)
+
+In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the SVGStripString function of coders/svg.c, which allows attackers to cause a denial of service via a crafted SVG image file.
+
+[**Patch code:**](https://github.com/ImageMagick/ImageMagick6/commit/a5db4873626f702d2ddd8bc293573493e0a412c0)
+
+```diff
+      {
+        for ( ; *p != '\0'; p++)
+          if ((*p == '*') && (*(p+1) == '/'))
+-            break;
++            {
++              p+=2;
++              break;
++            }
+        if (*p == '\0')
+          break;
+-        p+=2;
+      }
+    *q++=(*p);
+  }
+```
+
+[**Full function:**](https://github.com/ImageMagick/ImageMagick6/commit/a5db4873626f702d2ddd8bc293573493e0a412c0)
 
 ```c
-
+ static void SVGStripString(const MagickBooleanType trim,char *message)
+ {
+   register char
+     *p,
+     *q;
+ 
+   size_t
+     length;
+ 
+   assert(message != (char *) NULL);
+   if (*message == '\0')
+     return;
+   /*
+     Remove comment.
+   */
+   q=message;
+   for (p=message; *p != '\0'; p++)
+   {
+     if ((*p == '/') && (*(p+1) == '*'))
+      {
+        for ( ; *p != '\0'; p++)
+          if ((*p == '*') && (*(p+1) == '/'))
+            break;
+            {
+              p+=2;
+              break;
+            }
+        if (*p == '\0')
+          break;
+        p+=2;
+      }
+    *q++=(*p);
+  }
+   *q='\0';
+   if (trim != MagickFalse)
+     {
+       /*
+         Remove whitespace.
+       */
+       length=strlen(message);
+       p=message;
+       while (isspace((int) ((unsigned char) *p)) != 0)
+         p++;
+       if ((*p == '\'') || (*p == '"'))
+         p++;
+       q=message+length-1;
+       while ((isspace((int) ((unsigned char) *q)) != 0) && (q > p))
+         q--;
+       if (q > p)
+         if ((*q == '\'') || (*q == '"'))
+           q--;
+       (void) memmove(message,p,(size_t) (q-p+1));
+       message[q-p+1]='\0';
+     }
+   /*
+     Convert newlines to a space.
+   */
+   for (p=message; *p != '\0'; p++)
+     if (*p == '\n')
+       *p=' ';
+ }
 ```
+
+**Comments**:
+
+
+---
+
+<a name="heap-buffer-overflow in EncodeImage of pict.c #1335">
+
+### 1. [heap-buffer-overflow in EncodeImage of pict.c #1335](https://github.com/ImageMagick/ImageMagick/issues/1335)
+
+[**Description**](https://github.com/ImageMagick/ImageMagick/issues/1335)
+
+In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the EncodeImage function of coders/pict.c, which allows attackers to cause a denial of service via a crafted SVG image file.
+
+[**Patch code:**]()
+
+```diff
+@@ -444,7 +444,7 @@ static unsigned char *DecodeImage(Image *blob,Image *image,
+    bytes_per_line=width;
+  row_bytes=(size_t) (image->columns | 0x8000);
+  if (image->storage_class == DirectClass)
+-    row_bytes=(size_t) (4*(image->columns | 0x8000));
++    row_bytes=(size_t) ((4*image->columns) | 0x8000);
+  /*
+    Allocate pixel and scanline buffer.
+  */
+@@ -1778,7 +1778,7 @@ static MagickBooleanType WritePICTImage(const ImageInfo *image_info,
+  /*
+    Allocate memory.
+  */
+-  bytes_per_line=image->columns | 0x8000;
++  bytes_per_line=image->columns;
+  if (storage_class == DirectClass)
+    bytes_per_line*=image->alpha_trait != UndefinedPixelTrait ? 4 : 3;
+  buffer=(unsigned char *) AcquireQuantumMemory(PictInfoSize,sizeof(*buffer));
+@@ -1799,7 +1799,8 @@ static MagickBooleanType WritePICTImage(const ImageInfo *image_info,
+      ThrowWriterException(ResourceLimitError,"MemoryAllocationFailed");
+    }
+  (void) memset(scanline,0,row_bytes);
+-  (void) memset(packed_scanline,0,(size_t) (row_bytes+2*MaxCount));
++  (void) memset(packed_scanline,0,(size_t) (row_bytes+2*MaxCount)*
++    sizeof(*packed_scanline));
+  /*
+    Write header, header size, size bounding box, version, and reserved.
+  */
+```
+
+[**Full function:**](https://github.com/ImageMagick/ImageMagick/commit/1a22fc0c8837838e60daecc0bf01648f359dd6fd#diff-9f0be979d8a302c3f34029647fc77cbdR450)
+
+too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/1a22fc0c8837838e60daecc0bf01648f359dd6fd#diff-9f0be979d8a302c3f34029647fc77cbdR450)
 
 **Comments**:
 
@@ -1044,85 +1317,35 @@ if (*url == '/') {
 
 
 
-<a name="">
-
-### Project Name: []()
-
-### 1. []()
-
-[**Description**]()
+<a name="heap-buffer-overflow in MagickCore #1156">
 
 
+### 1. [heap-buffer-overflow in MagickCore #1156](https://github.com/ImageMagick/ImageMagick/issues/1156)
 
-[**Patch code:**]()
+[**Description**](https://github.com/ImageMagick/ImageMagick/issues/1156)
 
-```diff
-
-```
-
-[**Full function:**]()
-
-```c
-
-```
-
-**Comments**:
-
-
----
-
-
-
-<a name="">
-
-### Project Name: []()
-
-### 1. []()
-
-[**Description**]()
-
-
+In ImageMagick 7.0.7-37 Q16, SetGrayscaleImage in the quantize.c file allows attackers to cause a heap-based buffer over-read via a crafted file.
 
 [**Patch code:**]()
 
 ```diff
-
+  if (image->type != GrayscaleType)
+    (void) TransformImageColorspace(image,GRAYColorspace,exception);
+  if (image->storage_class == PseudoClass)
+-    colormap_index=(ssize_t *) AcquireQuantumMemory(image->colors,
++    colormap_index=(ssize_t *) AcquireQuantumMemory(image->colors+1,
+      sizeof(*colormap_index));
+  else
+-    colormap_index=(ssize_t *) AcquireQuantumMemory(MaxColormapSize,
++    colormap_index=(ssize_t *) AcquireQuantumMemory(MaxColormapSize+1,
+      sizeof(*colormap_index));
+  if (colormap_index == (ssize_t *) NULL)
+    ThrowBinaryException(ResourceLimitError,"MemoryAllocationFailed",
 ```
 
-[**Full function:**]()
+[**Full function:**](https://github.com/ImageMagick/ImageMagick/commit/5294966898532a6bd54699fbf04edf18902513ac#diff-b422c231973548d46a04db74c7cb8e58R3448)
 
-```c
-
-```
-
-**Comments**:
-
-
----
-
-
-
-<a name="">
-
-### Project Name: []()
-
-### 1. []()
-
-[**Description**]()
-
-
-
-[**Patch code:**]()
-
-```diff
-
-```
-
-[**Full function:**]()
-
-```c
-
-```
+too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/5294966898532a6bd54699fbf04edf18902513ac#diff-b422c231973548d46a04db74c7cb8e58R3448)
 
 **Comments**:
 

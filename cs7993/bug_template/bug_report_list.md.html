@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>bug_report_list</title>
+  <title>Bug reports</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <![endif]-->
 </head>
 <body>
-<h2 id="bug-reports">Bug reports</h2>
+<header id="title-block-header">
+<h1 class="title">Bug reports</h1>
+</header>
 <ul>
 <li><a href="#cJSON">cJSON</a>
 <ul>
@@ -114,7 +116,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#Firefox">Firefox</a>
 <ul>
-<li><a href="#CVE-2018-5176">Iframe injection &amp; content spoofing &amp; scripts execution via json viewer, CVE-2018-5176</a></li>
+<li><a href="#CVE-2018-5176">Iframe injection &amp; content spoofing &amp; scripts execution via json viewer</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176">CVE-2018-5176</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#poco">poco</a>
+<ul>
+<li>The POCO C++ Libraries are powerful cross-platform C++ libraries for building network- and internet-based applications that run on desktop, server, mobile, IoT, and embedded systems.</li>
+<li><a href="#Zip%20Decompress%20Parent%20Path%20Injection%20#1968">Zip Decompress Parent Path Injection #1968</a></li>
+</ul></li>
+<li><a href="#CImg">CImg</a>
+<ul>
+<li><a href="#other%20testcases%20lead%20to%20heap%20overflow%20by%20loading%20crafted%20images%20#185">other testcases lead to heap overflow by loading crafted images #185</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7640">CVE-2018-7640</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#ImageMagick">ImageMagick</a>
+<ul>
+<li><a href="#heap-buffer-overflow%20in%20SVGStripString%20of%20svg.c%20#1336">heap-buffer-overflow in SVGStripString of svg.c #1336</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18023">CVE-2018-18023</a></li>
+</ul></li>
+<li><a href="#heap-buffer-overflow%20in%20EncodeImage%20of%20pict.c%20#1335">heap-buffer-overflow in EncodeImage of pict.c #1335</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18025">CVE-2018-18025</a></li>
+</ul></li>
+<li><a href="#heap-buffer-overflow%20in%20MagickCore%20#1156">heap-buffer-overflow in MagickCore #1156</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-11625">CVE-2018-11625</a></li>
+</ul></li>
 </ul></li>
 </ul>
 <p><a name="cJSON"></p>
@@ -649,7 +681,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a name="myhtml"></p>
 <h3 id="project-name-myhtml">Project Name: <a href="https://github.com/lexborisov/myhtml/">myhtml</a></h3>
 <p><a name="fix charef parsing #152"></p>
-<h3 id="fix-charef-parsing-152">1. [fix charef parsing #152]]()</h3>
+<h3 id="fix-charef-parsing-152httpsgithub.comlexborisovmyhtmlpull152">1. [fix charef parsing #152]](https://github.com/lexborisov/myhtml/pull/152)</h3>
 <p><a href="https://github.com/lexborisov/myhtml/pull/152"><strong>Description</strong></a></p>
 <blockquote>
 <p>fix bugs like this:<br />
@@ -787,8 +819,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb18-20" data-line-number="20"><span class="st">-                        if (end - state.ptr &lt;= 6 || (*++ state.ptr) != &#39;\\&#39; || (*++ state.ptr) != &#39;u&#39; ||</span></a>
 <a class="sourceLine" id="cb18-21" data-line-number="21"><span class="va">+                            (uc_b1 = hex_value (*++ state.ptr)) == 0xFF ||</span></a>
 <a class="sourceLine" id="cb18-22" data-line-number="22">                            (uc_b2 = hex_value (*++ state.ptr)) == 0xFF ||</a></code></pre></div>
-<p><a href="https://github.com/udp/json-parser/commit/b42439a2927a879f40698e4861e727c4265c13e6"><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">//too long, omitted</span></a></code></pre></div>
+<p><a href="https://github.com/udp/json-parser/blob/b42439a2927a879f40698e4861e727c4265c13e6/json.c#L221"><strong>Full function:</strong></a></p>
+<p>Too long, omitted, see <a href="https://github.com/udp/json-parser/blob/b42439a2927a879f40698e4861e727c4265c13e6/json.c#L221">here</a></p>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name="mongoose"></p>
@@ -820,89 +852,360 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now the path returned by <code>mg_http_common_url_parse</code> always starts with <code>/</code>.</p>
 </blockquote>
 <p><a href="https://github.com/cesanta/mongoose/commit/29d6c4ac04d4eb5c7eca295a77c8df47fb04f12f"><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="dt">@@ -7540,7 +7540,6 @@ static int mg_http_common_url_parse(const char *url, const char *schema,</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">      return -1;</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">    }</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">    if (*url == &#39;/&#39;) {</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">-      url++;</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">      break;</a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">    }</a>
-<a class="sourceLine" id="cb21-8" data-line-number="8">    if (*url == &#39;:&#39;) *port_i = addr_len;</a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="dt">@@ -7632,7 +7631,7 @@ struct mg_connection *mg_connect_http(struct mg_mgr *mgr,</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">    /* If the port was addred by us, restore the original host. */</a>
-<a class="sourceLine" id="cb21-11" data-line-number="11">    if (port_i &gt;= 0) addr[port_i] = &#39;\0&#39;;</a>
-<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="st">-    mg_printf(nc, &quot;%s /%s HTTP/1.1\r\nHost: %s\r\nContent-Length: %&quot; SIZE_T_FMT</span></a>
-<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="va">+    mg_printf(nc, &quot;%s %s HTTP/1.1\r\nHost: %s\r\nContent-Length: %&quot; SIZE_T_FMT</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="dt">@@ -7540,7 +7540,6 @@ static int mg_http_common_url_parse(const char *url, const char *schema,</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">      return -1;</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">    }</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">    if (*url == &#39;/&#39;) {</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="st">-      url++;</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">      break;</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">    }</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">    if (*url == &#39;:&#39;) *port_i = addr_len;</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="dt">@@ -7632,7 +7631,7 @@ struct mg_connection *mg_connect_http(struct mg_mgr *mgr,</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10">    /* If the port was addred by us, restore the original host. */</a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">    if (port_i &gt;= 0) addr[port_i] = &#39;\0&#39;;</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12"><span class="st">-    mg_printf(nc, &quot;%s /%s HTTP/1.1\r\nHost: %s\r\nContent-Length: %&quot; SIZE_T_FMT</span></a>
+<a class="sourceLine" id="cb20-13" data-line-number="13"><span class="va">+    mg_printf(nc, &quot;%s %s HTTP/1.1\r\nHost: %s\r\nContent-Length: %&quot; SIZE_T_FMT</span></a></code></pre></div>
 <p><a href="https://github.com/cesanta/mongoose/commit/29d6c4ac04d4eb5c7eca295a77c8df47fb04f12f"><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb22-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">int</span> mg_http_common_url_parse(<span class="dt">const</span> <span class="dt">char</span> *url, <span class="dt">const</span> <span class="dt">char</span> *schema,</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">                                     <span class="dt">const</span> <span class="dt">char</span> *schema_tls, <span class="dt">int</span> *use_ssl,</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">                                     <span class="dt">char</span> **addr, <span class="dt">int</span> *port_i,</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">                                     <span class="dt">const</span> <span class="dt">char</span> **path) {</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">   <span class="dt">int</span> addr_len = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"> </a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">   <span class="cf">if</span> (memcmp(url, schema, strlen(schema)) == <span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb22-8" data-line-number="8">     url += strlen(schema);</a>
-<a class="sourceLine" id="cb22-9" data-line-number="9">   } <span class="cf">else</span> <span class="cf">if</span> (memcmp(url, schema_tls, strlen(schema_tls)) == <span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">     url += strlen(schema_tls);</a>
-<a class="sourceLine" id="cb22-11" data-line-number="11">     *use_ssl = <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb22-12" data-line-number="12"> <span class="pp">#ifndef MG_ENABLE_SSL</span></a>
-<a class="sourceLine" id="cb22-13" data-line-number="13">     <span class="cf">return</span> <span class="dv">-1</span>; <span class="co">/* SSL is not enabled, cannot do HTTPS URLs */</span></a>
-<a class="sourceLine" id="cb22-14" data-line-number="14"> <span class="pp">#endif</span></a>
-<a class="sourceLine" id="cb22-15" data-line-number="15">   }</a>
-<a class="sourceLine" id="cb22-16" data-line-number="16"> </a>
-<a class="sourceLine" id="cb22-17" data-line-number="17">   <span class="cf">while</span> (*url != &#39;\<span class="dv">0</span>&#39;) {</a>
-<a class="sourceLine" id="cb22-18" data-line-number="18">     *addr = (<span class="dt">char</span> *) MG_REALLOC(*addr, addr_len + <span class="dv">5</span> <span class="co">/* space for port too. */</span>);</a>
-<a class="sourceLine" id="cb22-19" data-line-number="19">     <span class="cf">if</span> (*addr == NULL) {</a>
-<a class="sourceLine" id="cb22-20" data-line-number="20">       DBG((<span class="st">&quot;OOM&quot;</span>));</a>
-<a class="sourceLine" id="cb22-21" data-line-number="21">      <span class="cf">return</span> <span class="dv">-1</span>;</a>
-<a class="sourceLine" id="cb22-22" data-line-number="22">    }</a>
-<a class="sourceLine" id="cb22-23" data-line-number="23">    <span class="cf">if</span> (*url == <span class="ch">&#39;/&#39;</span>) {</a>
-<a class="sourceLine" id="cb22-24" data-line-number="24">      url++;</a>
-<a class="sourceLine" id="cb22-25" data-line-number="25">      <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb22-26" data-line-number="26">    }</a>
-<a class="sourceLine" id="cb22-27" data-line-number="27">    <span class="cf">if</span> (*url == <span class="ch">&#39;:&#39;</span>) *port_i = addr_len;</a>
-<a class="sourceLine" id="cb22-28" data-line-number="28">@@ <span class="dv">-7632</span>,<span class="dv">7</span> +<span class="dv">7631</span>,<span class="dv">7</span> @@ <span class="kw">struct</span> mg_connection *mg_connect_http(<span class="kw">struct</span> mg_mgr *mgr,</a>
-<a class="sourceLine" id="cb22-29" data-line-number="29">    <span class="co">/* If the port was addred by us, restore the original host. */</span></a>
-<a class="sourceLine" id="cb22-30" data-line-number="30">    <span class="cf">if</span> (port_i &gt;= <span class="dv">0</span>) addr[port_i] = &#39;\<span class="dv">0</span>&#39;;</a>
-<a class="sourceLine" id="cb22-31" data-line-number="31">     mg_printf(nc, <span class="st">&quot;%s /%s HTTP/1.1</span><span class="sc">\r\n</span><span class="st">Host: %s</span><span class="sc">\r\n</span><span class="st">Content-Length: %&quot;</span> SIZE_T_FMT</a>
-<a class="sourceLine" id="cb22-32" data-line-number="32">    mg_printf(nc, <span class="st">&quot;%s %s HTTP/1.1</span><span class="sc">\r\n</span><span class="st">Host: %s</span><span class="sc">\r\n</span><span class="st">Content-Length: %&quot;</span> SIZE_T_FMT</a>
-<a class="sourceLine" id="cb22-33" data-line-number="33">                  <span class="st">&quot;</span><span class="sc">\r\n</span><span class="st">%s</span><span class="sc">\r\n</span><span class="st">%s&quot;</span>,</a>
-<a class="sourceLine" id="cb22-34" data-line-number="34">              post_data == NULL ? <span class="st">&quot;GET&quot;</span> : <span class="st">&quot;POST&quot;</span>, path, addr,</a>
-<a class="sourceLine" id="cb22-35" data-line-number="35">              post_data == NULL ? <span class="dv">0</span> : strlen(post_data),</a>
-<a class="sourceLine" id="cb22-36" data-line-number="36">               extra_headers == NULL ? <span class="st">&quot;&quot;</span> : extra_headers,</a>
-<a class="sourceLine" id="cb22-37" data-line-number="37">               post_data == NULL ? <span class="st">&quot;&quot;</span> : post_data);</a>
-<a class="sourceLine" id="cb22-38" data-line-number="38">   }</a>
-<a class="sourceLine" id="cb22-39" data-line-number="39"> </a>
-<a class="sourceLine" id="cb22-40" data-line-number="40">   MG_FREE(addr);</a>
-<a class="sourceLine" id="cb22-41" data-line-number="41">   <span class="cf">return</span> nc;</a>
-<a class="sourceLine" id="cb22-42" data-line-number="42"> }</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb21-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">int</span> mg_http_common_url_parse(<span class="dt">const</span> <span class="dt">char</span> *url, <span class="dt">const</span> <span class="dt">char</span> *schema,</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">                                     <span class="dt">const</span> <span class="dt">char</span> *schema_tls, <span class="dt">int</span> *use_ssl,</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">                                     <span class="dt">char</span> **addr, <span class="dt">int</span> *port_i,</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">                                     <span class="dt">const</span> <span class="dt">char</span> **path) {</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">   <span class="dt">int</span> addr_len = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"> </a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">   <span class="cf">if</span> (memcmp(url, schema, strlen(schema)) == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">     url += strlen(schema);</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">   } <span class="cf">else</span> <span class="cf">if</span> (memcmp(url, schema_tls, strlen(schema_tls)) == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">     url += strlen(schema_tls);</a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">     *use_ssl = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"> <span class="pp">#ifndef MG_ENABLE_SSL</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">     <span class="cf">return</span> <span class="dv">-1</span>; <span class="co">/* SSL is not enabled, cannot do HTTPS URLs */</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14"> <span class="pp">#endif</span></a>
+<a class="sourceLine" id="cb21-15" data-line-number="15">   }</a>
+<a class="sourceLine" id="cb21-16" data-line-number="16"> </a>
+<a class="sourceLine" id="cb21-17" data-line-number="17">   <span class="cf">while</span> (*url != &#39;\<span class="dv">0</span>&#39;) {</a>
+<a class="sourceLine" id="cb21-18" data-line-number="18">     *addr = (<span class="dt">char</span> *) MG_REALLOC(*addr, addr_len + <span class="dv">5</span> <span class="co">/* space for port too. */</span>);</a>
+<a class="sourceLine" id="cb21-19" data-line-number="19">     <span class="cf">if</span> (*addr == NULL) {</a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">       DBG((<span class="st">&quot;OOM&quot;</span>));</a>
+<a class="sourceLine" id="cb21-21" data-line-number="21">      <span class="cf">return</span> <span class="dv">-1</span>;</a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">    }</a>
+<a class="sourceLine" id="cb21-23" data-line-number="23">    <span class="cf">if</span> (*url == <span class="ch">&#39;/&#39;</span>) {</a>
+<a class="sourceLine" id="cb21-24" data-line-number="24">      url++;</a>
+<a class="sourceLine" id="cb21-25" data-line-number="25">      <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb21-26" data-line-number="26">    }</a>
+<a class="sourceLine" id="cb21-27" data-line-number="27">    <span class="cf">if</span> (*url == <span class="ch">&#39;:&#39;</span>) *port_i = addr_len;</a>
+<a class="sourceLine" id="cb21-28" data-line-number="28">@@ <span class="dv">-7632</span>,<span class="dv">7</span> +<span class="dv">7631</span>,<span class="dv">7</span> @@ <span class="kw">struct</span> mg_connection *mg_connect_http(<span class="kw">struct</span> mg_mgr *mgr,</a>
+<a class="sourceLine" id="cb21-29" data-line-number="29">    <span class="co">/* If the port was addred by us, restore the original host. */</span></a>
+<a class="sourceLine" id="cb21-30" data-line-number="30">    <span class="cf">if</span> (port_i &gt;= <span class="dv">0</span>) addr[port_i] = &#39;\<span class="dv">0</span>&#39;;</a>
+<a class="sourceLine" id="cb21-31" data-line-number="31">     mg_printf(nc, <span class="st">&quot;%s /%s HTTP/1.1</span><span class="sc">\r\n</span><span class="st">Host: %s</span><span class="sc">\r\n</span><span class="st">Content-Length: %&quot;</span> SIZE_T_FMT</a>
+<a class="sourceLine" id="cb21-32" data-line-number="32">    mg_printf(nc, <span class="st">&quot;%s %s HTTP/1.1</span><span class="sc">\r\n</span><span class="st">Host: %s</span><span class="sc">\r\n</span><span class="st">Content-Length: %&quot;</span> SIZE_T_FMT</a>
+<a class="sourceLine" id="cb21-33" data-line-number="33">                  <span class="st">&quot;</span><span class="sc">\r\n</span><span class="st">%s</span><span class="sc">\r\n</span><span class="st">%s&quot;</span>,</a>
+<a class="sourceLine" id="cb21-34" data-line-number="34">              post_data == NULL ? <span class="st">&quot;GET&quot;</span> : <span class="st">&quot;POST&quot;</span>, path, addr,</a>
+<a class="sourceLine" id="cb21-35" data-line-number="35">              post_data == NULL ? <span class="dv">0</span> : strlen(post_data),</a>
+<a class="sourceLine" id="cb21-36" data-line-number="36">               extra_headers == NULL ? <span class="st">&quot;&quot;</span> : extra_headers,</a>
+<a class="sourceLine" id="cb21-37" data-line-number="37">               post_data == NULL ? <span class="st">&quot;&quot;</span> : post_data);</a>
+<a class="sourceLine" id="cb21-38" data-line-number="38">   }</a>
+<a class="sourceLine" id="cb21-39" data-line-number="39"> </a>
+<a class="sourceLine" id="cb21-40" data-line-number="40">   MG_FREE(addr);</a>
+<a class="sourceLine" id="cb21-41" data-line-number="41">   <span class="cf">return</span> nc;</a>
+<a class="sourceLine" id="cb21-42" data-line-number="42"> }</a></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name="Firefox"></p>
 <h3 id="project-name-firefox">Project Name: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176">Firefox</a></h3>
-<p><a name="CVE-2018-5176"></p>
-<h3 id="iframe-injection-content-spoofing-scripts-execution-via-json-viewer-cve-2018-5176">1. <a href="">Iframe injection &amp; content spoofing &amp; scripts execution via json viewer, CVE-2018-5176</a></h3>
+<p><a name="Iframe injection & content spoofing & scripts execution via json viewer"></p>
+<h3 id="iframe-injection-content-spoofing-scripts-execution-via-json-viewer">1. <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176">Iframe injection &amp; content spoofing &amp; scripts execution via json viewer</a></h3>
 <p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5176"><strong>Description</strong></a></p>
 <blockquote>
 <p>The JSON Viewer displays clickable hyperlinks for strings that are parseable as URLs, including “javascript:” links. If a JSON file contains malicious JavaScript script embedded as “javascript:” links, users may be tricked into clicking and running this code in the context of the JSON Viewer. This can allow for the theft of cookies and authorization tokens which are accessible to that context. This vulnerability affects Firefox &lt; 60.</p>
 </blockquote>
 <p><a href="https://bugzilla.mozilla.org/attachment.cgi?id=8957304&amp;action=edit"><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb23-1" data-line-number="1">       // Render the value (summary) using Reps library.</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">       return Rep(Object.assign({}, props, {</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">         cropLimit: 50,</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">         noGrip: true,</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="st">-        omitLinkHref: false,</span></a>
-<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="va">+        openLink(str) {</span></a>
-<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="va">+          try {</span></a>
-<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="va">+            let u = new URL(str);</span></a>
-<a class="sourceLine" id="cb23-9" data-line-number="9"><span class="va">+            if (u.protocol == &quot;https:&quot; || u.protocol == &quot;http:&quot;) {</span></a>
-<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="va">+              window.open(str, &quot;_blank&quot;);</span></a>
-<a class="sourceLine" id="cb23-11" data-line-number="11"><span class="va">+            }</span></a>
-<a class="sourceLine" id="cb23-12" data-line-number="12"><span class="va">+          } catch (ex) { /* the link might be bust, then we do nothing */ }</span></a>
-<a class="sourceLine" id="cb23-13" data-line-number="13"><span class="va">+        },</span></a>
-<a class="sourceLine" id="cb23-14" data-line-number="14">       }));</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb22-1" data-line-number="1">       // Render the value (summary) using Reps library.</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">       return Rep(Object.assign({}, props, {</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">         cropLimit: 50,</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">         noGrip: true,</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">-        omitLinkHref: false,</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="va">+        openLink(str) {</span></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="va">+          try {</span></a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="va">+            let u = new URL(str);</span></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="va">+            if (u.protocol == &quot;https:&quot; || u.protocol == &quot;http:&quot;) {</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="va">+              window.open(str, &quot;_blank&quot;);</span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="va">+            }</span></a>
+<a class="sourceLine" id="cb22-12" data-line-number="12"><span class="va">+          } catch (ex) { /* the link might be bust, then we do nothing */ }</span></a>
+<a class="sourceLine" id="cb22-13" data-line-number="13"><span class="va">+        },</span></a>
+<a class="sourceLine" id="cb22-14" data-line-number="14">       }));</a></code></pre></div>
 <p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1442840"><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co">// omitted</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">// omitted</span></a></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="poco"></p>
+<h3 id="project-name-poco">Project Name: <a href="https://github.com/pocoproject/poco">poco</a></h3>
+<p><a name="Zip Decompress Parent Path Injection #1968"></p>
+<h3 id="zip-decompress-parent-path-injection-1968">1. <a href="https://github.com/pocoproject/poco/issues/1968">Zip Decompress Parent Path Injection #1968</a></h3>
+<p><a href="https://github.com/pocoproject/poco/issues/1968"><strong>Description</strong></a></p>
+<blockquote>
+<p>By manipulation of the Zip input file header, the contents of the zip archive can be written to an arbitrary parent path of the user.</p>
+</blockquote>
+<blockquote>
+<p>Expected behavior<br />
+Throw an exception if filename contains a parent directory reference. isValidPath() (ZipCommon.cpp) should check if the filename contains a tilde character.</p>
+</blockquote>
+<blockquote>
+<p>Actual behavior<br />
+By inserting a tilde-slash (~/) in the filename area of the zip header, files can be written to the user’s home directory.</p>
+</blockquote>
+<blockquote>
+<p>Steps to reproduce the problem<br />
+Use the sample-unzip samle application as follows:</p>
+</blockquote>
+<pre><code>$ ./sample-unzip -f vuln.zip SOME_OUT_DIR
+vuln.zip contains a file foo. foo includes the string bar</code></pre>
+<p><a href="https://github.com/pocoproject/poco/commit/f5b2cf3dd6976ae53b2f3c9618b0087a0646cc7d"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb25-1" data-line-number="1">Zip/src/Decompress.cpp</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="dt">@@ -80,7 +80,7 @@ bool Decompress::handleZipEntry(std::istream&amp; zipStream, const ZipLocalFileHeade</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">        {</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">            std::string dirName = hdr.getFileName();</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">            if (!ZipCommon::isValidPath(dirName))</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="st">-               throw ZipException(&quot;Illegal entry name &quot; + dirName + &quot; containing parent directory reference&quot;);</span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="va">+               throw ZipException(&quot;Illegal entry name &quot; + dirName);</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">            Poco::Path dir(_outDir, dirName);</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9">            dir.makeDirectory();</a>
+<a class="sourceLine" id="cb25-10" data-line-number="10">            Poco::File aFile(dir);</a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="dt">@@ -100,7 +100,7 @@ bool Decompress::handleZipEntry(std::istream&amp; zipStream, const ZipLocalFileHeade</span></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12">        }</a>
+<a class="sourceLine" id="cb25-13" data-line-number="13">        if (!ZipCommon::isValidPath(fileName))</a>
+<a class="sourceLine" id="cb25-14" data-line-number="14"><span class="st">-           throw ZipException(&quot;Illegal entry name &quot; + fileName + &quot; containing parent directory reference&quot;);</span></a>
+<a class="sourceLine" id="cb25-15" data-line-number="15"><span class="va">+           throw ZipException(&quot;Illegal entry name &quot; + fileName);</span></a>
+<a class="sourceLine" id="cb25-16" data-line-number="16">        Poco::Path file(fileName);</a>
+<a class="sourceLine" id="cb25-17" data-line-number="17">        file.makeFile();</a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb25-19" data-line-number="19">Zip/src/ZipCommon.cpp</a>
+<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="dt">@@ -21,15 +22,26 @@ namespace Zip {</span></a>
+<a class="sourceLine" id="cb25-21" data-line-number="21"> bool ZipCommon::isValidPath(const std::string&amp; path)</a>
+<a class="sourceLine" id="cb25-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb25-23" data-line-number="23"><span class="va">+   if (!Path(path).isRelative())</span></a>
+<a class="sourceLine" id="cb25-24" data-line-number="24"><span class="va">+       return false;</span></a>
+<a class="sourceLine" id="cb25-25" data-line-number="25"><span class="va">+   if (path == &quot;..&quot;)</span></a>
+<a class="sourceLine" id="cb25-26" data-line-number="26"><span class="va">+       return false;</span></a>
+<a class="sourceLine" id="cb25-27" data-line-number="27"><span class="st">-   if (path.compare(0, 3, &quot;../&quot;) == 0)</span></a>
+<a class="sourceLine" id="cb25-28" data-line-number="28"><span class="va">+   if ((path.size() &gt;= 3) &amp;&amp; path.compare(0, 3, &quot;../&quot;) == 0)</span></a>
+<a class="sourceLine" id="cb25-29" data-line-number="29"><span class="va">+       return false;</span></a>
+<a class="sourceLine" id="cb25-30" data-line-number="30"><span class="va">+   if ((path.size() &gt;= 3) &amp;&amp; path.compare(0, 3, &quot;..\\&quot;) == 0)</span></a>
+<a class="sourceLine" id="cb25-31" data-line-number="31"><span class="va">+       return false;</span></a>
+<a class="sourceLine" id="cb25-32" data-line-number="32"><span class="va">+   if (path.find(&quot;/../&quot;) != std::string::npos)</span></a>
+<a class="sourceLine" id="cb25-33" data-line-number="33"><span class="va">+       return false;</span></a>
+<a class="sourceLine" id="cb25-34" data-line-number="34"><span class="va">+   if (path.find(&quot;\\..\\&quot;) != std::string::npos)</span></a>
+<a class="sourceLine" id="cb25-35" data-line-number="35"><span class="va">+       return false;</span></a>
+<a class="sourceLine" id="cb25-36" data-line-number="36"><span class="va">+   if (path.find(&quot;/..\\&quot;) != std::string::npos)</span></a>
+<a class="sourceLine" id="cb25-37" data-line-number="37">        return false;</a>
+<a class="sourceLine" id="cb25-38" data-line-number="38"><span class="st">-   if (path.compare(0, 3, &quot;..\\&quot;) == 0)</span></a>
+<a class="sourceLine" id="cb25-39" data-line-number="39"><span class="va">+   if (path.find(&quot;\\../&quot;) != std::string::npos)</span></a>
+<a class="sourceLine" id="cb25-40" data-line-number="40">        return false;</a>
+<a class="sourceLine" id="cb25-41" data-line-number="41"><span class="st">-   if (path.find(&quot;/..&quot;) != std::string::npos)</span></a>
+<a class="sourceLine" id="cb25-42" data-line-number="42"><span class="va">+   if ((path.size() &gt;= 2) &amp;&amp; path.compare(0, 2, &quot;~/&quot;) == 0)</span></a>
+<a class="sourceLine" id="cb25-43" data-line-number="43">        return false;</a>
+<a class="sourceLine" id="cb25-44" data-line-number="44"><span class="st">-   if (path.find(&quot;\\..&quot;) != std::string::npos)</span></a>
+<a class="sourceLine" id="cb25-45" data-line-number="45"><span class="va">+   if (path.size() &gt; 0 &amp;&amp; (path[0] == &#39;/&#39; || path[0] == &#39;\\&#39;))</span></a>
+<a class="sourceLine" id="cb25-46" data-line-number="46">        return false;</a>
+<a class="sourceLine" id="cb25-47" data-line-number="47">    return true;</a>
+<a class="sourceLine" id="cb25-48" data-line-number="48">}</a></code></pre></div>
+<p><a href="https://github.com/pocoproject/poco/commit/f5b2cf3dd6976ae53b2f3c9618b0087a0646cc7d"><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="CImg"></p>
+<h3 id="project-name-cimg">Project Name: <a href="https://github.com/dtschump/CImg">CImg</a></h3>
+<p><a name="other testcases lead to heap overflow by loading crafted images #185"></p>
+<h3 id="other-testcases-lead-to-heap-overflow-by-loading-crafted-images-185">1. <a href="https://github.com/dtschump/CImg/issues/185">other testcases lead to heap overflow by loading crafted images #185</a></h3>
+<p><a href="https://github.com/dtschump/CImg/issues/185"><strong>Description</strong></a></p>
+<blockquote>
+<p>An issue was discovered in CImg v.220. A heap-based buffer over-read in load_bmp in CImg.h occurs when loading a crafted bmp image, a different vulnerability than CVE-2018-7588. This is in a Monochrome case, aka case 1.</p>
+</blockquote>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="dt">@@ -48331,7 +48331,7 @@ namespace cimg_library_suffixed {</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">      if (header_size&gt;40) cimg::fseek(nfile,header_size - 40,SEEK_CUR);</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">       const int</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">-        dx_bytes = (bpp==1)?(dx/8 + (dx%8?1:0)):((bpp==4)?(dx/2 + (dx%2)):(dx*bpp/8)),</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="va">+        dx_bytes = (bpp==1)?(dx/8 + (dx%8?1:0)):((bpp==4)?(dx/2 + (dx%2)):(int)((longT)dx*bpp/8)),</span></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">        align_bytes = (4 - dx_bytes%4)%4;</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">      const ulongT</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8">        cimg_iobuffer = (ulongT)24*1024*1024,</a>
+<a class="sourceLine" id="cb27-9" data-line-number="9"><span class="dt">@@ -48363,10 +48363,10 @@ namespace cimg_library_suffixed {</span></a>
+<a class="sourceLine" id="cb27-10" data-line-number="10">      }</a>
+<a class="sourceLine" id="cb27-11" data-line-number="11">       // Read pixel data</a>
+<a class="sourceLine" id="cb27-12" data-line-number="12"><span class="st">-      assign(dx,cimg::abs(dy),1,3);</span></a>
+<a class="sourceLine" id="cb27-13" data-line-number="13"><span class="va">+      assign(dx,cimg::abs(dy),1,3,0);</span></a>
+<a class="sourceLine" id="cb27-14" data-line-number="14">      switch (bpp) {</a>
+<a class="sourceLine" id="cb27-15" data-line-number="15"><span class="st">-      case 1 : { // Monochrome</span></a>
+<a class="sourceLine" id="cb27-16" data-line-number="16"><span class="va">+        for (int y = height() - 1; y&gt;=0; --y) {</span></a>
+<a class="sourceLine" id="cb27-17" data-line-number="17">        if (colormap._width&gt;=2) for (int y = height() - 1; y&gt;=0; --y) {</a>
+<a class="sourceLine" id="cb27-18" data-line-number="18">          if (buf_size&gt;=cimg_iobuffer) {</a>
+<a class="sourceLine" id="cb27-19" data-line-number="19">            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;</a>
+<a class="sourceLine" id="cb27-20" data-line-number="20">            cimg::fseek(nfile,align_bytes,SEEK_CUR);</a>
+<a class="sourceLine" id="cb27-21" data-line-number="21"><span class="dt">@@ -48384,7 +48384,7 @@ namespace cimg_library_suffixed {</span></a>
+<a class="sourceLine" id="cb27-22" data-line-number="22">        }</a>
+<a class="sourceLine" id="cb27-23" data-line-number="23">      } break;</a>
+<a class="sourceLine" id="cb27-24" data-line-number="24">      case 4 : { // 16 colors</a>
+<a class="sourceLine" id="cb27-25" data-line-number="25"><span class="st">-        for (int y = height() - 1; y&gt;=0; --y) {</span></a>
+<a class="sourceLine" id="cb27-26" data-line-number="26"><span class="va">+        if (colormap._width&gt;=16) for (int y = height() - 1; y&gt;=0; --y) {</span></a>
+<a class="sourceLine" id="cb27-27" data-line-number="27">          if (buf_size&gt;=cimg_iobuffer) {</a>
+<a class="sourceLine" id="cb27-28" data-line-number="28">            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;</a>
+<a class="sourceLine" id="cb27-29" data-line-number="29">            cimg::fseek(nfile,align_bytes,SEEK_CUR);</a>
+<a class="sourceLine" id="cb27-30" data-line-number="30"><span class="dt">@@ -48402,8 +48402,8 @@ namespace cimg_library_suffixed {</span></a>
+<a class="sourceLine" id="cb27-31" data-line-number="31">          ptrs+=align_bytes;</a>
+<a class="sourceLine" id="cb27-32" data-line-number="32">        }</a>
+<a class="sourceLine" id="cb27-33" data-line-number="33">      } break;</a>
+<a class="sourceLine" id="cb27-34" data-line-number="34"><span class="st">-      case 8 : { //  256 colors</span></a>
+<a class="sourceLine" id="cb27-35" data-line-number="35"><span class="st">-        for (int y = height() - 1; y&gt;=0; --y) {</span></a>
+<a class="sourceLine" id="cb27-36" data-line-number="36"><span class="va">+      case 8 : { // 256 colors</span></a>
+<a class="sourceLine" id="cb27-37" data-line-number="37"><span class="va">+        if (colormap._width&gt;=256) for (int y = height() - 1; y&gt;=0; --y) {</span></a>
+<a class="sourceLine" id="cb27-38" data-line-number="38">          if (buf_size&gt;=cimg_iobuffer) {</a>
+<a class="sourceLine" id="cb27-39" data-line-number="39">            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;</a>
+<a class="sourceLine" id="cb27-40" data-line-number="40">            cimg::fseek(nfile,align_bytes,SEEK_CUR);</a></code></pre></div>
+<p><a href="https://github.com/dtschump/CImg/commit/10af1e8c1ad2a58a0a3342a856bae63e8f257abb"><strong>Full function:</strong></a></p>
+<p>The function is too long, see <a href="https://github.com/dtschump/CImg/commit/10af1e8c1ad2a58a0a3342a856bae63e8f257abb">here</a></p>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="ImageMagick"></p>
+<h3 id="project-name-imagemagick">Project Name: <a href="https://github.com/ImageMagick/ImageMagick">ImageMagick</a></h3>
+<p><a name="heap-buffer-overflow in SVGStripString of svg.c #1336"></p>
+<h3 id="heap-buffer-overflow-in-svgstripstring-of-svg.c-1336">1. <a href="https://github.com/ImageMagick/ImageMagick/issues/1336">heap-buffer-overflow in SVGStripString of svg.c #1336</a></h3>
+<p><a href="https://github.com/ImageMagick/ImageMagick/issues/1336"><strong>Description</strong></a></p>
+<p>In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the SVGStripString function of coders/svg.c, which allows attackers to cause a denial of service via a crafted SVG image file.</p>
+<p><a href="https://github.com/ImageMagick/ImageMagick6/commit/a5db4873626f702d2ddd8bc293573493e0a412c0"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb28-1" data-line-number="1">      {</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">        for ( ; *p != &#39;\0&#39;; p++)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">          if ((*p == &#39;*&#39;) &amp;&amp; (*(p+1) == &#39;/&#39;))</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">-            break;</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="va">+            {</span></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="va">+              p+=2;</span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="va">+              break;</span></a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="va">+            }</span></a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">        if (*p == &#39;\0&#39;)</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">          break;</a>
+<a class="sourceLine" id="cb28-11" data-line-number="11"><span class="st">-        p+=2;</span></a>
+<a class="sourceLine" id="cb28-12" data-line-number="12">      }</a>
+<a class="sourceLine" id="cb28-13" data-line-number="13">    *q++=(*p);</a>
+<a class="sourceLine" id="cb28-14" data-line-number="14">  }</a></code></pre></div>
+<p><a href="https://github.com/ImageMagick/ImageMagick6/commit/a5db4873626f702d2ddd8bc293573493e0a412c0"><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb29-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">void</span> SVGStripString(<span class="dt">const</span> MagickBooleanType trim,<span class="dt">char</span> *message)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"> {</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">   <span class="dt">register</span> <span class="dt">char</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">     *p,</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">     *q;</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"> </a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">   <span class="dt">size_t</span></a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">     length;</a>
+<a class="sourceLine" id="cb29-9" data-line-number="9"> </a>
+<a class="sourceLine" id="cb29-10" data-line-number="10">   assert(message != (<span class="dt">char</span> *) NULL);</a>
+<a class="sourceLine" id="cb29-11" data-line-number="11">   <span class="cf">if</span> (*message == &#39;\<span class="dv">0</span>&#39;)</a>
+<a class="sourceLine" id="cb29-12" data-line-number="12">     <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb29-13" data-line-number="13">   <span class="co">/*</span></a>
+<a class="sourceLine" id="cb29-14" data-line-number="14"><span class="co">     Remove comment.</span></a>
+<a class="sourceLine" id="cb29-15" data-line-number="15"><span class="co">   */</span></a>
+<a class="sourceLine" id="cb29-16" data-line-number="16">   q=message;</a>
+<a class="sourceLine" id="cb29-17" data-line-number="17">   <span class="cf">for</span> (p=message; *p != &#39;\<span class="dv">0</span>&#39;; p++)</a>
+<a class="sourceLine" id="cb29-18" data-line-number="18">   {</a>
+<a class="sourceLine" id="cb29-19" data-line-number="19">     <span class="cf">if</span> ((*p == <span class="ch">&#39;/&#39;</span>) &amp;&amp; (*(p+<span class="dv">1</span>) == <span class="ch">&#39;*&#39;</span>))</a>
+<a class="sourceLine" id="cb29-20" data-line-number="20">      {</a>
+<a class="sourceLine" id="cb29-21" data-line-number="21">        <span class="cf">for</span> ( ; *p != &#39;\<span class="dv">0</span>&#39;; p++)</a>
+<a class="sourceLine" id="cb29-22" data-line-number="22">          <span class="cf">if</span> ((*p == <span class="ch">&#39;*&#39;</span>) &amp;&amp; (*(p+<span class="dv">1</span>) == <span class="ch">&#39;/&#39;</span>))</a>
+<a class="sourceLine" id="cb29-23" data-line-number="23">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb29-24" data-line-number="24">            {</a>
+<a class="sourceLine" id="cb29-25" data-line-number="25">              p+=<span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb29-26" data-line-number="26">              <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb29-27" data-line-number="27">            }</a>
+<a class="sourceLine" id="cb29-28" data-line-number="28">        <span class="cf">if</span> (*p == &#39;\<span class="dv">0</span>&#39;)</a>
+<a class="sourceLine" id="cb29-29" data-line-number="29">          <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb29-30" data-line-number="30">        p+=<span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb29-31" data-line-number="31">      }</a>
+<a class="sourceLine" id="cb29-32" data-line-number="32">    *q++=(*p);</a>
+<a class="sourceLine" id="cb29-33" data-line-number="33">  }</a>
+<a class="sourceLine" id="cb29-34" data-line-number="34">   *q=&#39;\<span class="dv">0</span>&#39;;</a>
+<a class="sourceLine" id="cb29-35" data-line-number="35">   <span class="cf">if</span> (trim != MagickFalse)</a>
+<a class="sourceLine" id="cb29-36" data-line-number="36">     {</a>
+<a class="sourceLine" id="cb29-37" data-line-number="37">       <span class="co">/*</span></a>
+<a class="sourceLine" id="cb29-38" data-line-number="38"><span class="co">         Remove whitespace.</span></a>
+<a class="sourceLine" id="cb29-39" data-line-number="39"><span class="co">       */</span></a>
+<a class="sourceLine" id="cb29-40" data-line-number="40">       length=strlen(message);</a>
+<a class="sourceLine" id="cb29-41" data-line-number="41">       p=message;</a>
+<a class="sourceLine" id="cb29-42" data-line-number="42">       <span class="cf">while</span> (isspace((<span class="dt">int</span>) ((<span class="dt">unsigned</span> <span class="dt">char</span>) *p)) != <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb29-43" data-line-number="43">         p++;</a>
+<a class="sourceLine" id="cb29-44" data-line-number="44">       <span class="cf">if</span> ((*p == <span class="ch">&#39;\&#39;&#39;</span>) || (*p == <span class="ch">&#39;&quot;&#39;</span>))</a>
+<a class="sourceLine" id="cb29-45" data-line-number="45">         p++;</a>
+<a class="sourceLine" id="cb29-46" data-line-number="46">       q=message+length<span class="dv">-1</span>;</a>
+<a class="sourceLine" id="cb29-47" data-line-number="47">       <span class="cf">while</span> ((isspace((<span class="dt">int</span>) ((<span class="dt">unsigned</span> <span class="dt">char</span>) *q)) != <span class="dv">0</span>) &amp;&amp; (q &gt; p))</a>
+<a class="sourceLine" id="cb29-48" data-line-number="48">         q--;</a>
+<a class="sourceLine" id="cb29-49" data-line-number="49">       <span class="cf">if</span> (q &gt; p)</a>
+<a class="sourceLine" id="cb29-50" data-line-number="50">         <span class="cf">if</span> ((*q == <span class="ch">&#39;\&#39;&#39;</span>) || (*q == <span class="ch">&#39;&quot;&#39;</span>))</a>
+<a class="sourceLine" id="cb29-51" data-line-number="51">           q--;</a>
+<a class="sourceLine" id="cb29-52" data-line-number="52">       (<span class="dt">void</span>) memmove(message,p,(<span class="dt">size_t</span>) (q-p+<span class="dv">1</span>));</a>
+<a class="sourceLine" id="cb29-53" data-line-number="53">       message[q-p+<span class="dv">1</span>]=&#39;\<span class="dv">0</span>&#39;;</a>
+<a class="sourceLine" id="cb29-54" data-line-number="54">     }</a>
+<a class="sourceLine" id="cb29-55" data-line-number="55">   <span class="co">/*</span></a>
+<a class="sourceLine" id="cb29-56" data-line-number="56"><span class="co">     Convert newlines to a space.</span></a>
+<a class="sourceLine" id="cb29-57" data-line-number="57"><span class="co">   */</span></a>
+<a class="sourceLine" id="cb29-58" data-line-number="58">   <span class="cf">for</span> (p=message; *p != &#39;\<span class="dv">0</span>&#39;; p++)</a>
+<a class="sourceLine" id="cb29-59" data-line-number="59">     <span class="cf">if</span> (*p == <span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb29-60" data-line-number="60">       *p=<span class="ch">&#39; &#39;</span>;</a>
+<a class="sourceLine" id="cb29-61" data-line-number="61"> }</a></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="heap-buffer-overflow in EncodeImage of pict.c #1335"></p>
+<h3 id="heap-buffer-overflow-in-encodeimage-of-pict.c-1335">1. <a href="https://github.com/ImageMagick/ImageMagick/issues/1335">heap-buffer-overflow in EncodeImage of pict.c #1335</a></h3>
+<p><a href="https://github.com/ImageMagick/ImageMagick/issues/1335"><strong>Description</strong></a></p>
+<p>In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the EncodeImage function of coders/pict.c, which allows attackers to cause a denial of service via a crafted SVG image file.</p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="dt">@@ -444,7 +444,7 @@ static unsigned char *DecodeImage(Image *blob,Image *image,</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">    bytes_per_line=width;</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">  row_bytes=(size_t) (image-&gt;columns | 0x8000);</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">  if (image-&gt;storage_class == DirectClass)</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">-    row_bytes=(size_t) (4*(image-&gt;columns | 0x8000));</span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="va">+    row_bytes=(size_t) ((4*image-&gt;columns) | 0x8000);</span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7">  /*</a>
+<a class="sourceLine" id="cb30-8" data-line-number="8">    Allocate pixel and scanline buffer.</a>
+<a class="sourceLine" id="cb30-9" data-line-number="9">  */</a>
+<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="dt">@@ -1778,7 +1778,7 @@ static MagickBooleanType WritePICTImage(const ImageInfo *image_info,</span></a>
+<a class="sourceLine" id="cb30-11" data-line-number="11">  /*</a>
+<a class="sourceLine" id="cb30-12" data-line-number="12">    Allocate memory.</a>
+<a class="sourceLine" id="cb30-13" data-line-number="13">  */</a>
+<a class="sourceLine" id="cb30-14" data-line-number="14"><span class="st">-  bytes_per_line=image-&gt;columns | 0x8000;</span></a>
+<a class="sourceLine" id="cb30-15" data-line-number="15"><span class="va">+  bytes_per_line=image-&gt;columns;</span></a>
+<a class="sourceLine" id="cb30-16" data-line-number="16">  if (storage_class == DirectClass)</a>
+<a class="sourceLine" id="cb30-17" data-line-number="17">    bytes_per_line*=image-&gt;alpha_trait != UndefinedPixelTrait ? 4 : 3;</a>
+<a class="sourceLine" id="cb30-18" data-line-number="18">  buffer=(unsigned char *) AcquireQuantumMemory(PictInfoSize,sizeof(*buffer));</a>
+<a class="sourceLine" id="cb30-19" data-line-number="19"><span class="dt">@@ -1799,7 +1799,8 @@ static MagickBooleanType WritePICTImage(const ImageInfo *image_info,</span></a>
+<a class="sourceLine" id="cb30-20" data-line-number="20">      ThrowWriterException(ResourceLimitError,&quot;MemoryAllocationFailed&quot;);</a>
+<a class="sourceLine" id="cb30-21" data-line-number="21">    }</a>
+<a class="sourceLine" id="cb30-22" data-line-number="22">  (void) memset(scanline,0,row_bytes);</a>
+<a class="sourceLine" id="cb30-23" data-line-number="23"><span class="st">-  (void) memset(packed_scanline,0,(size_t) (row_bytes+2*MaxCount));</span></a>
+<a class="sourceLine" id="cb30-24" data-line-number="24"><span class="va">+  (void) memset(packed_scanline,0,(size_t) (row_bytes+2*MaxCount)*</span></a>
+<a class="sourceLine" id="cb30-25" data-line-number="25"><span class="va">+    sizeof(*packed_scanline));</span></a>
+<a class="sourceLine" id="cb30-26" data-line-number="26">  /*</a>
+<a class="sourceLine" id="cb30-27" data-line-number="27">    Write header, header size, size bounding box, version, and reserved.</a>
+<a class="sourceLine" id="cb30-28" data-line-number="28">  */</a></code></pre></div>
+<p><a href="https://github.com/ImageMagick/ImageMagick/commit/1a22fc0c8837838e60daecc0bf01648f359dd6fd#diff-9f0be979d8a302c3f34029647fc77cbdR450"><strong>Full function:</strong></a></p>
+<p>too long, see <a href="https://github.com/ImageMagick/ImageMagick/commit/1a22fc0c8837838e60daecc0bf01648f359dd6fd#diff-9f0be979d8a302c3f34029647fc77cbdR450">here</a></p>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="heap-buffer-overflow in MagickCore #1156"></p>
+<h3 id="heap-buffer-overflow-in-magickcore-1156">1. <a href="https://github.com/ImageMagick/ImageMagick/issues/1156">heap-buffer-overflow in MagickCore #1156</a></h3>
+<p><a href="https://github.com/ImageMagick/ImageMagick/issues/1156"><strong>Description</strong></a></p>
+<p>In ImageMagick 7.0.7-37 Q16, SetGrayscaleImage in the quantize.c file allows attackers to cause a heap-based buffer over-read via a crafted file.</p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb31-1" data-line-number="1">  if (image-&gt;type != GrayscaleType)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">    (void) TransformImageColorspace(image,GRAYColorspace,exception);</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">  if (image-&gt;storage_class == PseudoClass)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="st">-    colormap_index=(ssize_t *) AcquireQuantumMemory(image-&gt;colors,</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="va">+    colormap_index=(ssize_t *) AcquireQuantumMemory(image-&gt;colors+1,</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">      sizeof(*colormap_index));</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">  else</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="st">-    colormap_index=(ssize_t *) AcquireQuantumMemory(MaxColormapSize,</span></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="va">+    colormap_index=(ssize_t *) AcquireQuantumMemory(MaxColormapSize+1,</span></a>
+<a class="sourceLine" id="cb31-10" data-line-number="10">      sizeof(*colormap_index));</a>
+<a class="sourceLine" id="cb31-11" data-line-number="11">  if (colormap_index == (ssize_t *) NULL)</a>
+<a class="sourceLine" id="cb31-12" data-line-number="12">    ThrowBinaryException(ResourceLimitError,&quot;MemoryAllocationFailed&quot;,</a></code></pre></div>
+<p><a href="https://github.com/ImageMagick/ImageMagick/commit/5294966898532a6bd54699fbf04edf18902513ac#diff-b422c231973548d46a04db74c7cb8e58R3448"><strong>Full function:</strong></a></p>
+<p>too long, see <a href="https://github.com/ImageMagick/ImageMagick/commit/5294966898532a6bd54699fbf04edf18902513ac#diff-b422c231973548d46a04db74c7cb8e58R3448">here</a></p>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
@@ -910,9 +1213,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="section">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
 <p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
@@ -920,9 +1223,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="section-1">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
 <p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
@@ -930,9 +1233,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="section-2">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
 <p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
@@ -940,9 +1243,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="section-3">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
 <p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
@@ -950,59 +1253,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="section-4">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
 <p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-5">Project Name: <a href=""></a></h3>
-<h3 id="section-5">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-6">Project Name: <a href=""></a></h3>
-<h3 id="section-6">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-7">Project Name: <a href=""></a></h3>
-<h3 id="section-7">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-8">Project Name: <a href=""></a></h3>
-<h3 id="section-8">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-9">Project Name: <a href=""></a></h3>
-<h3 id="section-9">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 </body>
