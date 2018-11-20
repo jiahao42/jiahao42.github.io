@@ -3,11 +3,19 @@ title:
   Bug reports
 ---
 
+Last updated: 18:20, Nov, 20, 2018
+
 * [cJSON](#cJSON)
   * [Bug in cJSON.c cJSON_SetNumberHelper #138](#Bug in cJSON.c cJSON_SetNumberHelper #138)
   * [Bug in cJSON_AddItemToObject #106](#Bug in cJSON_AddItemToObject #106)
   * [Invalid pointer returned if reallocate fails in ensure function #189](#Invalid pointer returned if reallocate fails in ensure function #189)
   * [String deallocated before use #248](#String deallocated before use #248)
+* [ArduinoJson](#ArduinoJson)
+  * [Update QuotedString.cpp #81](#Update QuotedString.cpp #81)
+    * [CVE-2015-4590](https://nvd.nist.gov/vuln/detail/CVE-2015-4590)
+  * [get<String> returns -0 for 0 #808](#get<String> returns -0 for 0 #808)
+* [json-parser](#json-parser)
+  * [heap buffer overflow on some inputs #68](#heap buffer overflow on some inputs #68)
 * [iniparser](#iniparser)
   * ini file parser
   * [Empty string with quotes. #70](#Empty string with quotes. #70)
@@ -16,8 +24,6 @@ title:
 * [myhtml](#myhtml)
   * Fast C/C++ HTML 5 Parser. Using threads.
   * [fix charef parsing #152](#fix charef parsing #152)
-* [json-parser](#json-parser)
-  * [heap buffer overflow on some inputs #68](#heap buffer overflow on some inputs #68)
 * [mongoose](#mongoose)
   * Mongoose Embedded Web Server Library - Mongoose is more than an embedded webserver. It is a multi-protocol embedded networking library with functions including TCP, HTTP client and server, WebSocket client and server, MQTT client and broker and much more.
   * [websocket client bug #631](#websocket client bug #631)
@@ -1333,27 +1339,107 @@ too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/529496689
 ---
 
 
+<a name="ArduinoJson">
 
-<a name="">
-
-### Project Name: []()
-
-### 1. []()
-
-[**Description**]()
+### Project Name: [ArduinoJson](https://github.com/bblanchon/ArduinoJson)
 
 
+<a name="Update QuotedString.cpp #81">
 
-[**Patch code:**]()
+### 1. [Update QuotedString.cpp #81](https://github.com/bblanchon/ArduinoJson/pull/81)
+
+[**Description**](https://github.com/bblanchon/ArduinoJson/pull/81)
+
+The extractFrom function in Internals/QuotedString.cpp in Arduino JSON before 4.5 allows remote attackers to cause a denial of service (crash) via a JSON string with a \ (backslash) followed by a terminator, as demonstrated by "\\\0", which triggers a buffer overflow and over-read.
+
+[**Patch code:**](https://github.com/bblanchon/ArduinoJson/commit/5e7b9ec688d79e7b16ec7064e1d37e8481a31e72)
 
 ```diff
-
+@@ -58,46 +58,44 @@ static char unescapeChar(char c) {
+static inline bool isQuote(char c) { return c == '\"' || c == '\''; }
+- char *QuotedString::extractFrom(char *input, char **endPtr) {
+-  char firstChar = *input;
+-   if (!isQuote(firstChar)) {
+-    // must start with a quote
+-    return NULL;
+-  }
+-   char stopChar = firstChar;  // closing quote is the same as opening quote
+   char *startPtr = input + 1;  // skip the quote
+  char *readPtr = startPtr;
+  char *writePtr = startPtr;
+  char c;
++   char firstChar = *input;
++  char stopChar = firstChar;  // closing quote is the same as opening quote
++   if (!isQuote(firstChar)) goto ERROR_OPENING_QUOTE_MISSING;
+   for (;;) {
+    c = *readPtr++;
+-     if (c == '\0') {
+-      // premature ending
+-      return NULL;
+-    }
++    if (c == '\0') goto ERROR_CLOSING_QUOTE_MISSING;
+-     if (c == stopChar) {
+-      // closing quote
+-      break;
+-    }
++    if (c == stopChar) goto SUCCESS;
+     if (c == '\\') {
+      // replace char
+      c = unescapeChar(*readPtr++);
++      if (c == '\0') goto ERROR_ESCAPE_SEQUENCE_INTERRUPTED;
+    }
+     *writePtr++ = c;
+  }
++ SUCCESS:
+  // end the string here
+  *writePtr = '\0';
+   // update end ptr
+  *endPtr = readPtr;
++   // return pointer to unquoted string
+  return startPtr;
++ ERROR_OPENING_QUOTE_MISSING:
++ ERROR_CLOSING_QUOTE_MISSING:
++ ERROR_ESCAPE_SEQUENCE_INTERRUPTED:
++   return NULL;
+}
 ```
 
-[**Full function:**]()
+[**Full function:**](https://github.com/bblanchon/ArduinoJson/commit/5e7b9ec688d79e7b16ec7064e1d37e8481a31e72)
 
 ```c
-
+char *QuotedString::extractFrom(char *input, char **endPtr) {
+  char firstChar = *input;
+   if (!isQuote(firstChar)) {
+    // must start with a quote
+    return NULL;
+  }
+   char stopChar = firstChar;  // closing quote is the same as opening quote
+   char *startPtr = input + 1;  // skip the quote
+  char *readPtr = startPtr;
+  char *writePtr = startPtr;
+  char c;
+   for (;;) {
+    c = *readPtr++;
+     if (c == '\0') {
+      // premature ending
+      return NULL;
+    }
+     if (c == stopChar) {
+      // closing quote
+      break;
+    }
+     if (c == '\\') {
+      // replace char
+      c = unescapeChar(*readPtr++);
+    }
+     *writePtr++ = c;
+  }
+  // end the string here
+  *writePtr = '\0';
+   // update end ptr
+  *endPtr = readPtr;
+  return startPtr;
+}
 ```
 
 **Comments**:
@@ -1363,26 +1449,65 @@ too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/529496689
 
 
 
-<a name="">
+<a name="get<String> returns -0 for 0 #808">
 
-### Project Name: []()
+### 2. [get<String> returns -0 for 0 #808](https://github.com/bblanchon/ArduinoJson/issues/808)
 
-### 1. []()
+[**Description**](https://github.com/bblanchon/ArduinoJson/issues/808)
 
-[**Description**]()
+get<String> returns different outputs of 0 for v6.3.0-beta and v6.2.3-beta. In case of v6.3.0-beta it returns "-0" (minus occurs before 0), but in case of v6.2.3-beta it returns "0".
 
-
-
-[**Patch code:**]()
-
-```diff
+Example:
 
 ```
+char json[] = "{\"x\":0}";
+StaticJsonDocument<256> doc;
+deserializeJson(doc, json);
+JsonObject object = doc.as<JsonObject>();
+obj["x_str"] = object.get<String>("x");
+obj["x_uint"] = object.get<unsigned int>("x");
+```
 
-[**Full function:**]()
+Output in case of v6.3.0-beta:
+
+```
+x_str = "-0"
+x_uint = 0
+```
+
+Output in case of v6.2.3-beta:
+
+```
+x_str = "0"
+x_uint = 0
+```
+
+[**Patch code:**](https://github.com/bblanchon/ArduinoJson/commit/98c8e8e35a19c7b41ca7b97008867f98415480bc)
+
+```diff
+@@ -30,13 +30,6 @@ struct JsonVariantData {
+    content.asFloat = value;
+  }
+-   void setInteger(JsonInteger value) {
+-    if (value > 0)
+-      setPostiveInteger(static_cast<JsonUInt>(value));
+-    else
+-      setNegativeInteger(static_cast<JsonUInt>(-value));
+-  }
+   void setNegativeInteger(JsonUInt value) {
+    type = JSON_NEGATIVE_INTEGER;
+    content.asInteger = value;
+```
+
+[**Full function:**](https://github.com/bblanchon/ArduinoJson/commit/98c8e8e35a19c7b41ca7b97008867f98415480bc)
 
 ```c
-
+  void setInteger(JsonInteger value) {
+    if (value > 0)
+      setPostiveInteger(static_cast<JsonUInt>(value));
+    else
+      setNegativeInteger(static_cast<JsonUInt>(-value));
+  }
 ```
 
 **Comments**:
