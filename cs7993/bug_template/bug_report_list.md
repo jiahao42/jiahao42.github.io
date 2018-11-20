@@ -469,12 +469,6 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
         if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
             value[0]=0 ;
         }
-        sta = LINE_VALUE ;
-    } else if (sscanf (line, "%[^=] = %[^;#]", key, value) == 2) {
-        /* Usual key=value without quotes, with or without comments */
-        strstrip(key);
-        strlwc(key, key, len);
-        strstrip(value);
          sta = LINE_VALUE ;
     } else if (sscanf(line, "%[^=] = %[;#]", key, value)==2
            ||  sscanf(line, "%[^=] %[=]", key, value) == 2) {
@@ -551,12 +545,7 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
 
 [**Full function:**](https://github.com/nodejs/http-parser/commit/9ce7316de31f90d8485706a1ab8ef623404c2d8c)
 
-```c
- void
- http_parser_url_init(struct http_parser_url *u) {
-   memset(u, 0, sizeof(*u));
- }
- 
+```c 
  int
  http_parser_parse_url(const char *buf, size_t buflen, int is_connect,
                        struct http_parser_url *u)
@@ -646,11 +635,6 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
      return 1;
   }
    if (u->field_set & (1 << UF_PORT)) {
-    /* Don't bother with endp; we've already validated the string */
-    unsigned long v = strtoul(buf + u->field_data[UF_PORT].off, NULL, 10);
-     /* Ports have a max value of 2^16 */
-    if (v > 0xffff) {
-      return 1;
     uint16_t off;
     uint16_t len;
     const char* p;
@@ -687,7 +671,7 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
 
 <a name="fix charef parsing #152">
 
-### 1. [fix charef parsing #152]](https://github.com/lexborisov/myhtml/pull/152)
+### 1. [fix charef parsing #152](https://github.com/lexborisov/myhtml/pull/152)
 
 [**Description**](https://github.com/lexborisov/myhtml/pull/152)
 
@@ -935,14 +919,12 @@ if (*url == '/') {
       return -1;
     }
     if (*url == '/') {
-      url++;
       break;
     }
     if (*url == ':') *port_i = addr_len;
 @@ -7632,7 +7631,7 @@ struct mg_connection *mg_connect_http(struct mg_mgr *mgr,
     /* If the port was addred by us, restore the original host. */
     if (port_i >= 0) addr[port_i] = '\0';
-     mg_printf(nc, "%s /%s HTTP/1.1\r\nHost: %s\r\nContent-Length: %" SIZE_T_FMT
     mg_printf(nc, "%s %s HTTP/1.1\r\nHost: %s\r\nContent-Length: %" SIZE_T_FMT
                   "\r\n%s\r\n%s",
               post_data == NULL ? "GET" : "POST", path, addr,
@@ -1088,9 +1070,7 @@ Zip/src/ZipCommon.cpp
 
 [**Full function:**](https://github.com/pocoproject/poco/commit/f5b2cf3dd6976ae53b2f3c9618b0087a0646cc7d)
 
-```c
-
-```
+see [here](https://github.com/pocoproject/poco/commit/f5b2cf3dd6976ae53b2f3c9618b0087a0646cc7d)
 
 **Comments**:
 
@@ -1221,14 +1201,12 @@ In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the SVGSt
       {
         for ( ; *p != '\0'; p++)
           if ((*p == '*') && (*(p+1) == '/'))
-            break;
             {
               p+=2;
               break;
             }
         if (*p == '\0')
           break;
-        p+=2;
       }
     *q++=(*p);
   }
