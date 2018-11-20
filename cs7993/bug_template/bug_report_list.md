@@ -28,9 +28,11 @@ title:
   * The POCO C++ Libraries are powerful cross-platform C++ libraries for building network- and internet-based applications that run on desktop, server, mobile, IoT, and embedded systems.
   * [Zip Decompress Parent Path Injection #1968](#Zip Decompress Parent Path Injection #1968)
 * [CImg](#CImg)
+  * The CImg Library is a small and open-source C++ toolkit for image processing.
   * [other testcases lead to heap overflow by loading crafted images #185](#other testcases lead to heap overflow by loading crafted images #185)
     * [CVE-2018-7640](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7640)
 * [ImageMagick](#ImageMagick)
+  * ImageMagick is a free and open-source software suite for displaying, converting, and editing raster image and vector image files.
   * [heap-buffer-overflow in SVGStripString of svg.c #1336](#heap-buffer-overflow in SVGStripString of svg.c #1336)
     * [CVE-2018-18023](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18023)
   * [heap-buffer-overflow in EncodeImage of pict.c #1335](#heap-buffer-overflow in EncodeImage of pict.c #1335)
