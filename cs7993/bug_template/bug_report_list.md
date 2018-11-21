@@ -3,7 +3,7 @@ title:
   Bug reports
 ---
 
-Last updated: 18:20, Nov, 20, 2018
+Last updated: 19:07, Nov, 20, 2018
 
 * [cJSON](#cJSON)
   * [Bug in cJSON.c cJSON_SetNumberHelper #138](#Bug in cJSON.c cJSON_SetNumberHelper #138)
@@ -45,6 +45,14 @@ Last updated: 18:20, Nov, 20, 2018
     * [CVE-2018-18025](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18025)
   * [heap-buffer-overflow in MagickCore #1156](#heap-buffer-overflow in MagickCore #1156)
     * [CVE-2018-11625](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-11625)
+* [FFmpeg](#FFmpeg)
+  * FFmpeg is a collection of libraries and tools to process multimedia content such as audio, video, subtitles and related metadata.
+  * [integer overflow and out of array access](#integer overflow and out of array access)
+    * [CVE-2018-1999011](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1999011)
+  * [Fix multiple runtime error: index 256 out of bounds](#Fix multiple runtime error: index 256 out of bounds)
+    * [CVE-2017-9995](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9995)
+  * [http: make length/offset-related variables unsigned.](#http: make length/offset-related variables unsigned.)
+    * [CVE-2016-10190](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10190)
 
 <a name="cJSON">
 
@@ -1161,7 +1169,7 @@ The function is too long, see [here](https://github.com/dtschump/CImg/commit/10a
 
 [**Description**](https://github.com/ImageMagick/ImageMagick/issues/1336)
 
-In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the SVGStripString function of coders/svg.c, which allows attackers to cause a denial of service via a crafted SVG image file.
+> In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the SVGStripString function of coders/svg.c, which allows attackers to cause a denial of service via a crafted SVG image file.
 
 [**Patch code:**](https://github.com/ImageMagick/ImageMagick6/commit/a5db4873626f702d2ddd8bc293573493e0a412c0)
 
@@ -1257,7 +1265,7 @@ In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the SVGSt
 
 [**Description**](https://github.com/ImageMagick/ImageMagick/issues/1335)
 
-In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the EncodeImage function of coders/pict.c, which allows attackers to cause a denial of service via a crafted SVG image file.
+> In ImageMagick 7.0.8-13 Q16, there is a heap-based buffer over-read in the EncodeImage function of coders/pict.c, which allows attackers to cause a denial of service via a crafted SVG image file.
 
 [**Patch code:**]()
 
@@ -1310,7 +1318,7 @@ too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/1a22fc0c8
 
 [**Description**](https://github.com/ImageMagick/ImageMagick/issues/1156)
 
-In ImageMagick 7.0.7-37 Q16, SetGrayscaleImage in the quantize.c file allows attackers to cause a heap-based buffer over-read via a crafted file.
+> In ImageMagick 7.0.7-37 Q16, SetGrayscaleImage in the quantize.c file allows attackers to cause a heap-based buffer over-read via a crafted file.
 
 [**Patch code:**]()
 
@@ -1350,7 +1358,7 @@ too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/529496689
 
 [**Description**](https://github.com/bblanchon/ArduinoJson/pull/81)
 
-The extractFrom function in Internals/QuotedString.cpp in Arduino JSON before 4.5 allows remote attackers to cause a denial of service (crash) via a JSON string with a \ (backslash) followed by a terminator, as demonstrated by "\\\0", which triggers a buffer overflow and over-read.
+> The extractFrom function in Internals/QuotedString.cpp in Arduino JSON before 4.5 allows remote attackers to cause a denial of service (crash) via a JSON string with a \ (backslash) followed by a terminator, as demonstrated by "\\\0", which triggers a buffer overflow and over-read.
 
 [**Patch code:**](https://github.com/bblanchon/ArduinoJson/commit/5e7b9ec688d79e7b16ec7064e1d37e8481a31e72)
 
@@ -1455,9 +1463,9 @@ char *QuotedString::extractFrom(char *input, char **endPtr) {
 
 [**Description**](https://github.com/bblanchon/ArduinoJson/issues/808)
 
-get<String> returns different outputs of 0 for v6.3.0-beta and v6.2.3-beta. In case of v6.3.0-beta it returns "-0" (minus occurs before 0), but in case of v6.2.3-beta it returns "0".
+> get<String> returns different outputs of 0 for v6.3.0-beta and v6.2.3-beta. In case of v6.3.0-beta it returns "-0" (minus occurs before 0), but in case of v6.2.3-beta it returns "0".
 
-Example:
+> Example:
 
 ```
 char json[] = "{\"x\":0}";
@@ -1468,14 +1476,14 @@ obj["x_str"] = object.get<String>("x");
 obj["x_uint"] = object.get<unsigned int>("x");
 ```
 
-Output in case of v6.3.0-beta:
+> Output in case of v6.3.0-beta:
 
 ```
 x_str = "-0"
 x_uint = 0
 ```
 
-Output in case of v6.2.3-beta:
+> Output in case of v6.2.3-beta:
 
 ```
 x_str = "0"
@@ -1517,6 +1525,185 @@ x_uint = 0
 
 
 
+<a name="FFmpeg">
+
+### Project Name: [FFmpeg](https://github.com/FFmpeg/FFmpeg)
+
+<a name="integer overflow and out of array access">
+
+### 1. [integer overflow and out of array access](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1999011)
+
+[**Description**](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1999011)
+
+> Buffer Overflow vulnerability in asf_o format demuxer that can result in heap-buffer-overflow that may result in remote code execution. This attack appears to be exploitable via specially crafted ASF file that has to be provided as input to FFmpeg.
+
+[**Patch code:**](https://github.com/FFmpeg/FFmpeg/commit/2b46ebdbff1d8dec7a3d8ea280a612b91a582869)
+
+```diff
+@@ -706,7 +706,8 @@ static int parse_video_info(AVIOContext *pb, AVStream *st)
+    st->codecpar->codec_id  = ff_codec_get_id(ff_codec_bmp_tags, tag);
+    size_bmp = FFMAX(size_asf, size_bmp);
+-    if (size_bmp > BMP_HEADER_SIZE) {
++    if (size_bmp > BMP_HEADER_SIZE &&
++        size_bmp < INT_MAX - AV_INPUT_BUFFER_PADDING_SIZE) {
+        int ret;
+        st->codecpar->extradata_size  = size_bmp - BMP_HEADER_SIZE;
+        if (!(st->codecpar->extradata = av_malloc(st->codecpar->extradata_size +
+```
+
+[**Full function:**](https://github.com/FFmpeg/FFmpeg/commit/2b46ebdbff1d8dec7a3d8ea280a612b91a582869)
+
+```c
+ static int parse_video_info(AVIOContext *pb, AVStream *st)
+ {
+     uint16_t size_asf; // ASF-specific Format Data size
+     uint32_t size_bmp; // BMP_HEADER-specific Format Data size
+     unsigned int tag;
+ 
+     st->codecpar->width  = avio_rl32(pb);
+     st->codecpar->height = avio_rl32(pb);
+     avio_skip(pb, 1); // skip reserved flags
+     size_asf = avio_rl16(pb);
+     tag = ff_get_bmp_header(pb, st, &size_bmp);
+     st->codecpar->codec_tag = tag;
+    st->codecpar->codec_id  = ff_codec_get_id(ff_codec_bmp_tags, tag);
+    size_bmp = FFMAX(size_asf, size_bmp);
+    if (size_bmp > BMP_HEADER_SIZE &&
+        size_bmp < INT_MAX - AV_INPUT_BUFFER_PADDING_SIZE) {
+        int ret;
+        st->codecpar->extradata_size  = size_bmp - BMP_HEADER_SIZE;
+        if (!(st->codecpar->extradata = av_malloc(st->codecpar->extradata_size +
+                                                AV_INPUT_BUFFER_PADDING_SIZE))) {
+             st->codecpar->extradata_size = 0;
+             return AVERROR(ENOMEM);
+         }
+         memset(st->codecpar->extradata + st->codecpar->extradata_size , 0,
+                AV_INPUT_BUFFER_PADDING_SIZE);
+         if ((ret = avio_read(pb, st->codecpar->extradata,
+                              st->codecpar->extradata_size)) < 0)
+             return ret;
+     }
+     return 0;
+ }
+```
+
+**Comments**:
+
+
+---
+
+
+
+<a name="Fix multiple runtime error: index 256 out of bounds">
+
+### 2. [Fix multiple runtime error: index 256 out of bounds](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9995)
+
+[**Description**](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9995)
+
+libavcodec/scpr.c in FFmpeg 3.3 before 3.3.1 does not properly validate height and width data, which allows remote attackers to cause a denial of service (heap-based buffer overflow and application crash) or possibly have unspecified other impact via a crafted file.
+
+
+[**Patch code:**](https://github.com/FFmpeg/FFmpeg/commit/2171dfae8c065878a2e130390eb78cf2947a5b69)
+
+```diff
++    if (x >= 16 || c >= 256) {
++        return AVERROR_INVALIDDATA;
++    }
+```
+
+[**Full function:**](https://github.com/FFmpeg/FFmpeg/commit/2171dfae8c065878a2e130390eb78cf2947a5b69)
+
+```c
+ static int decode_unit(SCPRContext *s, PixelModel *pixel, unsigned step, unsigned *rval)
+ {
+     GetByteContext *gb = &s->gb;
+     RangeCoder *rc = &s->rc;
+     unsigned totfr = pixel->total_freq;
+     unsigned value, x = 0, cumfr = 0, cnt_x = 0;
+     int i, j, ret, c, cnt_c;
+ 
+     if ((ret = s->get_freq(rc, totfr, &value)) < 0)
+         return ret;
+ 
+     while (x < 16) {
+         cnt_x = pixel->lookup[x];
+         if (value >= cumfr + cnt_x)
+             cumfr += cnt_x;
+         else
+             break;
+         x++;
+     }
+ 
+     c = x * 16;
+     cnt_c = 0;
+     while (c < 256) {
+         cnt_c = pixel->freq[c];
+         if (value >= cumfr + cnt_c)
+             cumfr += cnt_c;
+         else
+            break;
+        c++;
+    }
+    if (x >= 16 || c >= 256) {
+        return AVERROR_INVALIDDATA;
+    }
+     if ((ret = s->decode(gb, rc, cumfr, cnt_c, totfr)) < 0)
+        return ret;
+ 
+     pixel->freq[c] = cnt_c + step;
+     pixel->lookup[x] = cnt_x + step;
+     totfr += step;
+     if (totfr > BOT) {
+         totfr = 0;
+         for (i = 0; i < 256; i++) {
+             unsigned nc = (pixel->freq[i] >> 1) + 1;
+             pixel->freq[i] = nc;
+             totfr += nc;
+         }
+         for (i = 0; i < 16; i++) {
+             unsigned sum = 0;
+             unsigned i16_17 = i << 4;
+             for (j = 0; j < 16; j++)
+                 sum += pixel->freq[i16_17 + j];
+             pixel->lookup[i] = sum;
+         }
+     }
+     pixel->total_freq = totfr;
+ 
+     *rval = c & s->cbits;
+ 
+     return 0;
+ }
+```
+
+**Comments**:
+
+
+---
+
+
+
+<a name="http: make length/offset-related variables unsigned.">
+
+### 3. [http: make length/offset-related variables unsigned.](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10190)
+
+[**Description**](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10190)
+
+Heap-based buffer overflow in libavformat/http.c in FFmpeg before 2.8.10, 3.0.x before 3.0.5, 3.1.x before 3.1.6, and 3.2.x before 3.2.2 allows remote web servers to execute arbitrary code via a negative chunk size in an HTTP response.
+
+[**Patch code:**](https://github.com/FFmpeg/FFmpeg/commit/2a05c8f813de6f2278827734bf8102291e7484aa)
+
+Too many files edited, see [here](https://github.com/FFmpeg/FFmpeg/commit/2a05c8f813de6f2278827734bf8102291e7484aa)
+
+[**Full function:**](https://github.com/FFmpeg/FFmpeg/commit/2a05c8f813de6f2278827734bf8102291e7484aa)
+
+Too many files edited, see [here](https://github.com/FFmpeg/FFmpeg/commit/2a05c8f813de6f2278827734bf8102291e7484aa)
+
+**Comments**:
+
+
+---
+
 <a name="">
 
 ### Project Name: []()
@@ -1544,7 +1731,32 @@ x_uint = 0
 
 ---
 
+<a name="">
 
+### Project Name: []()
+
+### 1. []()
+
+[**Description**]()
+
+
+
+[**Patch code:**]()
+
+```diff
+
+```
+
+[**Full function:**]()
+
+```c
+
+```
+
+**Comments**:
+
+
+---
 
 <a name="">
 
@@ -1573,7 +1785,140 @@ x_uint = 0
 
 ---
 
+<a name="">
 
+### Project Name: []()
+
+### 1. []()
+
+[**Description**]()
+
+
+
+[**Patch code:**]()
+
+```diff
+
+```
+
+[**Full function:**]()
+
+```c
+
+```
+
+**Comments**:
+
+
+---
+
+<a name="">
+
+### Project Name: []()
+
+### 1. []()
+
+[**Description**]()
+
+
+
+[**Patch code:**]()
+
+```diff
+
+```
+
+[**Full function:**]()
+
+```c
+
+```
+
+**Comments**:
+
+
+---
+
+<a name="">
+
+### Project Name: []()
+
+### 1. []()
+
+[**Description**]()
+
+
+
+[**Patch code:**]()
+
+```diff
+
+```
+
+[**Full function:**]()
+
+```c
+
+```
+
+**Comments**:
+
+
+---
+
+<a name="">
+
+### Project Name: []()
+
+### 1. []()
+
+[**Description**]()
+
+
+
+[**Patch code:**]()
+
+```diff
+
+```
+
+[**Full function:**]()
+
+```c
+
+```
+
+**Comments**:
+
+
+---
+
+<a name="">
+
+### Project Name: []()
+
+### 1. []()
+
+[**Description**]()
+
+
+
+[**Patch code:**]()
+
+```diff
+
+```
+
+[**Full function:**]()
+
+```c
+
+```
+
+**Comments**:
+
+
+---
 
 <a name="">
 
