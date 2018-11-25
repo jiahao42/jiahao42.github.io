@@ -840,7 +840,11 @@ if (!strcmp(value, "\"\"") || (!strcmp(value, "''"))) {
 
 [**Description**](https://github.com/udp/json-parser/issues/68)
 
-> Explanation if you need it for your thesis: When json-parser reads a unicode character, it reads 4 or 6 characters immediately without going back around the main loop which usually processes one byte at a time. To prevent this from causing a buffer overrun, there was an error condition if end - state.ptr < 4 to check that 4 bytes were actually available to read. However, this check was performed on the 'u' character of the \uXXXX, which would return >= 4 even if the input truncated at \uXXX. To fix this, the error condition has been changed to end - state.ptr <= 4.
+> Explanation if you need it for your thesis: When json-parser reads a unicode character, it reads 4 or 6 characters immediately without going back around the main loop which usually processes one byte at a time. 
+
+> To prevent this from causing a buffer overrun, there was an error condition if end - state.ptr < 4 to check that 4 bytes were actually available to read. 
+
+> However, this check was performed on the 'u' character of the \uXXXX, which would return >= 4 even if the input truncated at \uXXX. To fix this, the error condition has been changed to end - state.ptr <= 4.
 
 [**Patch code:**](https://github.com/udp/json-parser/commit/b42439a2927a879f40698e4861e727c4265c13e6)
 
