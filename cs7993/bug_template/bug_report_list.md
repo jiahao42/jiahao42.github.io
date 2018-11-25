@@ -3,7 +3,7 @@ title:
   Bug reports
 ---
 
-Last updated: 11:07, Nov, 25, 2018
+Last updated: 13:00, Nov, 25, 2018
 
 * [cJSON](#cJSON)
   * [Bug in cJSON.c cJSON_SetNumberHelper #138](#Bug in cJSON.c cJSON_SetNumberHelper #138)
@@ -16,6 +16,12 @@ Last updated: 11:07, Nov, 25, 2018
   * [get<String> returns -0 for 0 #808](#get<String> returns -0 for 0 #808)
 * [json-parser](#json-parser)
   * [heap buffer overflow on some inputs #68](#heap buffer overflow on some inputs #68)
+* [json-c](#json-c)
+  * [Empty strings and unicode zero values break json parsing. #53](#Empty strings and unicode zero values break json parsing. #53)
+* [jansson](#jansson)
+  * Jansson is a C library for encoding, decoding and manipulating JSON data.
+  * [Stack exhaustion parsing a JSON file #282](#Stack exhaustion parsing a JSON file #282)
+    * [CVE-2016-4425](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4425)
 * [iniparser](#iniparser)
   * ini file parser
   * [Empty string with quotes. #70](#Empty string with quotes. #70)
@@ -37,6 +43,10 @@ Last updated: 11:07, Nov, 25, 2018
   * The CImg Library is a small and open-source C++ toolkit for image processing.
   * [other testcases lead to heap overflow by loading crafted images #185](#other testcases lead to heap overflow by loading crafted images #185)
     * [CVE-2018-7640](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7640)
+  * [double free when load bmp image #184](#double free when load bmp image #184)
+    * [CVE-2018-7589](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7589)
+  * [a heap overflow when load a bmp image #183](#a heap overflow when load a bmp image #183)
+    * [CVE-2018-7588](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7588)
 * [ImageMagick](#ImageMagick)
   * ImageMagick is a free and open-source software suite for displaying, converting, and editing raster image and vector image files.
   * [heap-buffer-overflow in SVGStripString of svg.c #1336](#heap-buffer-overflow in SVGStripString of svg.c #1336)
@@ -63,6 +73,11 @@ Last updated: 11:07, Nov, 25, 2018
     * [CVE-2017-7865](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7865)
   * [FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow](#FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow)
     * [CVE-2017-7866](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7866)
+* [OpenCV](#OpenCV)
+  * [Out of bounds write causes Segmentation Fault #9723](#Out of bounds write causes Segmentation Fault #9723)
+    * [CVE-2017-1000450](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000450)
+  * [A heap based buffer overflow happens in cv::Jpeg2KDecoder::readComponent8u #10541](#A heap based buffer overflow happens in cv::Jpeg2KDecoder::readComponent8u #10541)
+    * [CVE-2018-5268](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5268)
 
 <a name="cJSON">
 
@@ -1167,7 +1182,179 @@ The function is too long, see [here](https://github.com/dtschump/CImg/commit/10a
 
 ---
 
+<a name="double free when load bmp image #184">
 
+### 2. [double free when load bmp image #184](https://github.com/dtschump/CImg/issues/184)
+
+[**Description**](https://github.com/dtschump/CImg/issues/184)
+
+An issue was discovered in CImg v.220. A double free in load_bmp in CImg.h occurs when loading a crafted bmp image.
+
+[**Patch code:**](https://github.com/dtschump/CImg/commit/8447076ef22322a14a0ce130837e44c5ba8095f4)
+
+```diff
+@@ -48333,9 +48333,9 @@ namespace cimg_library_suffixed {
+      const int
+        dx_bytes = (bpp==1)?(dx/8 + (dx%8?1:0)):((bpp==4)?(dx/2 + (dx%2)):(dx*bpp/8)),
+        align_bytes = (4 - dx_bytes%4)%4;
+-      const longT
+-        cimg_iobuffer = (longT)24*1024*1024,
+-        buf_size = std::min((longT)cimg::abs(dy)*(dx_bytes + align_bytes),(longT)file_size - offset);
++      const ulongT
++        cimg_iobuffer = (ulongT)24*1024*1024,
++        buf_size = std::min((ulongT)cimg::abs(dy)*(dx_bytes + align_bytes),(ulongT)file_size - offset);
+       CImg<intT> colormap;
+      if (bpp<16) { if (!nb_colors) nb_colors = 1<<bpp; } else nb_colors = 0;
+@@ -48368,7 +48368,7 @@ namespace cimg_library_suffixed {
+      case 1 : { // Monochrome
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          unsigned char mask = 0x80, val = 0;
+@@ -48386,7 +48386,7 @@ namespace cimg_library_suffixed {
+      case 4 : { // 16 colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          unsigned char mask = 0xF0, val = 0;
+@@ -48405,7 +48405,7 @@ namespace cimg_library_suffixed {
+      case 8 : { //  256 colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+@@ -48420,7 +48420,7 @@ namespace cimg_library_suffixed {
+      case 16 : { // 16 bits colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+@@ -48436,7 +48436,7 @@ namespace cimg_library_suffixed {
+      case 24 : { // 24 bits colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+@@ -48450,7 +48450,7 @@ namespace cimg_library_suffixed {
+      case 32 : { // 32 bits colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+```
+
+[**Full function:**](https://github.com/dtschump/CImg/commit/8447076ef22322a14a0ce130837e44c5ba8095f4)
+
+too long, see [here](https://github.com/dtschump/CImg/commit/8447076ef22322a14a0ce130837e44c5ba8095f4)
+
+**Comments**:
+
+---
+
+<a name="a heap overflow when load a bmp image #183">
+
+### 3. [a heap overflow when load a bmp image #183]()
+
+[**Description**](https://github.com/dtschump/CImg/issues/183)
+
+An issue was discovered in CImg v.220. A heap-based buffer over-read in load_bmp in CImg.h occurs when loading a crafted bmp image.
+
+[**Patch code:**](https://github.com/dtschump/CImg/commit/8447076ef22322a14a0ce130837e44c5ba8095f4)
+
+```diff
+@@ -48333,9 +48333,9 @@ namespace cimg_library_suffixed {
+      const int
+        dx_bytes = (bpp==1)?(dx/8 + (dx%8?1:0)):((bpp==4)?(dx/2 + (dx%2)):(dx*bpp/8)),
+        align_bytes = (4 - dx_bytes%4)%4;
+-      const longT
+-        cimg_iobuffer = (longT)24*1024*1024,
+-        buf_size = std::min((longT)cimg::abs(dy)*(dx_bytes + align_bytes),(longT)file_size - offset);
++      const ulongT
++        cimg_iobuffer = (ulongT)24*1024*1024,
++        buf_size = std::min((ulongT)cimg::abs(dy)*(dx_bytes + align_bytes),(ulongT)file_size - offset);
+       CImg<intT> colormap;
+      if (bpp<16) { if (!nb_colors) nb_colors = 1<<bpp; } else nb_colors = 0;
+@@ -48368,7 +48368,7 @@ namespace cimg_library_suffixed {
+      case 1 : { // Monochrome
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          unsigned char mask = 0x80, val = 0;
+@@ -48386,7 +48386,7 @@ namespace cimg_library_suffixed {
+      case 4 : { // 16 colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          unsigned char mask = 0xF0, val = 0;
+@@ -48405,7 +48405,7 @@ namespace cimg_library_suffixed {
+      case 8 : { //  256 colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+@@ -48420,7 +48420,7 @@ namespace cimg_library_suffixed {
+      case 16 : { // 16 bits colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+@@ -48436,7 +48436,7 @@ namespace cimg_library_suffixed {
+      case 24 : { // 24 bits colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+@@ -48450,7 +48450,7 @@ namespace cimg_library_suffixed {
+      case 32 : { // 32 bits colors
+        for (int y = height() - 1; y>=0; --y) {
+          if (buf_size>=cimg_iobuffer) {
+-            cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
++            if (!cimg::fread(ptrs=buffer._data,dx_bytes,nfile)) break;
+            cimg::fseek(nfile,align_bytes,SEEK_CUR);
+          }
+          cimg_forX(*this,x) {
+```
+
+[**Full function:**](https://github.com/dtschump/CImg/commit/8447076ef22322a14a0ce130837e44c5ba8095f4)
+
+too long, see [here](https://github.com/dtschump/CImg/commit/8447076ef22322a14a0ce130837e44c5ba8095f4)
+
+**Comments**:
+
+---
 
 <a name="ImageMagick">
 
@@ -1969,21 +2156,157 @@ static int decode_zbuf(AVBPrint *bp, const uint8_t *data,
 
 ---
 
+<a name="OpenCV">
 
-<a name="">
+### Project Name: [OpenCV](https://github.com/opencv/opencv)
 
-### Project Name: []()
+<a name="Out of bounds write causes Segmentation Fault #9723">
 
-### 1. []()
+### 1. [Out of bounds write causes Segmentation Fault #9723](https://github.com/opencv/opencv/issues/9309)
 
-[**Description**]()
+[**Description**](https://github.com/opencv/opencv/issues/9723)
+
+In opencv/modules/imgcodecs/src/utils.cpp, functions FillUniColor and FillUniGray do not check the input length, which can lead to integer overflow. If the image is from remote, may lead to remote code execution or denial of service. This affects Opencv 3.3 and earlier.
+
+[**Patch code:**](https://github.com/opencv/opencv/pull/9726/files)
+
+```diff
+@@ -375,6 +375,9 @@ decode_rle4_bad: ;
+                                                gray_palette[code] );
+                         line_end_flag = y - prev_y;
++                         if( y >= m_height )
++                            break;
+                    }
+                    else if( code > 2 ) // absolute mode
+                    {
+```
+
+[**Full function:**](https://github.com/opencv/opencv/pull/9726/files#diff-236c3294512b9353649b64ad8385e984R194)
+
+too long, see [here](https://github.com/opencv/opencv/pull/9726/files#diff-236c3294512b9353649b64ad8385e984R194)
+
+**Comments**:
 
 
+---
+
+
+
+<a name="A heap based buffer overflow happens in cv::Jpeg2KDecoder::readComponent8u #10541">
+
+### 1. [A heap based buffer overflow happens in cv::Jpeg2KDecoder::readComponent8u #10541](https://github.com/opencv/opencv/issues/10541)
+
+[**Description**](https://github.com/opencv/opencv/issues/10541)
+
+In OpenCV 3.3.1, a heap-based buffer overflow happens in cv::Jpeg2KDecoder::readComponent8u in modules/imgcodecs/src/grfmt_jpeg2000.cpp when parsing a crafted image file.
 
 [**Patch code:**]()
 
 ```diff
-
+@@ -77,7 +77,8 @@ static JasperInitializer initialize_jasper;
+ Jpeg2KDecoder::Jpeg2KDecoder()
+{
+-    m_signature = '\0' + String() + '\0' + String() + '\0' + String("\x0cjP  \r\n\x87\n");
++    static const unsigned char signature_[12] = { 0, 0, 0, 0x0c, 'j', 'P', ' ', ' ', 13, 10, 0x87, 10};
++    m_signature = String((const char*)signature_, (const char*)signature_ + sizeof(signature_));
+    m_stream = 0;
+    m_image = 0;
+}
+@@ -121,6 +122,8 @@ bool  Jpeg2KDecoder::readHeader()
+        jas_image_t* image = jas_image_decode( stream, -1, 0 );
+        m_image = image;
+        if( image ) {
++            CV_Assert(0 == (jas_image_tlx(image)) && "not supported");
++            CV_Assert(0 == (jas_image_tly(image)) && "not supported");
+            m_width = jas_image_width( image );
+            m_height = jas_image_height( image );
+ @@ -130,14 +133,31 @@ bool  Jpeg2KDecoder::readHeader()
+            for( int i = 0; i < numcmpts; i++ )
+            {
+                int depth_i = jas_image_cmptprec( image, i );
++                CV_Assert(depth == 0 || depth == depth_i); // component data type mismatch
+                depth = MAX(depth, depth_i);
+                if( jas_image_cmpttype( image, i ) > 2 )
+                    continue;
++                int sgnd = jas_image_cmptsgnd(image, i);
++                int xstart = jas_image_cmpttlx(image, i);
++                int xend = jas_image_cmptbrx(image, i);
++                int xstep = jas_image_cmpthstep(image, i);
++                int ystart = jas_image_cmpttly(image, i);
++                int yend = jas_image_cmptbry(image, i);
++                int ystep = jas_image_cmptvstep(image, i);
++                CV_Assert(sgnd == 0 && "not supported");
++                CV_Assert(xstart == 0 && "not supported");
++                CV_Assert(ystart == 0 && "not supported");
++                CV_Assert(xstep == 1 && "not supported");
++                CV_Assert(ystep == 1 && "not supported");
++                CV_Assert(xend == m_width);
++                CV_Assert(yend == m_height);
+                cntcmpts++;
+            }
+             if( cntcmpts )
+            {
++                CV_Assert(depth == 8 || depth == 16);
++                CV_Assert(cntcmpts == 1 || cntcmpts == 3);
+                m_type = CV_MAKETYPE(depth <= 8 ? CV_8U : CV_16U, cntcmpts > 1 ? 3 : 1);
+                result = true;
+            }
+@@ -150,9 +170,14 @@ bool  Jpeg2KDecoder::readHeader()
+    return result;
+}
++ static void Jpeg2KDecoder_close(Jpeg2KDecoder* ptr)
++ {
++    ptr->close();
++ }
+ bool  Jpeg2KDecoder::readData( Mat& img )
+{
++    Ptr<Jpeg2KDecoder> close_this(this, Jpeg2KDecoder_close);
+    bool result = false;
+    int color = img.channels() > 1;
+    uchar* data = img.ptr();
+@@ -204,11 +229,16 @@ bool  Jpeg2KDecoder::readData( Mat& img )
+                    result = true;
+                }
+                else
+-                    fprintf(stderr, "JPEG 2000 LOADER ERROR: cannot convert colorspace\n");
++                {
++                     jas_cmprof_destroy(clrprof);
++                     CV_Error(Error::StsError, "JPEG 2000 LOADER ERROR: cannot convert colorspace");
++                }
+                jas_cmprof_destroy( clrprof );
+            }
+            else
+-                fprintf(stderr, "JPEG 2000 LOADER ERROR: unable to create colorspace\n");
++            {
++                CV_Error(Error::StsError, "JPEG 2000 LOADER ERROR: unable to create colorspace");
++            }
+        }
+        else
+            result = true;
+@@ -257,8 +287,8 @@ bool  Jpeg2KDecoder::readData( Mat& img )
+                                result = readComponent16u( ((unsigned short *)data) + i, buffer, validateToInt(step / 2), cmptlut[i], maxval, offset, ncmpts );
+                            if( !result )
+                            {
+-                                i = ncmpts;
+-                                result = false;
++                                jas_matrix_destroy( buffer );
++                                CV_Error(Error::StsError, "JPEG2000 LOADER ERROR: failed to read component");
+                            }
+                        }
+                        jas_matrix_destroy( buffer );
+@@ -267,10 +297,12 @@ bool  Jpeg2KDecoder::readData( Mat& img )
+            }
+        }
+        else
+-            fprintf(stderr, "JPEG2000 LOADER ERROR: colorspace conversion failed\n" );
++        {
++            CV_Error(Error::StsError, "JPEG2000 LOADER ERROR: colorspace conversion failed");
++        }
+    }
+-     close();
++    CV_Assert(result == true);
+ #ifndef _WIN32
+    if (!clr.empty())
 ```
 
 [**Full function:**]()
@@ -1997,57 +2320,197 @@ static int decode_zbuf(AVBPrint *bp, const uint8_t *data,
 
 ---
 
-<a name="">
+<a name="json-c">
 
-### Project Name: []()
+### Project Name: [json-c](https://github.com/json-c/json-c)
 
-### 1. []()
+<a name="Empty strings and unicode zero values break json parsing. #53">
 
-[**Description**]()
+### 1. [Empty strings and unicode zero values break json parsing. #53](https://github.com/json-c/json-c/issues/53)
 
+[**Description**](https://github.com/json-c/json-c/issues/53)
 
+Package: libjson0
+Version: 0.10-1.1
+Severity: important
 
-[**Patch code:**]()
+If the input JSON contains empty value (i.e. "") The internal string
+buffer is unterminated and unexpected behaviour occours.
+
+If the unicode value \u0000 appears in the input the string is
+terminated early and the string is truncated.
+
+[**Patch code:**](https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81)
 
 ```diff
-
+json_object.c
+@@ -620,8 +620,9 @@ struct json_object* json_object_new_string_len(const char *s, int len)
+  if(!jso) return NULL;
+  jso->_delete = &json_object_string_delete;
+  jso->_to_json_string = &json_object_string_to_json_string;
+-  jso->o.c_string.str = (char*)malloc(len);
++  jso->o.c_string.str = (char*)malloc(len + 1);
+  memcpy(jso->o.c_string.str, (void *)s, len);
++  jso->o.c_string.str[len] = '\0';
+  jso->o.c_string.len = len;
+  return jso;
+}
+json_tokener.c
+@@ -393,7 +393,7 @@ struct json_object* json_tokener_parse_ex(struct json_tokener *tok,
+	while(1) {
+	  if(c == tok->quote_char) {
+	    printbuf_memappend_fast(tok->pb, case_start, str-case_start);
+-	    current = json_object_new_string(tok->pb->buf);
++	    current = json_object_new_string_len(tok->pb->buf, tok->pb->bpos);
+	    saved_state = json_tokener_state_finish;
+	    state = json_tokener_state_eatws;
+	    break;
 ```
 
-[**Full function:**]()
+[**Full function:**](https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81)
 
-```c
-
-```
+multiple functions edited, see [here](https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81)
 
 **Comments**:
 
 
 ---
 
-<a name="">
+<a name="jansson">
 
-### Project Name: []()
+### Project Name: [jansson](https://github.com/akheron/jansson)
 
-### 1. []()
+<a name="Stack exhaustion parsing a JSON file #282">
 
-[**Description**]()
+### 1. [Stack exhaustion parsing a JSON file #282](https://github.com/akheron/jansson/issues/282)
 
+[**Description**](https://github.com/akheron/jansson/issues/282)
 
+Jansson 2.7 and earlier allows context-dependent attackers to cause a denial of service (deep recursion, stack consumption, and crash) via crafted JSON data.
 
-[**Patch code:**]()
+[**Patch code:**](https://github.com/akheron/jansson/pull/284/files)
 
 ```diff
-
+android/jansson_config.h
+@@ -36,4 +36,8 @@
+   otherwise to 0. */
+#define JSON_HAVE_LOCALECONV 0
++ /* Maximum recursion depth for parsing JSON input.
++   This limits the depth of e.g. array-within-array constructions. */
++ #define JSON_PARSER_MAX_DEPTH 2048
+src/load.c
+@@ -62,6 +62,7 @@ typedef struct {
+    stream_t stream;
+    strbuffer_t saved_text;
+    size_t flags;
++    size_t depth;
+    int token;
+    union {
+        struct {
+@@ -803,6 +804,12 @@ static json_t *parse_value(lex_t *lex, size_t flags, json_error_t *error)
+{
+    json_t *json;
++   lex->depth++;
++   if(lex->depth > JSON_PARSER_MAX_DEPTH) {
++       error_set(error, lex, "maximum parsing depth reached");
++       return NULL;
++   }
+     switch(lex->token) {
+        case TOKEN_STRING: {
+            const char *value = lex->value.string.val;
+@@ -865,13 +872,16 @@ static json_t *parse_value(lex_t *lex, size_t flags, json_error_t *error)
+    if(!json)
+        return NULL;
++   lex->depth--;
+    return json;
+}
+ static json_t *parse_json(lex_t *lex, size_t flags, json_error_t *error)
+{
+    json_t *result;
++    lex->depth = 0;
+    lex_scan(lex, error);
+    if(!(flags & JSON_DECODE_ANY)) {
+        if(lex->token != '[' && lex->token != '{') {
 ```
 
-[**Full function:**]()
+[**Full function:**](https://github.com/akheron/jansson/pull/284/commits/64ce0ad3731ebd77e02897b07920eadd0e2cc318#diff-04323737e1efd784854c30ab83651c9cR803)
 
 ```c
-
+ static json_t *parse_value(lex_t *lex, size_t flags, json_error_t *error)
+{
+    json_t *json;
+     lex->depth++;
+    if(lex->depth > JSON_PARSER_MAX_DEPTH) {
+        error_set(error, lex, "maximum parsing depth reached");
+        return NULL;
+    }
+     switch(lex->token) {
+        case TOKEN_STRING: {
+            const char *value = lex->value.string.val;
+             size_t len = lex->value.string.len;
+ 
+             if(!(flags & JSON_ALLOW_NUL)) {
+                 if(memchr(value, '\0', len)) {
+                     error_set(error, lex, "\\u0000 is not allowed without JSON_ALLOW_NUL");
+                     return NULL;
+                 }
+             }
+ 
+             json = jsonp_stringn_nocheck_own(value, len);
+             if(json) {
+                 lex->value.string.val = NULL;
+                 lex->value.string.len = 0;
+             }
+             break;
+         }
+ 
+         case TOKEN_INTEGER: {
+             json = json_integer(lex->value.integer);
+             break;
+         }
+ 
+         case TOKEN_REAL: {
+             json = json_real(lex->value.real);
+             break;
+         }
+ 
+         case TOKEN_TRUE:
+             json = json_true();
+             break;
+ 
+         case TOKEN_FALSE:
+             json = json_false();
+             break;
+ 
+         case TOKEN_NULL:
+             json = json_null();
+             break;
+ 
+         case '{':
+             json = parse_object(lex, flags, error);
+             break;
+ 
+         case '[':
+             json = parse_array(lex, flags, error);
+             break;
+ 
+         case TOKEN_INVALID:
+             error_set(error, lex, "invalid token");
+             return NULL;
+ 
+         default:
+             error_set(error, lex, "unexpected token");
+             return NULL;
+     }
+ 
+    if(!json)
+        return NULL;
+     lex->depth--;
+    return json;
+}
 ```
 
 **Comments**:
-
 
 ---
 
