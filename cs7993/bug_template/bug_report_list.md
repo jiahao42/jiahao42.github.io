@@ -2337,7 +2337,7 @@ Severity: important
 If the input JSON contains empty value (i.e. "") The internal string
 buffer is unterminated and unexpected behaviour occours.
 
-If the unicode value \u0000 appears in the input the string is
+If the unicode value `\u0000` appears in the input the string is
 terminated early and the string is truncated.
 
 [**Patch code:**](https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81)

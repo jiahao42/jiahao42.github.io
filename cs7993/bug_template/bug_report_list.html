@@ -2021,6 +2021,215 @@ x_uint = 0</code></pre>
 <p><a href="https://github.com/json-c/json-c/issues/53"><strong>Description</strong></a></p>
 <p>Package: libjson0 Version: 0.10-1.1 Severity: important</p>
 <p>If the input JSON contains empty value (i.e. &quot;&quot;) The internal string buffer is unterminated and unexpected behaviour occours.</p>
-If the unicode value
+<p>If the unicode value <code>\u0000</code> appears in the input the string is terminated early and the string is truncated.</p>
+<p><a href="https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb54-1" data-line-number="1">json_object.c</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="dt">@@ -620,8 +620,9 @@ struct json_object* json_object_new_string_len(const char *s, int len)</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">  if(!jso) return NULL;</a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">  jso-&gt;_delete = &amp;json_object_string_delete;</a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">  jso-&gt;_to_json_string = &amp;json_object_string_to_json_string;</a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="st">-  jso-&gt;o.c_string.str = (char*)malloc(len);</span></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="va">+  jso-&gt;o.c_string.str = (char*)malloc(len + 1);</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8">  memcpy(jso-&gt;o.c_string.str, (void *)s, len);</a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="va">+  jso-&gt;o.c_string.str[len] = &#39;\0&#39;;</span></a>
+<a class="sourceLine" id="cb54-10" data-line-number="10">  jso-&gt;o.c_string.len = len;</a>
+<a class="sourceLine" id="cb54-11" data-line-number="11">  return jso;</a>
+<a class="sourceLine" id="cb54-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb54-13" data-line-number="13">json_tokener.c</a>
+<a class="sourceLine" id="cb54-14" data-line-number="14"><span class="dt">@@ -393,7 +393,7 @@ struct json_object* json_tokener_parse_ex(struct json_tokener *tok,</span></a>
+<a class="sourceLine" id="cb54-15" data-line-number="15">    while(1) {</a>
+<a class="sourceLine" id="cb54-16" data-line-number="16">      if(c == tok-&gt;quote_char) {</a>
+<a class="sourceLine" id="cb54-17" data-line-number="17">        printbuf_memappend_fast(tok-&gt;pb, case_start, str-case_start);</a>
+<a class="sourceLine" id="cb54-18" data-line-number="18"><span class="st">-       current = json_object_new_string(tok-&gt;pb-&gt;buf);</span></a>
+<a class="sourceLine" id="cb54-19" data-line-number="19"><span class="va">+       current = json_object_new_string_len(tok-&gt;pb-&gt;buf, tok-&gt;pb-&gt;bpos);</span></a>
+<a class="sourceLine" id="cb54-20" data-line-number="20">        saved_state = json_tokener_state_finish;</a>
+<a class="sourceLine" id="cb54-21" data-line-number="21">        state = json_tokener_state_eatws;</a>
+<a class="sourceLine" id="cb54-22" data-line-number="22">        break;</a></code></pre></div>
+<p><a href="https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81"><strong>Full function:</strong></a></p>
+<p>multiple functions edited, see <a href="https://github.com/json-c/json-c/commit/4e4af93d667ae0d3cb9779f5a3c3f964cc9d7d81">here</a></p>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="jansson"></p>
+<h3 id="project-name-jansson">Project Name: <a href="https://github.com/akheron/jansson">jansson</a></h3>
+<p><a name="Stack exhaustion parsing a JSON file #282"></p>
+<h3 id="stack-exhaustion-parsing-a-json-file-282">1. <a href="https://github.com/akheron/jansson/issues/282">Stack exhaustion parsing a JSON file #282</a></h3>
+<p><a href="https://github.com/akheron/jansson/issues/282"><strong>Description</strong></a></p>
+<p>Jansson 2.7 and earlier allows context-dependent attackers to cause a denial of service (deep recursion, stack consumption, and crash) via crafted JSON data.</p>
+<p><a href="https://github.com/akheron/jansson/pull/284/files"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb55-1" data-line-number="1">android/jansson_config.h</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="dt">@@ -36,4 +36,8 @@</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">   otherwise to 0. */</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">#define JSON_HAVE_LOCALECONV 0</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="va">+ /* Maximum recursion depth for parsing JSON input.</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="va">+   This limits the depth of e.g. array-within-array constructions. */</span></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7"><span class="va">+ #define JSON_PARSER_MAX_DEPTH 2048</span></a>
+<a class="sourceLine" id="cb55-8" data-line-number="8">src/load.c</a>
+<a class="sourceLine" id="cb55-9" data-line-number="9"><span class="dt">@@ -62,6 +62,7 @@ typedef struct {</span></a>
+<a class="sourceLine" id="cb55-10" data-line-number="10">    stream_t stream;</a>
+<a class="sourceLine" id="cb55-11" data-line-number="11">    strbuffer_t saved_text;</a>
+<a class="sourceLine" id="cb55-12" data-line-number="12">    size_t flags;</a>
+<a class="sourceLine" id="cb55-13" data-line-number="13"><span class="va">+    size_t depth;</span></a>
+<a class="sourceLine" id="cb55-14" data-line-number="14">    int token;</a>
+<a class="sourceLine" id="cb55-15" data-line-number="15">    union {</a>
+<a class="sourceLine" id="cb55-16" data-line-number="16">        struct {</a>
+<a class="sourceLine" id="cb55-17" data-line-number="17"><span class="dt">@@ -803,6 +804,12 @@ static json_t *parse_value(lex_t *lex, size_t flags, json_error_t *error)</span></a>
+<a class="sourceLine" id="cb55-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb55-19" data-line-number="19">    json_t *json;</a>
+<a class="sourceLine" id="cb55-20" data-line-number="20"><span class="va">+   lex-&gt;depth++;</span></a>
+<a class="sourceLine" id="cb55-21" data-line-number="21"><span class="va">+   if(lex-&gt;depth &gt; JSON_PARSER_MAX_DEPTH) {</span></a>
+<a class="sourceLine" id="cb55-22" data-line-number="22"><span class="va">+       error_set(error, lex, &quot;maximum parsing depth reached&quot;);</span></a>
+<a class="sourceLine" id="cb55-23" data-line-number="23"><span class="va">+       return NULL;</span></a>
+<a class="sourceLine" id="cb55-24" data-line-number="24"><span class="va">+   }</span></a>
+<a class="sourceLine" id="cb55-25" data-line-number="25">     switch(lex-&gt;token) {</a>
+<a class="sourceLine" id="cb55-26" data-line-number="26">        case TOKEN_STRING: {</a>
+<a class="sourceLine" id="cb55-27" data-line-number="27">            const char *value = lex-&gt;value.string.val;</a>
+<a class="sourceLine" id="cb55-28" data-line-number="28"><span class="dt">@@ -865,13 +872,16 @@ static json_t *parse_value(lex_t *lex, size_t flags, json_error_t *error)</span></a>
+<a class="sourceLine" id="cb55-29" data-line-number="29">    if(!json)</a>
+<a class="sourceLine" id="cb55-30" data-line-number="30">        return NULL;</a>
+<a class="sourceLine" id="cb55-31" data-line-number="31"><span class="va">+   lex-&gt;depth--;</span></a>
+<a class="sourceLine" id="cb55-32" data-line-number="32">    return json;</a>
+<a class="sourceLine" id="cb55-33" data-line-number="33">}</a>
+<a class="sourceLine" id="cb55-34" data-line-number="34"> static json_t *parse_json(lex_t *lex, size_t flags, json_error_t *error)</a>
+<a class="sourceLine" id="cb55-35" data-line-number="35">{</a>
+<a class="sourceLine" id="cb55-36" data-line-number="36">    json_t *result;</a>
+<a class="sourceLine" id="cb55-37" data-line-number="37"><span class="va">+    lex-&gt;depth = 0;</span></a>
+<a class="sourceLine" id="cb55-38" data-line-number="38">    lex_scan(lex, error);</a>
+<a class="sourceLine" id="cb55-39" data-line-number="39">    if(!(flags &amp; JSON_DECODE_ANY)) {</a>
+<a class="sourceLine" id="cb55-40" data-line-number="40">        if(lex-&gt;token != &#39;[&#39; &amp;&amp; lex-&gt;token != &#39;{&#39;) {</a></code></pre></div>
+<p><a href="https://github.com/akheron/jansson/pull/284/commits/64ce0ad3731ebd77e02897b07920eadd0e2cc318#diff-04323737e1efd784854c30ab83651c9cR803"><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb56-1" data-line-number="1"> <span class="dt">static</span> json_t *parse_value(lex_t *lex, <span class="dt">size_t</span> flags, json_error_t *error)</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3">    json_t *json;</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">     lex-&gt;depth++;</a>
+<a class="sourceLine" id="cb56-5" data-line-number="5">    <span class="cf">if</span>(lex-&gt;depth &gt; JSON_PARSER_MAX_DEPTH) {</a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">        error_set(error, lex, <span class="st">&quot;maximum parsing depth reached&quot;</span>);</a>
+<a class="sourceLine" id="cb56-7" data-line-number="7">        <span class="cf">return</span> NULL;</a>
+<a class="sourceLine" id="cb56-8" data-line-number="8">    }</a>
+<a class="sourceLine" id="cb56-9" data-line-number="9">     <span class="cf">switch</span>(lex-&gt;token) {</a>
+<a class="sourceLine" id="cb56-10" data-line-number="10">        <span class="cf">case</span> TOKEN_STRING: {</a>
+<a class="sourceLine" id="cb56-11" data-line-number="11">            <span class="dt">const</span> <span class="dt">char</span> *value = lex-&gt;value.string.val;</a>
+<a class="sourceLine" id="cb56-12" data-line-number="12">             <span class="dt">size_t</span> len = lex-&gt;value.string.len;</a>
+<a class="sourceLine" id="cb56-13" data-line-number="13"> </a>
+<a class="sourceLine" id="cb56-14" data-line-number="14">             <span class="cf">if</span>(!(flags &amp; JSON_ALLOW_NUL)) {</a>
+<a class="sourceLine" id="cb56-15" data-line-number="15">                 <span class="cf">if</span>(memchr(value, &#39;\<span class="dv">0</span>&#39;, len)) {</a>
+<a class="sourceLine" id="cb56-16" data-line-number="16">                     error_set(error, lex, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">u0000 is not allowed without JSON_ALLOW_NUL&quot;</span>);</a>
+<a class="sourceLine" id="cb56-17" data-line-number="17">                     <span class="cf">return</span> NULL;</a>
+<a class="sourceLine" id="cb56-18" data-line-number="18">                 }</a>
+<a class="sourceLine" id="cb56-19" data-line-number="19">             }</a>
+<a class="sourceLine" id="cb56-20" data-line-number="20"> </a>
+<a class="sourceLine" id="cb56-21" data-line-number="21">             json = jsonp_stringn_nocheck_own(value, len);</a>
+<a class="sourceLine" id="cb56-22" data-line-number="22">             <span class="cf">if</span>(json) {</a>
+<a class="sourceLine" id="cb56-23" data-line-number="23">                 lex-&gt;value.string.val = NULL;</a>
+<a class="sourceLine" id="cb56-24" data-line-number="24">                 lex-&gt;value.string.len = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb56-25" data-line-number="25">             }</a>
+<a class="sourceLine" id="cb56-26" data-line-number="26">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-27" data-line-number="27">         }</a>
+<a class="sourceLine" id="cb56-28" data-line-number="28"> </a>
+<a class="sourceLine" id="cb56-29" data-line-number="29">         <span class="cf">case</span> TOKEN_INTEGER: {</a>
+<a class="sourceLine" id="cb56-30" data-line-number="30">             json = json_integer(lex-&gt;value.integer);</a>
+<a class="sourceLine" id="cb56-31" data-line-number="31">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-32" data-line-number="32">         }</a>
+<a class="sourceLine" id="cb56-33" data-line-number="33"> </a>
+<a class="sourceLine" id="cb56-34" data-line-number="34">         <span class="cf">case</span> TOKEN_REAL: {</a>
+<a class="sourceLine" id="cb56-35" data-line-number="35">             json = json_real(lex-&gt;value.real);</a>
+<a class="sourceLine" id="cb56-36" data-line-number="36">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-37" data-line-number="37">         }</a>
+<a class="sourceLine" id="cb56-38" data-line-number="38"> </a>
+<a class="sourceLine" id="cb56-39" data-line-number="39">         <span class="cf">case</span> TOKEN_TRUE:</a>
+<a class="sourceLine" id="cb56-40" data-line-number="40">             json = json_true();</a>
+<a class="sourceLine" id="cb56-41" data-line-number="41">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-42" data-line-number="42"> </a>
+<a class="sourceLine" id="cb56-43" data-line-number="43">         <span class="cf">case</span> TOKEN_FALSE:</a>
+<a class="sourceLine" id="cb56-44" data-line-number="44">             json = json_false();</a>
+<a class="sourceLine" id="cb56-45" data-line-number="45">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-46" data-line-number="46"> </a>
+<a class="sourceLine" id="cb56-47" data-line-number="47">         <span class="cf">case</span> TOKEN_NULL:</a>
+<a class="sourceLine" id="cb56-48" data-line-number="48">             json = json_null();</a>
+<a class="sourceLine" id="cb56-49" data-line-number="49">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-50" data-line-number="50"> </a>
+<a class="sourceLine" id="cb56-51" data-line-number="51">         <span class="cf">case</span> <span class="ch">&#39;{&#39;</span>:</a>
+<a class="sourceLine" id="cb56-52" data-line-number="52">             json = parse_object(lex, flags, error);</a>
+<a class="sourceLine" id="cb56-53" data-line-number="53">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-54" data-line-number="54"> </a>
+<a class="sourceLine" id="cb56-55" data-line-number="55">         <span class="cf">case</span> <span class="ch">&#39;[&#39;</span>:</a>
+<a class="sourceLine" id="cb56-56" data-line-number="56">             json = parse_array(lex, flags, error);</a>
+<a class="sourceLine" id="cb56-57" data-line-number="57">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb56-58" data-line-number="58"> </a>
+<a class="sourceLine" id="cb56-59" data-line-number="59">         <span class="cf">case</span> TOKEN_INVALID:</a>
+<a class="sourceLine" id="cb56-60" data-line-number="60">             error_set(error, lex, <span class="st">&quot;invalid token&quot;</span>);</a>
+<a class="sourceLine" id="cb56-61" data-line-number="61">             <span class="cf">return</span> NULL;</a>
+<a class="sourceLine" id="cb56-62" data-line-number="62"> </a>
+<a class="sourceLine" id="cb56-63" data-line-number="63">         <span class="cf">default</span>:</a>
+<a class="sourceLine" id="cb56-64" data-line-number="64">             error_set(error, lex, <span class="st">&quot;unexpected token&quot;</span>);</a>
+<a class="sourceLine" id="cb56-65" data-line-number="65">             <span class="cf">return</span> NULL;</a>
+<a class="sourceLine" id="cb56-66" data-line-number="66">     }</a>
+<a class="sourceLine" id="cb56-67" data-line-number="67"> </a>
+<a class="sourceLine" id="cb56-68" data-line-number="68">    <span class="cf">if</span>(!json)</a>
+<a class="sourceLine" id="cb56-69" data-line-number="69">        <span class="cf">return</span> NULL;</a>
+<a class="sourceLine" id="cb56-70" data-line-number="70">     lex-&gt;depth--;</a>
+<a class="sourceLine" id="cb56-71" data-line-number="71">    <span class="cf">return</span> json;</a>
+<a class="sourceLine" id="cb56-72" data-line-number="72">}</a></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name">Project Name: <a href=""></a></h3>
+<h3 id="section">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-1">Project Name: <a href=""></a></h3>
+<h3 id="section-1">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-2">Project Name: <a href=""></a></h3>
+<h3 id="section-2">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-3">Project Name: <a href=""></a></h3>
+<h3 id="section-3">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-4">Project Name: <a href=""></a></h3>
+<h3 id="section-4">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-5">Project Name: <a href=""></a></h3>
+<h3 id="section-5">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
 </body>
 </html>
