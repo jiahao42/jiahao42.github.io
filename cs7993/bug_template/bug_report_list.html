@@ -83,7 +83,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header">
 <h1 class="title">Bug reports</h1>
 </header>
-<p>Last updated: 19:07, Nov, 20, 2018</p>
+<p>Last updated: 11:07, Nov, 25, 2018</p>
 <ul>
 <li><a href="#cJSON">cJSON</a>
 <ul>
@@ -166,6 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6930">CVE-2018-6930</a></li>
 </ul></li>
+<li><a href="#out-of-bounds%20read%20in%20coders/sun.c:582:57%20#375">out-of-bounds read in coders/sun.c:582:57 #375</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-6500">CVE-2017-6500</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#FFmpeg">FFmpeg</a>
 <ul>
@@ -181,6 +185,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#http:%20make%20length/offset-related%20variables%20unsigned.">http: make length/offset-related variables unsigned.</a>
 <ul>
 <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10190">CVE-2016-10190</a></li>
+</ul></li>
+<li><a href="#FFmpeg%20before%202017-01-24%20has%20an%20out-of-bounds%20write%20caused%20by%20a%20heap-based%20buffer%20overflow">FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7865">CVE-2017-7865</a></li>
+</ul></li>
+<li><a href="#FFmpeg%20before%202017-01-23%20has%20an%20out-of-bounds%20write%20caused%20by%20a%20stack-based%20buffer%20overflow">FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow</a>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7866">CVE-2017-7866</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1301,7 +1313,7 @@ vuln.zip contains a file foo. foo includes the string bar</code></pre>
 <a class="sourceLine" id="cb33-5" data-line-number="5"><span class="st">-    CL_MEM_READ_ONLY,7*sizeof(*cubicCoefficientsBuffer),&amp;coefficientBuffer);</span></a>
 <a class="sourceLine" id="cb33-6" data-line-number="6"><span class="va">+    CL_MEM_READ_ONLY,sizeof(coefficientBuffer),&amp;coefficientBuffer);</span></a></code></pre></div>
 <p><a href="https://github.com/ImageMagick/ImageMagick/commit/6aa7d5d9a39b6d42a4f6c7eacd6ad2169b68fc4f"><strong>Full function:</strong></a></p>
-<p>too long, see <a href="https://github.com/ImageMagick/ImageMagick/commit/6aa7d5d9a39b6d42a4f6c7eacd6ad2169b68fc4f#diff-8368336e30a67e0e3c22fec282b6baccR4263">here</a>, has a lot of comparisons.</p>
+<p>too long, see <a href="https://github.com/ImageMagick/ImageMagick/commit/6aa7d5d9a39b6d42a4f6c7eacd6ad2169b68fc4f#diff-8368336e30a67e0e3c22fec282b6baccR4263">here</a>, it has a lot of comparisons.</p>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name="ArduinoJson"></p>
@@ -1443,6 +1455,21 @@ x_uint = 0</code></pre>
 <a class="sourceLine" id="cb40-6" data-line-number="6">  }</a></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
+<p><a name="out-of-bounds read in coders/sun.c:582:57 #375"></p>
+<h3 id="out-of-bounds-read-in-coderssun.c58257-375">1. <a href="https://github.com/ImageMagick/ImageMagick/issues/375">out-of-bounds read in coders/sun.c:582:57 #375</a></h3>
+<p><a href="https://github.com/ImageMagick/ImageMagick/issues/375"><strong>Description</strong></a></p>
+<p>An issue was discovered in ImageMagick 6.9.7. A specially crafted sun file triggers a heap-based buffer over-read.</p>
+<p><a href="https://github.com/ImageMagick/ImageMagick/commit/3007531bfd326c5c1e29cd41d2cd80c166de8528"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="dt">@@ -458,7 +458,7 @@ static Image *ReadSUNImage(const ImageInfo *image_info,ExceptionInfo *exception)</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">        ThrowReaderException(ResourceLimitError,&quot;ImproperImageHeader&quot;);</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">      }</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">    pixels_length=height*bytes_per_line;</a>
+<a class="sourceLine" id="cb41-5" data-line-number="5">    sun_pixels=(unsigned char *) AcquireQuantumMemory(pixels_length,</a>
+<a class="sourceLine" id="cb41-6" data-line-number="6">    sun_pixels=(unsigned char *) AcquireQuantumMemory(pixels_length+image-&gt;rows,</a></code></pre></div>
+<p><a href="https://github.com/ImageMagick/ImageMagick/commit/3007531bfd326c5c1e29cd41d2cd80c166de8528"><strong>Full function:</strong></a></p>
+<p>too long, see <a href="https://github.com/ImageMagick/ImageMagick/commit/3007531bfd326c5c1e29cd41d2cd80c166de8528#diff-faffa511c4f3a41db200d63cb3cadd9bR303">here</a></p>
+<p><strong>Comments</strong>:</p>
+<hr />
 <p><a name="FFmpeg"></p>
 <h3 id="project-name-ffmpeg">Project Name: <a href="https://github.com/FFmpeg/FFmpeg">FFmpeg</a></h3>
 <p><a name="integer overflow and out of array access"></p>
@@ -1452,47 +1479,47 @@ x_uint = 0</code></pre>
 <p>Buffer Overflow vulnerability in asf_o format demuxer that can result in heap-buffer-overflow that may result in remote code execution. This attack appears to be exploitable via specially crafted ASF file that has to be provided as input to FFmpeg.</p>
 </blockquote>
 <p><a href="https://github.com/FFmpeg/FFmpeg/commit/2b46ebdbff1d8dec7a3d8ea280a612b91a582869"><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="dt">@@ -706,7 +706,8 @@ static int parse_video_info(AVIOContext *pb, AVStream *st)</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">    st-&gt;codecpar-&gt;codec_id  = ff_codec_get_id(ff_codec_bmp_tags, tag);</a>
-<a class="sourceLine" id="cb41-3" data-line-number="3">    size_bmp = FFMAX(size_asf, size_bmp);</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="st">-    if (size_bmp &gt; BMP_HEADER_SIZE) {</span></a>
-<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="va">+    if (size_bmp &gt; BMP_HEADER_SIZE &amp;&amp;</span></a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="va">+        size_bmp &lt; INT_MAX - AV_INPUT_BUFFER_PADDING_SIZE) {</span></a>
-<a class="sourceLine" id="cb41-7" data-line-number="7">        int ret;</a>
-<a class="sourceLine" id="cb41-8" data-line-number="8">        st-&gt;codecpar-&gt;extradata_size  = size_bmp - BMP_HEADER_SIZE;</a>
-<a class="sourceLine" id="cb41-9" data-line-number="9">        if (!(st-&gt;codecpar-&gt;extradata = av_malloc(st-&gt;codecpar-&gt;extradata_size +</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="dt">@@ -706,7 +706,8 @@ static int parse_video_info(AVIOContext *pb, AVStream *st)</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">    st-&gt;codecpar-&gt;codec_id  = ff_codec_get_id(ff_codec_bmp_tags, tag);</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">    size_bmp = FFMAX(size_asf, size_bmp);</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="st">-    if (size_bmp &gt; BMP_HEADER_SIZE) {</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="va">+    if (size_bmp &gt; BMP_HEADER_SIZE &amp;&amp;</span></a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="va">+        size_bmp &lt; INT_MAX - AV_INPUT_BUFFER_PADDING_SIZE) {</span></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7">        int ret;</a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">        st-&gt;codecpar-&gt;extradata_size  = size_bmp - BMP_HEADER_SIZE;</a>
+<a class="sourceLine" id="cb42-9" data-line-number="9">        if (!(st-&gt;codecpar-&gt;extradata = av_malloc(st-&gt;codecpar-&gt;extradata_size +</a></code></pre></div>
 <p><a href="https://github.com/FFmpeg/FFmpeg/commit/2b46ebdbff1d8dec7a3d8ea280a612b91a582869"><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb42-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">int</span> parse_video_info(AVIOContext *pb, AVStream *st)</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"> {</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">     <span class="dt">uint16_t</span> size_asf; <span class="co">// ASF-specific Format Data size</span></a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">     <span class="dt">uint32_t</span> size_bmp; <span class="co">// BMP_HEADER-specific Format Data size</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5">     <span class="dt">unsigned</span> <span class="dt">int</span> tag;</a>
-<a class="sourceLine" id="cb42-6" data-line-number="6"> </a>
-<a class="sourceLine" id="cb42-7" data-line-number="7">     st-&gt;codecpar-&gt;width  = avio_rl32(pb);</a>
-<a class="sourceLine" id="cb42-8" data-line-number="8">     st-&gt;codecpar-&gt;height = avio_rl32(pb);</a>
-<a class="sourceLine" id="cb42-9" data-line-number="9">     avio_skip(pb, <span class="dv">1</span>); <span class="co">// skip reserved flags</span></a>
-<a class="sourceLine" id="cb42-10" data-line-number="10">     size_asf = avio_rl16(pb);</a>
-<a class="sourceLine" id="cb42-11" data-line-number="11">     tag = ff_get_bmp_header(pb, st, &amp;size_bmp);</a>
-<a class="sourceLine" id="cb42-12" data-line-number="12">     st-&gt;codecpar-&gt;codec_tag = tag;</a>
-<a class="sourceLine" id="cb42-13" data-line-number="13">    st-&gt;codecpar-&gt;codec_id  = ff_codec_get_id(ff_codec_bmp_tags, tag);</a>
-<a class="sourceLine" id="cb42-14" data-line-number="14">    size_bmp = FFMAX(size_asf, size_bmp);</a>
-<a class="sourceLine" id="cb42-15" data-line-number="15">    <span class="cf">if</span> (size_bmp &gt; BMP_HEADER_SIZE &amp;&amp;</a>
-<a class="sourceLine" id="cb42-16" data-line-number="16">        size_bmp &lt; INT_MAX - AV_INPUT_BUFFER_PADDING_SIZE) {</a>
-<a class="sourceLine" id="cb42-17" data-line-number="17">        <span class="dt">int</span> ret;</a>
-<a class="sourceLine" id="cb42-18" data-line-number="18">        st-&gt;codecpar-&gt;extradata_size  = size_bmp - BMP_HEADER_SIZE;</a>
-<a class="sourceLine" id="cb42-19" data-line-number="19">        <span class="cf">if</span> (!(st-&gt;codecpar-&gt;extradata = av_malloc(st-&gt;codecpar-&gt;extradata_size +</a>
-<a class="sourceLine" id="cb42-20" data-line-number="20">                                                AV_INPUT_BUFFER_PADDING_SIZE))) {</a>
-<a class="sourceLine" id="cb42-21" data-line-number="21">             st-&gt;codecpar-&gt;extradata_size = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb42-22" data-line-number="22">             <span class="cf">return</span> AVERROR(ENOMEM);</a>
-<a class="sourceLine" id="cb42-23" data-line-number="23">         }</a>
-<a class="sourceLine" id="cb42-24" data-line-number="24">         memset(st-&gt;codecpar-&gt;extradata + st-&gt;codecpar-&gt;extradata_size , <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb42-25" data-line-number="25">                AV_INPUT_BUFFER_PADDING_SIZE);</a>
-<a class="sourceLine" id="cb42-26" data-line-number="26">         <span class="cf">if</span> ((ret = avio_read(pb, st-&gt;codecpar-&gt;extradata,</a>
-<a class="sourceLine" id="cb42-27" data-line-number="27">                              st-&gt;codecpar-&gt;extradata_size)) &lt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb42-28" data-line-number="28">             <span class="cf">return</span> ret;</a>
-<a class="sourceLine" id="cb42-29" data-line-number="29">     }</a>
-<a class="sourceLine" id="cb42-30" data-line-number="30">     <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb42-31" data-line-number="31"> }</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb43-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">int</span> parse_video_info(AVIOContext *pb, AVStream *st)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"> {</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3">     <span class="dt">uint16_t</span> size_asf; <span class="co">// ASF-specific Format Data size</span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4">     <span class="dt">uint32_t</span> size_bmp; <span class="co">// BMP_HEADER-specific Format Data size</span></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">     <span class="dt">unsigned</span> <span class="dt">int</span> tag;</a>
+<a class="sourceLine" id="cb43-6" data-line-number="6"> </a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">     st-&gt;codecpar-&gt;width  = avio_rl32(pb);</a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">     st-&gt;codecpar-&gt;height = avio_rl32(pb);</a>
+<a class="sourceLine" id="cb43-9" data-line-number="9">     avio_skip(pb, <span class="dv">1</span>); <span class="co">// skip reserved flags</span></a>
+<a class="sourceLine" id="cb43-10" data-line-number="10">     size_asf = avio_rl16(pb);</a>
+<a class="sourceLine" id="cb43-11" data-line-number="11">     tag = ff_get_bmp_header(pb, st, &amp;size_bmp);</a>
+<a class="sourceLine" id="cb43-12" data-line-number="12">     st-&gt;codecpar-&gt;codec_tag = tag;</a>
+<a class="sourceLine" id="cb43-13" data-line-number="13">    st-&gt;codecpar-&gt;codec_id  = ff_codec_get_id(ff_codec_bmp_tags, tag);</a>
+<a class="sourceLine" id="cb43-14" data-line-number="14">    size_bmp = FFMAX(size_asf, size_bmp);</a>
+<a class="sourceLine" id="cb43-15" data-line-number="15">    <span class="cf">if</span> (size_bmp &gt; BMP_HEADER_SIZE &amp;&amp;</a>
+<a class="sourceLine" id="cb43-16" data-line-number="16">        size_bmp &lt; INT_MAX - AV_INPUT_BUFFER_PADDING_SIZE) {</a>
+<a class="sourceLine" id="cb43-17" data-line-number="17">        <span class="dt">int</span> ret;</a>
+<a class="sourceLine" id="cb43-18" data-line-number="18">        st-&gt;codecpar-&gt;extradata_size  = size_bmp - BMP_HEADER_SIZE;</a>
+<a class="sourceLine" id="cb43-19" data-line-number="19">        <span class="cf">if</span> (!(st-&gt;codecpar-&gt;extradata = av_malloc(st-&gt;codecpar-&gt;extradata_size +</a>
+<a class="sourceLine" id="cb43-20" data-line-number="20">                                                AV_INPUT_BUFFER_PADDING_SIZE))) {</a>
+<a class="sourceLine" id="cb43-21" data-line-number="21">             st-&gt;codecpar-&gt;extradata_size = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb43-22" data-line-number="22">             <span class="cf">return</span> AVERROR(ENOMEM);</a>
+<a class="sourceLine" id="cb43-23" data-line-number="23">         }</a>
+<a class="sourceLine" id="cb43-24" data-line-number="24">         memset(st-&gt;codecpar-&gt;extradata + st-&gt;codecpar-&gt;extradata_size , <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb43-25" data-line-number="25">                AV_INPUT_BUFFER_PADDING_SIZE);</a>
+<a class="sourceLine" id="cb43-26" data-line-number="26">         <span class="cf">if</span> ((ret = avio_read(pb, st-&gt;codecpar-&gt;extradata,</a>
+<a class="sourceLine" id="cb43-27" data-line-number="27">                              st-&gt;codecpar-&gt;extradata_size)) &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb43-28" data-line-number="28">             <span class="cf">return</span> ret;</a>
+<a class="sourceLine" id="cb43-29" data-line-number="29">     }</a>
+<a class="sourceLine" id="cb43-30" data-line-number="30">     <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb43-31" data-line-number="31"> }</a></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name="Fix multiple runtime error: index 256 out of bounds"></p>
@@ -1500,70 +1527,70 @@ x_uint = 0</code></pre>
 <p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9995"><strong>Description</strong></a></p>
 <p>libavcodec/scpr.c in FFmpeg 3.3 before 3.3.1 does not properly validate height and width data, which allows remote attackers to cause a denial of service (heap-based buffer overflow and application crash) or possibly have unspecified other impact via a crafted file.</p>
 <p><a href="https://github.com/FFmpeg/FFmpeg/commit/2171dfae8c065878a2e130390eb78cf2947a5b69"><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="va">+    if (x &gt;= 16 || c &gt;= 256) {</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="va">+        return AVERROR_INVALIDDATA;</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="va">+    }</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="va">+    if (x &gt;= 16 || c &gt;= 256) {</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="va">+        return AVERROR_INVALIDDATA;</span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="va">+    }</span></a></code></pre></div>
 <p><a href="https://github.com/FFmpeg/FFmpeg/commit/2171dfae8c065878a2e130390eb78cf2947a5b69"><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb44-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">int</span> decode_unit(SCPRContext *s, PixelModel *pixel, <span class="dt">unsigned</span> step, <span class="dt">unsigned</span> *rval)</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"> {</a>
-<a class="sourceLine" id="cb44-3" data-line-number="3">     GetByteContext *gb = &amp;s-&gt;gb;</a>
-<a class="sourceLine" id="cb44-4" data-line-number="4">     RangeCoder *rc = &amp;s-&gt;rc;</a>
-<a class="sourceLine" id="cb44-5" data-line-number="5">     <span class="dt">unsigned</span> totfr = pixel-&gt;total_freq;</a>
-<a class="sourceLine" id="cb44-6" data-line-number="6">     <span class="dt">unsigned</span> value, x = <span class="dv">0</span>, cumfr = <span class="dv">0</span>, cnt_x = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb44-7" data-line-number="7">     <span class="dt">int</span> i, j, ret, c, cnt_c;</a>
-<a class="sourceLine" id="cb44-8" data-line-number="8"> </a>
-<a class="sourceLine" id="cb44-9" data-line-number="9">     <span class="cf">if</span> ((ret = s-&gt;get_freq(rc, totfr, &amp;value)) &lt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb44-10" data-line-number="10">         <span class="cf">return</span> ret;</a>
-<a class="sourceLine" id="cb44-11" data-line-number="11"> </a>
-<a class="sourceLine" id="cb44-12" data-line-number="12">     <span class="cf">while</span> (x &lt; <span class="dv">16</span>) {</a>
-<a class="sourceLine" id="cb44-13" data-line-number="13">         cnt_x = pixel-&gt;lookup[x];</a>
-<a class="sourceLine" id="cb44-14" data-line-number="14">         <span class="cf">if</span> (value &gt;= cumfr + cnt_x)</a>
-<a class="sourceLine" id="cb44-15" data-line-number="15">             cumfr += cnt_x;</a>
-<a class="sourceLine" id="cb44-16" data-line-number="16">         <span class="cf">else</span></a>
-<a class="sourceLine" id="cb44-17" data-line-number="17">             <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb44-18" data-line-number="18">         x++;</a>
-<a class="sourceLine" id="cb44-19" data-line-number="19">     }</a>
-<a class="sourceLine" id="cb44-20" data-line-number="20"> </a>
-<a class="sourceLine" id="cb44-21" data-line-number="21">     c = x * <span class="dv">16</span>;</a>
-<a class="sourceLine" id="cb44-22" data-line-number="22">     cnt_c = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb44-23" data-line-number="23">     <span class="cf">while</span> (c &lt; <span class="dv">256</span>) {</a>
-<a class="sourceLine" id="cb44-24" data-line-number="24">         cnt_c = pixel-&gt;freq[c];</a>
-<a class="sourceLine" id="cb44-25" data-line-number="25">         <span class="cf">if</span> (value &gt;= cumfr + cnt_c)</a>
-<a class="sourceLine" id="cb44-26" data-line-number="26">             cumfr += cnt_c;</a>
-<a class="sourceLine" id="cb44-27" data-line-number="27">         <span class="cf">else</span></a>
-<a class="sourceLine" id="cb44-28" data-line-number="28">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb44-29" data-line-number="29">        c++;</a>
-<a class="sourceLine" id="cb44-30" data-line-number="30">    }</a>
-<a class="sourceLine" id="cb44-31" data-line-number="31">    <span class="cf">if</span> (x &gt;= <span class="dv">16</span> || c &gt;= <span class="dv">256</span>) {</a>
-<a class="sourceLine" id="cb44-32" data-line-number="32">        <span class="cf">return</span> AVERROR_INVALIDDATA;</a>
-<a class="sourceLine" id="cb44-33" data-line-number="33">    }</a>
-<a class="sourceLine" id="cb44-34" data-line-number="34">     <span class="cf">if</span> ((ret = s-&gt;decode(gb, rc, cumfr, cnt_c, totfr)) &lt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb44-35" data-line-number="35">        <span class="cf">return</span> ret;</a>
-<a class="sourceLine" id="cb44-36" data-line-number="36"> </a>
-<a class="sourceLine" id="cb44-37" data-line-number="37">     pixel-&gt;freq[c] = cnt_c + step;</a>
-<a class="sourceLine" id="cb44-38" data-line-number="38">     pixel-&gt;lookup[x] = cnt_x + step;</a>
-<a class="sourceLine" id="cb44-39" data-line-number="39">     totfr += step;</a>
-<a class="sourceLine" id="cb44-40" data-line-number="40">     <span class="cf">if</span> (totfr &gt; BOT) {</a>
-<a class="sourceLine" id="cb44-41" data-line-number="41">         totfr = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb44-42" data-line-number="42">         <span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">256</span>; i++) {</a>
-<a class="sourceLine" id="cb44-43" data-line-number="43">             <span class="dt">unsigned</span> nc = (pixel-&gt;freq[i] &gt;&gt; <span class="dv">1</span>) + <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb44-44" data-line-number="44">             pixel-&gt;freq[i] = nc;</a>
-<a class="sourceLine" id="cb44-45" data-line-number="45">             totfr += nc;</a>
-<a class="sourceLine" id="cb44-46" data-line-number="46">         }</a>
-<a class="sourceLine" id="cb44-47" data-line-number="47">         <span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">16</span>; i++) {</a>
-<a class="sourceLine" id="cb44-48" data-line-number="48">             <span class="dt">unsigned</span> sum = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb44-49" data-line-number="49">             <span class="dt">unsigned</span> i16_17 = i &lt;&lt; <span class="dv">4</span>;</a>
-<a class="sourceLine" id="cb44-50" data-line-number="50">             <span class="cf">for</span> (j = <span class="dv">0</span>; j &lt; <span class="dv">16</span>; j++)</a>
-<a class="sourceLine" id="cb44-51" data-line-number="51">                 sum += pixel-&gt;freq[i16_17 + j];</a>
-<a class="sourceLine" id="cb44-52" data-line-number="52">             pixel-&gt;lookup[i] = sum;</a>
-<a class="sourceLine" id="cb44-53" data-line-number="53">         }</a>
-<a class="sourceLine" id="cb44-54" data-line-number="54">     }</a>
-<a class="sourceLine" id="cb44-55" data-line-number="55">     pixel-&gt;total_freq = totfr;</a>
-<a class="sourceLine" id="cb44-56" data-line-number="56"> </a>
-<a class="sourceLine" id="cb44-57" data-line-number="57">     *rval = c &amp; s-&gt;cbits;</a>
-<a class="sourceLine" id="cb44-58" data-line-number="58"> </a>
-<a class="sourceLine" id="cb44-59" data-line-number="59">     <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb44-60" data-line-number="60"> }</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb45-1" data-line-number="1"> <span class="dt">static</span> <span class="dt">int</span> decode_unit(SCPRContext *s, PixelModel *pixel, <span class="dt">unsigned</span> step, <span class="dt">unsigned</span> *rval)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"> {</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3">     GetByteContext *gb = &amp;s-&gt;gb;</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">     RangeCoder *rc = &amp;s-&gt;rc;</a>
+<a class="sourceLine" id="cb45-5" data-line-number="5">     <span class="dt">unsigned</span> totfr = pixel-&gt;total_freq;</a>
+<a class="sourceLine" id="cb45-6" data-line-number="6">     <span class="dt">unsigned</span> value, x = <span class="dv">0</span>, cumfr = <span class="dv">0</span>, cnt_x = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb45-7" data-line-number="7">     <span class="dt">int</span> i, j, ret, c, cnt_c;</a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"> </a>
+<a class="sourceLine" id="cb45-9" data-line-number="9">     <span class="cf">if</span> ((ret = s-&gt;get_freq(rc, totfr, &amp;value)) &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb45-10" data-line-number="10">         <span class="cf">return</span> ret;</a>
+<a class="sourceLine" id="cb45-11" data-line-number="11"> </a>
+<a class="sourceLine" id="cb45-12" data-line-number="12">     <span class="cf">while</span> (x &lt; <span class="dv">16</span>) {</a>
+<a class="sourceLine" id="cb45-13" data-line-number="13">         cnt_x = pixel-&gt;lookup[x];</a>
+<a class="sourceLine" id="cb45-14" data-line-number="14">         <span class="cf">if</span> (value &gt;= cumfr + cnt_x)</a>
+<a class="sourceLine" id="cb45-15" data-line-number="15">             cumfr += cnt_x;</a>
+<a class="sourceLine" id="cb45-16" data-line-number="16">         <span class="cf">else</span></a>
+<a class="sourceLine" id="cb45-17" data-line-number="17">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb45-18" data-line-number="18">         x++;</a>
+<a class="sourceLine" id="cb45-19" data-line-number="19">     }</a>
+<a class="sourceLine" id="cb45-20" data-line-number="20"> </a>
+<a class="sourceLine" id="cb45-21" data-line-number="21">     c = x * <span class="dv">16</span>;</a>
+<a class="sourceLine" id="cb45-22" data-line-number="22">     cnt_c = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb45-23" data-line-number="23">     <span class="cf">while</span> (c &lt; <span class="dv">256</span>) {</a>
+<a class="sourceLine" id="cb45-24" data-line-number="24">         cnt_c = pixel-&gt;freq[c];</a>
+<a class="sourceLine" id="cb45-25" data-line-number="25">         <span class="cf">if</span> (value &gt;= cumfr + cnt_c)</a>
+<a class="sourceLine" id="cb45-26" data-line-number="26">             cumfr += cnt_c;</a>
+<a class="sourceLine" id="cb45-27" data-line-number="27">         <span class="cf">else</span></a>
+<a class="sourceLine" id="cb45-28" data-line-number="28">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb45-29" data-line-number="29">        c++;</a>
+<a class="sourceLine" id="cb45-30" data-line-number="30">    }</a>
+<a class="sourceLine" id="cb45-31" data-line-number="31">    <span class="cf">if</span> (x &gt;= <span class="dv">16</span> || c &gt;= <span class="dv">256</span>) {</a>
+<a class="sourceLine" id="cb45-32" data-line-number="32">        <span class="cf">return</span> AVERROR_INVALIDDATA;</a>
+<a class="sourceLine" id="cb45-33" data-line-number="33">    }</a>
+<a class="sourceLine" id="cb45-34" data-line-number="34">     <span class="cf">if</span> ((ret = s-&gt;decode(gb, rc, cumfr, cnt_c, totfr)) &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb45-35" data-line-number="35">        <span class="cf">return</span> ret;</a>
+<a class="sourceLine" id="cb45-36" data-line-number="36"> </a>
+<a class="sourceLine" id="cb45-37" data-line-number="37">     pixel-&gt;freq[c] = cnt_c + step;</a>
+<a class="sourceLine" id="cb45-38" data-line-number="38">     pixel-&gt;lookup[x] = cnt_x + step;</a>
+<a class="sourceLine" id="cb45-39" data-line-number="39">     totfr += step;</a>
+<a class="sourceLine" id="cb45-40" data-line-number="40">     <span class="cf">if</span> (totfr &gt; BOT) {</a>
+<a class="sourceLine" id="cb45-41" data-line-number="41">         totfr = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb45-42" data-line-number="42">         <span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">256</span>; i++) {</a>
+<a class="sourceLine" id="cb45-43" data-line-number="43">             <span class="dt">unsigned</span> nc = (pixel-&gt;freq[i] &gt;&gt; <span class="dv">1</span>) + <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb45-44" data-line-number="44">             pixel-&gt;freq[i] = nc;</a>
+<a class="sourceLine" id="cb45-45" data-line-number="45">             totfr += nc;</a>
+<a class="sourceLine" id="cb45-46" data-line-number="46">         }</a>
+<a class="sourceLine" id="cb45-47" data-line-number="47">         <span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">16</span>; i++) {</a>
+<a class="sourceLine" id="cb45-48" data-line-number="48">             <span class="dt">unsigned</span> sum = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb45-49" data-line-number="49">             <span class="dt">unsigned</span> i16_17 = i &lt;&lt; <span class="dv">4</span>;</a>
+<a class="sourceLine" id="cb45-50" data-line-number="50">             <span class="cf">for</span> (j = <span class="dv">0</span>; j &lt; <span class="dv">16</span>; j++)</a>
+<a class="sourceLine" id="cb45-51" data-line-number="51">                 sum += pixel-&gt;freq[i16_17 + j];</a>
+<a class="sourceLine" id="cb45-52" data-line-number="52">             pixel-&gt;lookup[i] = sum;</a>
+<a class="sourceLine" id="cb45-53" data-line-number="53">         }</a>
+<a class="sourceLine" id="cb45-54" data-line-number="54">     }</a>
+<a class="sourceLine" id="cb45-55" data-line-number="55">     pixel-&gt;total_freq = totfr;</a>
+<a class="sourceLine" id="cb45-56" data-line-number="56"> </a>
+<a class="sourceLine" id="cb45-57" data-line-number="57">     *rval = c &amp; s-&gt;cbits;</a>
+<a class="sourceLine" id="cb45-58" data-line-number="58"> </a>
+<a class="sourceLine" id="cb45-59" data-line-number="59">     <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb45-60" data-line-number="60"> }</a></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name="http: make length/offset-related variables unsigned."></p>
@@ -1576,29 +1603,107 @@ x_uint = 0</code></pre>
 <p>Too many files edited, see <a href="https://github.com/FFmpeg/FFmpeg/commit/2a05c8f813de6f2278827734bf8102291e7484aa">here</a></p>
 <p><strong>Comments</strong>:</p>
 <hr />
+<p><a name="FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow"></p>
+<h3 id="ffmpeg-before-2017-01-24-has-an-out-of-bounds-write-caused-by-a-heap-based-buffer-overflow">4. <a href="">FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow</a></h3>
+<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7865"><strong>Description</strong></a></p>
+<p>FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow related to the ipvideo_decode_block_opcode_0xA function in libavcodec/interplayvideo.c and the avcodec_align_dimensions2 function in libavcodec/utils.c.</p>
+<p><a href="https://github.com/FFmpeg/FFmpeg/commit/2080bc33717955a0e4268e738acf8c1eeddbf8cb"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="dt">@@ -376,6 +376,10 @@ void avcodec_align_dimensions2(AVCodecContext *s, int *width, int *height,</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">            w_align = 4;</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">            h_align = 4;</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">        }</a>
+<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="va">+        if (s-&gt;codec_id == AV_CODEC_ID_INTERPLAY_VIDEO) {</span></a>
+<a class="sourceLine" id="cb46-6" data-line-number="6"><span class="va">+            w_align = 8;</span></a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="va">+            h_align = 8;</span></a>
+<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="va">+        }</span></a>
+<a class="sourceLine" id="cb46-9" data-line-number="9">        break;</a>
+<a class="sourceLine" id="cb46-10" data-line-number="10">    case AV_PIX_FMT_PAL8:</a>
+<a class="sourceLine" id="cb46-11" data-line-number="11">    case AV_PIX_FMT_BGR8:</a>
+<a class="sourceLine" id="cb46-12" data-line-number="12"><span class="dt">@@ -385,7 +389,8 @@ void avcodec_align_dimensions2(AVCodecContext *s, int *width, int *height,</span></a>
+<a class="sourceLine" id="cb46-13" data-line-number="13">            w_align = 4;</a>
+<a class="sourceLine" id="cb46-14" data-line-number="14">            h_align = 4;</a>
+<a class="sourceLine" id="cb46-15" data-line-number="15">        }</a>
+<a class="sourceLine" id="cb46-16" data-line-number="16"><span class="st">-        if (s-&gt;codec_id == AV_CODEC_ID_JV) {</span></a>
+<a class="sourceLine" id="cb46-17" data-line-number="17"><span class="va">+        if (s-&gt;codec_id == AV_CODEC_ID_JV ||</span></a>
+<a class="sourceLine" id="cb46-18" data-line-number="18"><span class="va">+            s-&gt;codec_id == AV_CODEC_ID_INTERPLAY_VIDEO) {</span></a>
+<a class="sourceLine" id="cb46-19" data-line-number="19">            w_align = 8;</a>
+<a class="sourceLine" id="cb46-20" data-line-number="20">            h_align = 8;</a>
+<a class="sourceLine" id="cb46-21" data-line-number="21">        }</a></code></pre></div>
+<p><a href="https://github.com/FFmpeg/FFmpeg/commit/2080bc33717955a0e4268e738acf8c1eeddbf8cb#diff-d7031e4f689033d5546668b25eb9dd30R260"><strong>Full function:</strong></a></p>
+<p>too long, see <a href="https://github.com/FFmpeg/FFmpeg/commit/2080bc33717955a0e4268e738acf8c1eeddbf8cb#diff-d7031e4f689033d5546668b25eb9dd30R260">here</a>, it has a lot of comparisons.</p>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name="FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow"></p>
+<h3 id="ffmpeg-before-2017-01-23-has-an-out-of-bounds-write-caused-by-a-stack-based-buffer-overflow">5. <a href="">FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow</a></h3>
+<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7866"><strong>Description</strong></a></p>
+<p>FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow related to the decode_zbuf function in libavcodec/pngdec.c. References</p>
+<p><a href="https://github.com/FFmpeg/FFmpeg/commit/e371f031b942d73e02c090170975561fabd5c264"><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="dt">@@ -437,13 +437,13 @@ static int decode_zbuf(AVBPrint *bp, const uint8_t *data,</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">    av_bprint_init(bp, 0, -1);</a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">     while (zstream.avail_in &gt; 0) {</a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">-        av_bprint_get_buffer(bp, 1, &amp;buf, &amp;buf_size);</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">-        if (!buf_size) {</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="va">+        av_bprint_get_buffer(bp, 2, &amp;buf, &amp;buf_size);</span></a>
+<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="va">+        if (buf_size &lt; 2) {</span></a>
+<a class="sourceLine" id="cb47-8" data-line-number="8">            ret = AVERROR(ENOMEM);</a>
+<a class="sourceLine" id="cb47-9" data-line-number="9">            goto fail;</a>
+<a class="sourceLine" id="cb47-10" data-line-number="10">        }</a>
+<a class="sourceLine" id="cb47-11" data-line-number="11">        zstream.next_out  = buf;</a>
+<a class="sourceLine" id="cb47-12" data-line-number="12"><span class="st">-        zstream.avail_out = buf_size;</span></a>
+<a class="sourceLine" id="cb47-13" data-line-number="13"><span class="va">+        zstream.avail_out = buf_size - 1;</span></a>
+<a class="sourceLine" id="cb47-14" data-line-number="14">        ret = inflate(&amp;zstream, Z_PARTIAL_FLUSH);</a>
+<a class="sourceLine" id="cb47-15" data-line-number="15">        if (ret != Z_OK &amp;&amp; ret != Z_STREAM_END) {</a></code></pre></div>
+<p><a href="https://github.com/FFmpeg/FFmpeg/commit/e371f031b942d73e02c090170975561fabd5c264#diff-1205c376797026cb2296bd451f341c5eR422"><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="dt">static</span> <span class="dt">int</span> decode_zbuf(AVBPrint *bp, <span class="dt">const</span> <span class="dt">uint8_t</span> *data,</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">                        <span class="dt">const</span> <span class="dt">uint8_t</span> *data_end)</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"> {</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">     z_stream zstream;</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">     <span class="dt">unsigned</span> <span class="dt">char</span> *buf;</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">     <span class="dt">unsigned</span> buf_size;</a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">     <span class="dt">int</span> ret;</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"> </a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">     zstream.zalloc = ff_png_zalloc;</a>
+<a class="sourceLine" id="cb48-10" data-line-number="10">     zstream.zfree  = ff_png_zfree;</a>
+<a class="sourceLine" id="cb48-11" data-line-number="11">     zstream.opaque = NULL;</a>
+<a class="sourceLine" id="cb48-12" data-line-number="12">     <span class="cf">if</span> (inflateInit(&amp;zstream) != Z_OK)</a>
+<a class="sourceLine" id="cb48-13" data-line-number="13">         <span class="cf">return</span> AVERROR_EXTERNAL;</a>
+<a class="sourceLine" id="cb48-14" data-line-number="14">     zstream.next_in  = (<span class="dt">unsigned</span> <span class="dt">char</span> *)data;</a>
+<a class="sourceLine" id="cb48-15" data-line-number="15">     zstream.avail_in = data_end - data;</a>
+<a class="sourceLine" id="cb48-16" data-line-number="16">    av_bprint_init(bp, <span class="dv">0</span>, <span class="dv">-1</span>);</a>
+<a class="sourceLine" id="cb48-17" data-line-number="17">     <span class="cf">while</span> (zstream.avail_in &gt; <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb48-18" data-line-number="18">        av_bprint_get_buffer(bp, <span class="dv">1</span>, &amp;buf, &amp;buf_size);</a>
+<a class="sourceLine" id="cb48-19" data-line-number="19">        <span class="cf">if</span> (!buf_size) {</a>
+<a class="sourceLine" id="cb48-20" data-line-number="20">        av_bprint_get_buffer(bp, <span class="dv">2</span>, &amp;buf, &amp;buf_size);</a>
+<a class="sourceLine" id="cb48-21" data-line-number="21">        <span class="cf">if</span> (buf_size &lt; <span class="dv">2</span>) {</a>
+<a class="sourceLine" id="cb48-22" data-line-number="22">            ret = AVERROR(ENOMEM);</a>
+<a class="sourceLine" id="cb48-23" data-line-number="23">            <span class="cf">goto</span> fail;</a>
+<a class="sourceLine" id="cb48-24" data-line-number="24">        }</a>
+<a class="sourceLine" id="cb48-25" data-line-number="25">        zstream.next_out  = buf;</a>
+<a class="sourceLine" id="cb48-26" data-line-number="26">        zstream.avail_out = buf_size;</a>
+<a class="sourceLine" id="cb48-27" data-line-number="27">        zstream.avail_out = buf_size - <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb48-28" data-line-number="28">        ret = inflate(&amp;zstream, Z_PARTIAL_FLUSH);</a>
+<a class="sourceLine" id="cb48-29" data-line-number="29">        <span class="cf">if</span> (ret != Z_OK &amp;&amp; ret != Z_STREAM_END) {</a>
+<a class="sourceLine" id="cb48-30" data-line-number="30">            ret = AVERROR_EXTERNAL;</a>
+<a class="sourceLine" id="cb48-31" data-line-number="31">             <span class="cf">goto</span> fail;</a>
+<a class="sourceLine" id="cb48-32" data-line-number="32">         }</a>
+<a class="sourceLine" id="cb48-33" data-line-number="33">         bp-&gt;len += zstream.next_out - buf;</a>
+<a class="sourceLine" id="cb48-34" data-line-number="34">         <span class="cf">if</span> (ret == Z_STREAM_END)</a>
+<a class="sourceLine" id="cb48-35" data-line-number="35">             <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb48-36" data-line-number="36">     }</a>
+<a class="sourceLine" id="cb48-37" data-line-number="37">     inflateEnd(&amp;zstream);</a>
+<a class="sourceLine" id="cb48-38" data-line-number="38">     bp-&gt;str[bp-&gt;len] = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb48-39" data-line-number="39">     <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb48-40" data-line-number="40"> </a>
+<a class="sourceLine" id="cb48-41" data-line-number="41"> fail:</a>
+<a class="sourceLine" id="cb48-42" data-line-number="42">     inflateEnd(&amp;zstream);</a>
+<a class="sourceLine" id="cb48-43" data-line-number="43">     av_bprint_finalize(bp, NULL);</a>
+<a class="sourceLine" id="cb48-44" data-line-number="44">     <span class="cf">return</span> ret;</a>
+<a class="sourceLine" id="cb48-45" data-line-number="45"> }</a></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
 <p><a name=""></p>
 <h3 id="project-name">Project Name: <a href=""></a></h3>
 <h3 id="section">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-1">Project Name: <a href=""></a></h3>
-<h3 id="section-1">1. <a href=""></a></h3>
-<p><a href=""><strong>Description</strong></a></p>
-<p><a href=""><strong>Patch code:</strong></a></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
-<p><a href=""><strong>Full function:</strong></a></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
-<p><strong>Comments</strong>:</p>
-<hr />
-<p><a name=""></p>
-<h3 id="project-name-2">Project Name: <a href=""></a></h3>
-<h3 id="section-2">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
@@ -1607,8 +1712,8 @@ x_uint = 0</code></pre>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
-<h3 id="project-name-3">Project Name: <a href=""></a></h3>
-<h3 id="section-3">1. <a href=""></a></h3>
+<h3 id="project-name-1">Project Name: <a href=""></a></h3>
+<h3 id="section-1">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
@@ -1617,8 +1722,8 @@ x_uint = 0</code></pre>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
-<h3 id="project-name-4">Project Name: <a href=""></a></h3>
-<h3 id="section-4">1. <a href=""></a></h3>
+<h3 id="project-name-2">Project Name: <a href=""></a></h3>
+<h3 id="section-2">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
@@ -1627,8 +1732,8 @@ x_uint = 0</code></pre>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
-<h3 id="project-name-5">Project Name: <a href=""></a></h3>
-<h3 id="section-5">1. <a href=""></a></h3>
+<h3 id="project-name-3">Project Name: <a href=""></a></h3>
+<h3 id="section-3">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
@@ -1637,8 +1742,8 @@ x_uint = 0</code></pre>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
-<h3 id="project-name-6">Project Name: <a href=""></a></h3>
-<h3 id="section-6">1. <a href=""></a></h3>
+<h3 id="project-name-4">Project Name: <a href=""></a></h3>
+<h3 id="section-4">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
@@ -1647,8 +1752,8 @@ x_uint = 0</code></pre>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
-<h3 id="project-name-7">Project Name: <a href=""></a></h3>
-<h3 id="section-7">1. <a href=""></a></h3>
+<h3 id="project-name-5">Project Name: <a href=""></a></h3>
+<h3 id="section-5">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
@@ -1657,13 +1762,33 @@ x_uint = 0</code></pre>
 <p><strong>Comments</strong>:</p>
 <hr />
 <p><a name=""></p>
-<h3 id="project-name-8">Project Name: <a href=""></a></h3>
-<h3 id="section-8">1. <a href=""></a></h3>
+<h3 id="project-name-6">Project Name: <a href=""></a></h3>
+<h3 id="section-6">1. <a href=""></a></h3>
 <p><a href=""><strong>Description</strong></a></p>
 <p><a href=""><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
 <p><a href=""><strong>Full function:</strong></a></p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-7">Project Name: <a href=""></a></h3>
+<h3 id="section-7">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
+<p><strong>Comments</strong>:</p>
+<hr />
+<p><a name=""></p>
+<h3 id="project-name-8">Project Name: <a href=""></a></h3>
+<h3 id="section-8">1. <a href=""></a></h3>
+<p><a href=""><strong>Description</strong></a></p>
+<p><a href=""><strong>Patch code:</strong></a></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode diff"><code class="sourceCode diff"></code></pre></div>
+<p><a href=""><strong>Full function:</strong></a></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode c"><code class="sourceCode c"></code></pre></div>
 <p><strong>Comments</strong>:</p>
 <hr />
 </body>

@@ -49,6 +49,8 @@ Last updated: 11:07, Nov, 25, 2018
     * [CVE-2018-9135](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-9135)
   * [Stack over-read in MagickCore/accelerate.c due to type mismatch #967](#Stack over-read in MagickCore/accelerate.c due to type mismatch #967)
     * [CVE-2018-6930](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6930)
+  * [out-of-bounds read in coders/sun.c:582:57 #375](#out-of-bounds read in coders/sun.c:582:57 #375)
+    * [CVE-2017-6500](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-6500)
 * [FFmpeg](#FFmpeg)
   * FFmpeg is a collection of libraries and tools to process multimedia content such as audio, video, subtitles and related metadata.
   * [integer overflow and out of array access](#integer overflow and out of array access)
@@ -57,6 +59,10 @@ Last updated: 11:07, Nov, 25, 2018
     * [CVE-2017-9995](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9995)
   * [http: make length/offset-related variables unsigned.](#http: make length/offset-related variables unsigned.)
     * [CVE-2016-10190](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10190)
+  * [FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow](#FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow)
+    * [CVE-2017-7865](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7865)
+  * [FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow](#FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow)
+    * [CVE-2017-7866](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7866)
 
 <a name="cJSON">
 
@@ -1628,6 +1634,33 @@ x_uint = 0
 
 ---
 
+<a name="out-of-bounds read in coders/sun.c:582:57 #375">
+
+### 1. [out-of-bounds read in coders/sun.c:582:57 #375](https://github.com/ImageMagick/ImageMagick/issues/375)
+
+[**Description**](https://github.com/ImageMagick/ImageMagick/issues/375)
+
+An issue was discovered in ImageMagick 6.9.7. A specially crafted sun file triggers a heap-based buffer over-read.
+
+[**Patch code:**](https://github.com/ImageMagick/ImageMagick/commit/3007531bfd326c5c1e29cd41d2cd80c166de8528)
+
+```diff
+@@ -458,7 +458,7 @@ static Image *ReadSUNImage(const ImageInfo *image_info,ExceptionInfo *exception)
+        ThrowReaderException(ResourceLimitError,"ImproperImageHeader");
+      }
+    pixels_length=height*bytes_per_line;
+    sun_pixels=(unsigned char *) AcquireQuantumMemory(pixels_length,
+    sun_pixels=(unsigned char *) AcquireQuantumMemory(pixels_length+image->rows,
+```
+
+[**Full function:**](https://github.com/ImageMagick/ImageMagick/commit/3007531bfd326c5c1e29cd41d2cd80c166de8528)
+
+too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/3007531bfd326c5c1e29cd41d2cd80c166de8528#diff-faffa511c4f3a41db200d63cb3cadd9bR303)
+
+**Comments**:
+
+
+---
 
 
 <a name="FFmpeg">
@@ -1808,6 +1841,134 @@ Too many files edited, see [here](https://github.com/FFmpeg/FFmpeg/commit/2a05c8
 
 
 ---
+
+<a name="FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow">
+
+### 4. [FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow]()
+
+[**Description**](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7865)
+
+FFmpeg before 2017-01-24 has an out-of-bounds write caused by a heap-based buffer overflow related to the ipvideo_decode_block_opcode_0xA function in libavcodec/interplayvideo.c and the avcodec_align_dimensions2 function in libavcodec/utils.c.
+
+[**Patch code:**](https://github.com/FFmpeg/FFmpeg/commit/2080bc33717955a0e4268e738acf8c1eeddbf8cb)
+
+```diff
+@@ -376,6 +376,10 @@ void avcodec_align_dimensions2(AVCodecContext *s, int *width, int *height,
+            w_align = 4;
+            h_align = 4;
+        }
++        if (s->codec_id == AV_CODEC_ID_INTERPLAY_VIDEO) {
++            w_align = 8;
++            h_align = 8;
++        }
+        break;
+    case AV_PIX_FMT_PAL8:
+    case AV_PIX_FMT_BGR8:
+@@ -385,7 +389,8 @@ void avcodec_align_dimensions2(AVCodecContext *s, int *width, int *height,
+            w_align = 4;
+            h_align = 4;
+        }
+-        if (s->codec_id == AV_CODEC_ID_JV) {
++        if (s->codec_id == AV_CODEC_ID_JV ||
++            s->codec_id == AV_CODEC_ID_INTERPLAY_VIDEO) {
+            w_align = 8;
+            h_align = 8;
+        }
+```
+
+[**Full function:**](https://github.com/FFmpeg/FFmpeg/commit/2080bc33717955a0e4268e738acf8c1eeddbf8cb#diff-d7031e4f689033d5546668b25eb9dd30R260)
+
+too long, see [here](https://github.com/FFmpeg/FFmpeg/commit/2080bc33717955a0e4268e738acf8c1eeddbf8cb#diff-d7031e4f689033d5546668b25eb9dd30R260), it has a lot of comparisons.
+
+**Comments**:
+
+
+---
+
+<a name="FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow">
+
+### 5. [FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow]()
+
+[**Description**](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7866)
+
+FFmpeg before 2017-01-23 has an out-of-bounds write caused by a stack-based buffer overflow related to the decode_zbuf function in libavcodec/pngdec.c.
+References
+
+[**Patch code:**](https://github.com/FFmpeg/FFmpeg/commit/e371f031b942d73e02c090170975561fabd5c264)
+
+```diff
+@@ -437,13 +437,13 @@ static int decode_zbuf(AVBPrint *bp, const uint8_t *data,
+    av_bprint_init(bp, 0, -1);
+     while (zstream.avail_in > 0) {
+-        av_bprint_get_buffer(bp, 1, &buf, &buf_size);
+-        if (!buf_size) {
++        av_bprint_get_buffer(bp, 2, &buf, &buf_size);
++        if (buf_size < 2) {
+            ret = AVERROR(ENOMEM);
+            goto fail;
+        }
+        zstream.next_out  = buf;
+-        zstream.avail_out = buf_size;
++        zstream.avail_out = buf_size - 1;
+        ret = inflate(&zstream, Z_PARTIAL_FLUSH);
+        if (ret != Z_OK && ret != Z_STREAM_END) {
+```
+
+[**Full function:**](https://github.com/FFmpeg/FFmpeg/commit/e371f031b942d73e02c090170975561fabd5c264#diff-1205c376797026cb2296bd451f341c5eR422)
+
+```c
+static int decode_zbuf(AVBPrint *bp, const uint8_t *data,
+                        const uint8_t *data_end)
+ {
+     z_stream zstream;
+     unsigned char *buf;
+     unsigned buf_size;
+     int ret;
+ 
+     zstream.zalloc = ff_png_zalloc;
+     zstream.zfree  = ff_png_zfree;
+     zstream.opaque = NULL;
+     if (inflateInit(&zstream) != Z_OK)
+         return AVERROR_EXTERNAL;
+     zstream.next_in  = (unsigned char *)data;
+     zstream.avail_in = data_end - data;
+    av_bprint_init(bp, 0, -1);
+     while (zstream.avail_in > 0) {
+        av_bprint_get_buffer(bp, 1, &buf, &buf_size);
+        if (!buf_size) {
+        av_bprint_get_buffer(bp, 2, &buf, &buf_size);
+        if (buf_size < 2) {
+            ret = AVERROR(ENOMEM);
+            goto fail;
+        }
+        zstream.next_out  = buf;
+        zstream.avail_out = buf_size;
+        zstream.avail_out = buf_size - 1;
+        ret = inflate(&zstream, Z_PARTIAL_FLUSH);
+        if (ret != Z_OK && ret != Z_STREAM_END) {
+            ret = AVERROR_EXTERNAL;
+             goto fail;
+         }
+         bp->len += zstream.next_out - buf;
+         if (ret == Z_STREAM_END)
+             break;
+     }
+     inflateEnd(&zstream);
+     bp->str[bp->len] = 0;
+     return 0;
+ 
+ fail:
+     inflateEnd(&zstream);
+     av_bprint_finalize(bp, NULL);
+     return ret;
+ }
+```
+
+**Comments**:
+
+
+---
+
 
 <a name="">
 
