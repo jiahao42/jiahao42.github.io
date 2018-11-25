@@ -3,7 +3,7 @@ title:
   Bug reports
 ---
 
-Last updated: 19:07, Nov, 20, 2018
+Last updated: 11:07, Nov, 25, 2018
 
 * [cJSON](#cJSON)
   * [Bug in cJSON.c cJSON_SetNumberHelper #138](#Bug in cJSON.c cJSON_SetNumberHelper #138)
@@ -45,6 +45,10 @@ Last updated: 19:07, Nov, 20, 2018
     * [CVE-2018-18025](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-18025)
   * [heap-buffer-overflow in MagickCore #1156](#heap-buffer-overflow in MagickCore #1156)
     * [CVE-2018-11625](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-11625)
+  * [heap-buffer-overflow #1009](#heap-buffer-overflow #1009)
+    * [CVE-2018-9135](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-9135)
+  * [Stack over-read in MagickCore/accelerate.c due to type mismatch #967](#Stack over-read in MagickCore/accelerate.c due to type mismatch #967)
+    * [CVE-2018-6930](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6930)
 * [FFmpeg](#FFmpeg)
   * FFmpeg is a collection of libraries and tools to process multimedia content such as audio, video, subtitles and related metadata.
   * [integer overflow and out of array access](#integer overflow and out of array access)
@@ -1261,7 +1265,7 @@ The function is too long, see [here](https://github.com/dtschump/CImg/commit/10a
 
 <a name="heap-buffer-overflow in EncodeImage of pict.c #1335">
 
-### 1. [heap-buffer-overflow in EncodeImage of pict.c #1335](https://github.com/ImageMagick/ImageMagick/issues/1335)
+### 2. [heap-buffer-overflow in EncodeImage of pict.c #1335](https://github.com/ImageMagick/ImageMagick/issues/1335)
 
 [**Description**](https://github.com/ImageMagick/ImageMagick/issues/1335)
 
@@ -1314,7 +1318,7 @@ too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/1a22fc0c8
 <a name="heap-buffer-overflow in MagickCore #1156">
 
 
-### 1. [heap-buffer-overflow in MagickCore #1156](https://github.com/ImageMagick/ImageMagick/issues/1156)
+### 3. [heap-buffer-overflow in MagickCore #1156](https://github.com/ImageMagick/ImageMagick/issues/1156)
 
 [**Description**](https://github.com/ImageMagick/ImageMagick/issues/1156)
 
@@ -1346,6 +1350,107 @@ too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/529496689
 
 ---
 
+<a name="heap-buffer-overflow #1009">
+
+### 4. [heap-buffer-overflow #1009](https://github.com/ImageMagick/ImageMagick/issues/1009)
+
+[**Description**](https://github.com/ImageMagick/ImageMagick/issues/1009)
+
+In ImageMagick 7.0.7-24 Q16, there is a heap-based buffer over-read in IsWEBPImageLossless in coders/webp.c.
+
+[**Patch code:**](https://github.com/ImageMagick/ImageMagick/commit/4f7196b0b7539b113f2580b6a77aa496813d8899)
+
+```diff
+@@ -181,6 +181,8 @@ static MagickBooleanType IsWEBPImageLossless(const unsigned char *stream,
+  /*
+    Read simple header.
+  */
++  if (length <= VP8_CHUNK_INDEX)
++    return(MagickFalse);
+```
+
+[**Full function:**](https://github.com/ImageMagick/ImageMagick/commit/4f7196b0b7539b113f2580b6a77aa496813d8899)
+
+```c
+ static MagickBooleanType IsWEBPImageLossless(const unsigned char *stream,
+   const size_t length)
+ {
+ #define VP8_CHUNK_INDEX  15
+ #define LOSSLESS_FLAG  'L'
+ #define EXTENDED_HEADER  'X'
+ #define VP8_CHUNK_HEADER  "VP8"
+ #define VP8_CHUNK_HEADER_SIZE  3
+ #define RIFF_HEADER_SIZE  12
+ #define VP8X_CHUNK_SIZE  10
+ #define TAG_SIZE  4
+ #define CHUNK_SIZE_BYTES  4
+ #define CHUNK_HEADER_SIZE  8
+ #define MAX_CHUNK_PAYLOAD  (~0U-CHUNK_HEADER_SIZE-1)
+ 
+   ssize_t
+     offset;
+ 
+  /*
+    Read simple header.
+  */
+  if (length <= VP8_CHUNK_INDEX)
+    return(MagickFalse);
+  if (stream[VP8_CHUNK_INDEX] != EXTENDED_HEADER)
+    return(stream[VP8_CHUNK_INDEX] == LOSSLESS_FLAG ? MagickTrue : MagickFalse);
+  /*
+     Read extended header.
+   */
+   offset=RIFF_HEADER_SIZE+TAG_SIZE+CHUNK_SIZE_BYTES+VP8X_CHUNK_SIZE;
+   while (offset <= (ssize_t) (length-TAG_SIZE))
+   {
+     uint32_t
+       chunk_size,
+       chunk_size_pad;
+ 
+     chunk_size=ReadWebPLSBWord(stream+offset+TAG_SIZE);
+     if (chunk_size > MAX_CHUNK_PAYLOAD)
+       break;
+     chunk_size_pad=(CHUNK_HEADER_SIZE+chunk_size+1) & ~1;
+     if (memcmp(stream+offset,VP8_CHUNK_HEADER,VP8_CHUNK_HEADER_SIZE) == 0)
+       return(*(stream+offset+VP8_CHUNK_HEADER_SIZE) == LOSSLESS_FLAG ?
+         MagickTrue : MagickFalse);
+     offset+=chunk_size_pad;
+   }
+   return(MagickFalse);
+ }
+```
+
+**Comments**:
+
+---
+
+<a name="Stack over-read in MagickCore/accelerate.c due to type mismatch #967">
+
+### 5. [Stack over-read in MagickCore/accelerate.c due to type mismatch #967](#Stack over-read in MagickCore/accelerate.c due to type mismatch #967)
+
+[**Description**](https://github.com/ImageMagick/ImageMagick/issues/967)
+
+A stack-based buffer over-read in the ComputeResizeImage function in the MagickCore/accelerate.c file of ImageMagick 7.0.7-22 allows a remote attacker to cause a denial of service (application crash) via a maliciously crafted pict file.
+
+[**Patch code:**](https://github.com/ImageMagick/ImageMagick/commit/6aa7d5d9a39b6d42a4f6c7eacd6ad2169b68fc4f)
+
+```diff
+@@ -4325,7 +4325,7 @@ static Image *ComputeResizeImage(const Image* image,MagickCLEnv clEnv,
+  for (i = 0; i < 7; i++)
+    coefficientBuffer[i]=(float) resizeFilterCoefficient[i];
+  cubicCoefficientsBuffer=CreateOpenCLBuffer(device,CL_MEM_COPY_HOST_PTR |
+-    CL_MEM_READ_ONLY,7*sizeof(*cubicCoefficientsBuffer),&coefficientBuffer);
++    CL_MEM_READ_ONLY,sizeof(coefficientBuffer),&coefficientBuffer);
+```
+
+[**Full function:**](https://github.com/ImageMagick/ImageMagick/commit/6aa7d5d9a39b6d42a4f6c7eacd6ad2169b68fc4f)
+
+too long, see [here](https://github.com/ImageMagick/ImageMagick/commit/6aa7d5d9a39b6d42a4f6c7eacd6ad2169b68fc4f#diff-8368336e30a67e0e3c22fec282b6baccR4263), it has a lot of comparisons.
+
+**Comments**:
+
+
+---
 
 <a name="ArduinoJson">
 
