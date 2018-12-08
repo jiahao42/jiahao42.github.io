@@ -856,7 +856,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="heap-buffer-overflow-on-some-inputs-68">1. <a href="https://github.com/udp/json-parser/issues/68">heap buffer overflow on some inputs #68</a></h3>
 <p><a href="https://github.com/udp/json-parser/issues/68"><strong>Description</strong></a></p>
 <blockquote>
-<p>Explanation if you need it for your thesis: When json-parser reads a unicode character, it reads 4 or 6 characters immediately without going back around the main loop which usually processes one byte at a time. To prevent this from causing a buffer overrun, there was an error condition if end - state.ptr &lt; 4 to check that 4 bytes were actually available to read. However, this check was performed on the ‘u’ character of the , which would return &gt;= 4 even if the input truncated at . To fix this, the error condition has been changed to end - state.ptr &lt;= 4.</p>
+<p>Explanation if you need it for your thesis: When json-parser reads a unicode character, it reads 4 or 6 characters immediately without going back around the main loop which usually processes one byte at a time.</p>
+</blockquote>
+<blockquote>
+<p>To prevent this from causing a buffer overrun, there was an error condition if end - state.ptr &lt; 4 to check that 4 bytes were actually available to read.</p>
+</blockquote>
+<blockquote>
+<p>However, this check was performed on the ‘u’ character of the , which would return &gt;= 4 even if the input truncated at . To fix this, the error condition has been changed to end - state.ptr &lt;= 4.</p>
 </blockquote>
 <p><a href="https://github.com/udp/json-parser/commit/b42439a2927a879f40698e4861e727c4265c13e6"><strong>Patch code:</strong></a></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="st">-                    if (end - state.ptr &lt; 4 || </span></a>

@@ -12,10 +12,6 @@ I am a first year Master student in the Department of Computer Science, Univeris
 
 My research interest lies in Programming Language and Software Security. Currently, I am doing research with [Prof.Kwon](https://yonghwi-kwon.github.io) on software security.
 
-I Grew up in Zhejiang (China), stayed in Beijing (China) for 3 years and in Halmstad (Sweden) for 1 year. Currently, I am living in Charlottesville (U.S.).
-
-Sometimes I write articles (mostly in Chinese), and I publish them on [my blog](http://jujuba.me).
-
 ## Contact
 + e-mail: (dot (at jc4mf virginia) edu)
 
