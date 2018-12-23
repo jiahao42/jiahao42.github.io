@@ -5,11 +5,13 @@ pwd: notes/taste-of-code
 cmd: cat taste-of-code
 ---
 
+# Taste of code
+
 <img src="../imgs/linus-on-TED.png" alt="Linus on TED" height="250"/>
 
-今天在YouTube上看了[Linus Torvalds的一场TED](https://www.youtube.com/watch?v=o8NPllzkFhE)，Linus拿了一小段代码来说明代码的taste问题。
+Today I watched [a TED talk of Linus Torvalds](https://www.youtube.com/watch?v=o8NPllzkFhE), Linus took a snippet of code to explain the problem of taste of code.
 
-代码很简单，就是在一个单向链表里删除一个指定结点，一般学校里教的写法都是像下面这样的：
+The code is pretty simple, to delete a certain node in a singly-linked list. Usually the code below is what we have been taught in school:
 
 ```C
 void remove_list_entry(linked_list* entry) {
@@ -34,12 +36,12 @@ void remove_list_entry(linked_list* entry) {
 }
 ```
 
-值得注意的是，在代码的结尾有一个if statement，这是用来区分两种情况的：
+Note that the code have a if statement in the end, in order to distinguish the following two scenarios:
 
-* 被删除的结点是这个单向链表的头结点，此时我们需要一个新的头结点，
-* 被删除的结点不是这个单向链表的第一个结点，此时我们只需将被删除结点的前置结点的next指针指向被删除结点的后置结点即可。
+* The deleted node is the head of the list, now it needs a new head
+* The deleted node is not the head of the list, now it just need to link the previous node to the next node.
 
-但是Linus认为这种写法是没有taste的，他更喜欢下面的这种写法：
+However, Linus thought this snippet of code had no taste, he perferred to the following code:
 
 ```C
 void remove_list_entry(linked_list* entry) {
@@ -59,11 +61,11 @@ void remove_list_entry(linked_list* entry) {
 }
 ```
 
-与上面的写法不同，这里我们直接将需要被删除结点的后置结点的next地址复制到被删除结点的前置结点的next指针上，无需考虑被删除结点是否是头结点这个问题，从而也省去了第一段代码中的if statement，这毫无疑问是更加方便的做法。
+Different from the first snippet of code, this snippet of code doesn't have that `if statement`. Here we copy the address of next node to the `next` pointer of the previous node by using a pointer of pointer `indirect`.
 
-下面说一下第二段代码的原理。
+### Let's take a closer look at the code.
 
-首先下面的是我们这里用到的`linked_list`的定义，普通的链表结点：
+Here is the definition of `linked_list`, nothing special.
 
 ```C
 typedef struct Node {
@@ -72,7 +74,7 @@ typedef struct Node {
 } linked_list;
 ```
 
-假设此时我们的链表中有5个结点，其内容分别是1/2/3/4/5，有一`head`指针指向头结点，我们希望删除结点2。
+Suppose we have 5 nodes (1/2/3/4/5) in the linked list, `head` is pointing to first node and we want to delete second node.
 
 ```text
                           entry -+
@@ -82,7 +84,7 @@ typedef struct Node {
       +---+     +-------+     +-------+     +-------+     +-------+     +--------+
 ```
 
-`linked_list** indirect = &head;`这一行代码将会构造一个指向`head`指针的二级指针：
+`linked_list** indirect = &head;` this line will create a pointer of pointer points to `head`.
 
 ```text
                          entry -+
@@ -99,16 +101,16 @@ typedef struct Node {
 ```
 
 
-接下来是一个`while loop`
+And we do a `while loop`
 
 ```C
 while ((*indirect) != entry)
   indirect = &(*indirect)->next;
 ```
 
-首先一开始`indirect`指向`head`，而`*indirect`则等于head指针再被evaluate一次，那么就是指向了链表的头结点，很显然此时的`*indirect`不等于`entry`，因为entry指向的是第二个结点。于是进入`while loop`执行`indirect = &(*indirect)->next;`，因为`*indirect`指向头结点，那么`&(*indirect)->next`就可以取得*头结点的next指针所在的地址*，这一行就相当于将头结点的next指针的地址赋给了`indirect`，那么`*indirect`就相当于evaluate了头结点中next指针中所存储的地址，也就是第二个结点，也就是entry。此时再判断，发现`(*indirect) == entry`，退出该`while loop`。
+First `indirect` points to `head`, `*indirect` is equivalent to `head`, which points to the first node. Apprently, `(*indirect) != entry` at first, so the `while loop` continues. In `indirect = &(*indirect)->next`, if we are familiar with [C Operator Precedence](https://en.cppreference.com/w/c/language/operator_precedence), we know that the precedence of `->` is high than that of `&`, so this line is to get the address of the `next` pointer.
 
-最后执行`*indirect = entry->next;`，由于`indirect`指向头结点的next指针的地址而`*indirect`则等效与头结点的next指针，所以实际上这行代码就是将头结点的next指针指向entry的下一个元素，从而完美地将entry从链表中删去。
+In the last line, since `*indirect` is pointing to the address of the `next` pointer of the first node, `*indirect = entry->next;` will rewrite the `next` pointer of the first node with the address of the third node, and it's done, the second node is not a part of the list any more.
 
 ```text
                           entry -+
