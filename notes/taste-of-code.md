@@ -2,7 +2,7 @@
 layout: term
 title: Taste of code
 pwd: notes
-cmd: cat taste-of-code
+cmd: cat Taste-of-code
 ---
 
 # Taste of code
