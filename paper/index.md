@@ -4,4 +4,7 @@ title: paper
 pwd: paper
 ---
 
-total 0
+
+<nav class="term">
+  total 0
+</nav>

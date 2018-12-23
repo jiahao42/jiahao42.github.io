@@ -3,11 +3,11 @@ layout: term
 title: Taste of code
 pwd: notes
 cmd: cat taste-of-code
-date: Mar 31, 2018
 ---
 
 # Taste of code
 
+Mar 31, 2018
 <img src="../imgs/linus-on-TED.png" alt="Linus on TED" height="250"/>
 
 Today I watched [a TED talk of Linus Torvalds](https://www.youtube.com/watch?v=o8NPllzkFhE), Linus took a snippet of code to explain the problem of taste of code.
