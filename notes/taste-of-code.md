@@ -1,13 +1,13 @@
 ---
 layout: term
 title: Taste of code
-pwd: notes/taste-of-code
+pwd: notes
 cmd: cat taste-of-code
 ---
 
 # Taste of code
 
-<img src="../imgs/linus-on-TED.png" alt="Linus on TED" height="250"/>
+<img src="./imgs/linus-on-TED.png" alt="Linus on TED" height="250"/>
 
 Today I watched [a TED talk of Linus Torvalds](https://www.youtube.com/watch?v=o8NPllzkFhE), Linus took a snippet of code to explain the problem of taste of code.
 
@@ -38,8 +38,8 @@ void remove_list_entry(linked_list* entry) {
 
 Note that the code have a if statement in the end, in order to distinguish the following two scenarios:
 
-* The deleted node is the head of the list, now it needs a new head
-* The deleted node is not the head of the list, now it just need to link the previous node to the next node.
+* 1. The deleted node is the head of the list, now it needs a new head
+* 2. The deleted node is not the head of the list, now it just need to link the previous node to the next node.
 
 However, Linus thought this snippet of code had no taste, he perferred to the following code:
 
@@ -131,4 +131,4 @@ Thanks to the discussion on the Internet:
 * 3) [Applying the Linus Torvalds “Good Taste” Coding Requirement](https://news.ycombinator.com/item?id=12793624)
 
 
-(The End)
+EOF
