@@ -28,7 +28,7 @@ cmd: cat some-quotes
 
 <a name="the_lost_interview"></a>
 
-<img src="./imgs/jobs.jpg" alt="steve_jobs" style="height: 300px;"/>
+<img src="../imgs/jobs.jpg" alt="steve_jobs" style="height: 300px;"/>
 
 ### 1.1 [The Lost Interview](https://www.youtube.com/watch?v=TRZAJY23xio)
 
@@ -73,7 +73,7 @@ cmd: cat some-quotes
 
 <a name="mr.feynman"></a>
 
-<img src="./imgs/mr.feynman.jpg" alt="mr.feynman" style="height: 300px;"/>
+<img src="../imgs/mr.feynman.jpg" alt="mr.feynman" style="height: 300px;"/>
 
 ### 2.1 [The Fantastic Mr. Feynman](https://www.youtube.com/watch?v=LyqleIxXTpw)
 
@@ -93,7 +93,7 @@ Feynman说到科学之美：
 
 <a name="magnets"></a>
 
-<img src="./imgs/feynman_magnets.jpg" alt="mr.feynman" style="height: 300px;"/>
+<img src="../imgs/feynman_magnets.jpg" alt="mr.feynman" style="height: 300px;"/>
 
 ### 2.2 [Feynman: Magnets FUN TO IMAGINE 4](https://www.youtube.com/watch?v=wMFPe-DwULM)
 
