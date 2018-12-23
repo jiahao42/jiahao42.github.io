@@ -4,4 +4,4 @@ title: notes
 pwd: notes
 ---
 
-* hello world
+[test](test.html)
