@@ -27,14 +27,14 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Eliza Weisman"
+      author: "Jiahao Cai"
   -
     scope:
       path: "etc"
       type: "pages"
     values:
       layout: "post"
-      author: "Eliza Weisman"
+      author: "Jiahao Cai"
 
 kramdown:
   input: GFM
