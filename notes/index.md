@@ -4,5 +4,7 @@ title: notes
 pwd: notes
 ---
 
-[taste-of-code](taste-of-code.md) <br>
-<!-- [Some quotes](some-quotes.md) -->
+<nav class="term">
+  [taste-of-code](taste-of-code.md)
+  <!-- [Some quotes](some-quotes.md) -->
+</nav>
