@@ -5,7 +5,7 @@ pwd: notes/taste-of-code
 cmd: cat taste-of-code
 ---
 
-<img src="../imgs/linus-on-TED.png" alt="Linus on TED" height="250"/>
+<img src="./imgs/linus-on-TED.png" alt="Linus on TED" height="250"/>
 
 今天在YouTube上看了[Linus Torvalds的一场TED](https://www.youtube.com/watch?v=o8NPllzkFhE)，Linus拿了一小段代码来说明代码的taste问题。
 
