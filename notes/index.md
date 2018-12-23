@@ -4,4 +4,4 @@ title: notes
 pwd: notes
 ---
 
-[test](test.html)
+[Taste of code](taste-of-code.md)
