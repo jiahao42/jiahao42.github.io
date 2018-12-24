@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+  The template is from Eliza Weisman,
+  see http://elizas.website
+-->
+<html>
+  <head>
+    <meta name="viewport" content="width=720, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="utf-8">
+    <title>Taste of code</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-116308654-1');
+  </script>
+  </head>
+  <body>
+    <div class="site">
+
+      <div class = "content">
+        <main>
+      <!-- begin subtemplate -->
+      <div class="above-post">
+<div class="textheader">
+  <h1 class="post-title">
+          Taste of code
+          </h1>
+</div>
+  <span class = "post-date">
+      10 Aug 2018
+      </span>
+  <!-- <a class="extra back" href="javascript:history.back()">
+    <span style="font-size: 100%; font-weight: bold;">&larr;</span>
+    &nbsp;back</a> -->
+</div>
+<div class="content">
+<main>
+  <!-- begin content -->
+  <p><img src="../imgs/linus-on-TED.png" alt="Linus on TED" height="250" /></p>
+
+<p>Today I watched <a href="https://www.youtube.com/watch?v=o8NPllzkFhE">a TED talk of Linus Torvalds</a>, Linus took a snippet of code to explain the problem of taste of code.</p>
+
+<p>The code is pretty simple, to delete a certain node in a singly-linked list. Usually the code below is what we have been taught in school:</p>
+
+<pre><code class="language-C">void remove_list_entry(linked_list* entry) {
+    linked_list* prev = NULL;
+    linked_list* walk = head;
+
+    //Walk the list 
+
+    while (walk != entry) {
+        prev = walk;
+        walk = walk-&gt;next;
+    }
+
+    // Remove the entry by updating the
+    // head or the previous entry
+    
+    if (!prev) {
+        head = entry-&gt;next;
+    } else {
+        prev-&gt;next = entry-&gt;next;
+    }
+}
+</code></pre>
+
+<p>Note that the code have a if statement in the end, in order to distinguish the following two scenarios:</p>
+
+<ul>
+  <li>
+    <ol>
+      <li>The deleted node is the head of the list, now it needs a new head</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>The deleted node is not the head of the list, now it just need to link the previous node to the next node.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>However, Linus thought this snippet of code had no taste, he perferred to the following code:</p>
+
+<pre><code class="language-C">void remove_list_entry(linked_list* entry) {
+    // The "indirect" pointer points to the
+    // *address* of the thing we'll update
+
+    linked_list** indirect = &amp;head;
+
+    // Walk the list, looking for the thing that
+    // points to the entry we want to remove
+
+    while ((*indirect) != entry)
+        indirect = &amp;(*indirect)-&gt;next;
+        
+    // .. and just remove it
+    *indirect = entry-&gt;next;
+}
+</code></pre>
+
+<p>Different from the first snippet of code, this snippet of code doesn’t have that <code class="highlighter-rouge">if statement</code>. Here we copy the address of next node to the <code class="highlighter-rouge">next</code> pointer of the previous node by using a pointer of pointer <code class="highlighter-rouge">indirect</code>.</p>
+
+<h3 id="lets-take-a-closer-look-at-the-code">Let’s take a closer look at the code.</h3>
+
+<p>Here is the definition of <code class="highlighter-rouge">linked_list</code>, nothing special.</p>
+
+<pre><code class="language-C">typedef struct Node {
+    int data;
+    struct Node *next;
+} linked_list;
+</code></pre>
+
+<p>Suppose we have 5 nodes (1/2/3/4/5) in the linked list, <code class="highlighter-rouge">head</code> is pointing to first node and we want to delete second node.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          entry -+
+   head                          |
+      +---+     +-------+     +-------+     +-------+     +-------+     +--------+
+      |   |----&gt;| 1 |   |----&gt;| 2 |   |----&gt;| 3 |   |----&gt;| 4 |   |----&gt;| 5 |NULL|
+      +---+     +-------+     +-------+     +-------+     +-------+     +--------+
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">linked_list** indirect = &amp;head;</code> this line will create a pointer of pointer points to <code class="highlighter-rouge">head</code>.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                         entry -+
+  head                          |
+     +---+     +-------+     +-------+     +-------+     +-------+     +--------+
+     |   |----&gt;| 1 |   |----&gt;| 2 |   |----&gt;| 3 |   |----&gt;| 4 |   |----&gt;| 5 |NULL|
+     +---+     +-------+     +-------+     +-------+     +-------+     +--------+
+       ^
+       |
+     +---+
+     |   |
+     +---+
+   indirect
+</code></pre></div></div>
+
+<p>And we do a <code class="highlighter-rouge">while loop</code></p>
+
+<pre><code class="language-C">while ((*indirect) != entry)
+  indirect = &amp;(*indirect)-&gt;next;
+</code></pre>
+
+<p>First <code class="highlighter-rouge">indirect</code> points to <code class="highlighter-rouge">head</code>, <code class="highlighter-rouge">*indirect</code> is equivalent to <code class="highlighter-rouge">head</code>, which points to the first node. Apprently, <code class="highlighter-rouge">(*indirect) != entry</code> at first, so the <code class="highlighter-rouge">while loop</code> continues. In <code class="highlighter-rouge">indirect = &amp;(*indirect)-&gt;next</code>, if we are familiar with <a href="https://en.cppreference.com/w/c/language/operator_precedence">C Operator Precedence</a>, we know that the precedence of <code class="highlighter-rouge">-&gt;</code> is high than that of <code class="highlighter-rouge">&amp;</code>, so this line is to get the address of the <code class="highlighter-rouge">next</code> pointer.</p>
+
+<p>In the last line, since <code class="highlighter-rouge">*indirect</code> is pointing to the address of the <code class="highlighter-rouge">next</code> pointer of the first node, <code class="highlighter-rouge">*indirect = entry-&gt;next;</code> will rewrite the <code class="highlighter-rouge">next</code> pointer of the first node with the address of the third node, and it’s done, the second node is not a part of the list any more.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          entry -+
+   head                          |
+      +---+     +-------+     +-------+     +-------+     +-------+     +--------+
+      |   |----&gt;| 1 |   |--   | 2 |   |----&gt;| 3 |   |----&gt;| 4 |   |----&gt;| 5 |NULL|
+      +---+     +-------+  \  +-------+     +-------+     +-------+     +--------+
+                  *indirect \              /
+                             +------------+
+</code></pre></div></div>
+
+<hr />
+
+<p>Thanks to the discussion on the Internet:</p>
+
+<ul>
+  <li>1) <a href="https://stackoverflow.com/questions/12914917/using-pointers-to-remove-item-from-singly-linked-list">Using pointers to remove item from singly-linked list</a></li>
+  <li>2) <a href="https://stackoverflow.com/questions/51794426/delete-an-entry-from-a-singly-linked-list/51796733#51796733">delete an entry from a singly-linked list</a></li>
+  <li>3) <a href="https://news.ycombinator.com/item?id=12793624">Applying the Linus Torvalds “Good Taste” Coding Requirement</a></li>
+</ul>
+
+<p>EOF</p>
+
+  <!-- end content -->
+  </main>
+</div>
+<div class="below-post">
+
+  <a class="meta">tagged: Linus Torvalds, programming</a>
+
+<!-- disable the Big Ugly Author Block
+ -->
+</div>
+
+      <!-- end subtemplate -->
+      </main>
+      </div>
+      </div>
+
+    </div>
+  </body>
+</html>

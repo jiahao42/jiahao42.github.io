@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+  The template is from Eliza Weisman,
+  see http://elizas.website
+-->
+<html>
+  <head>
+    <meta name="viewport" content="width=720, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="utf-8">
+    <title>Improved demo on testing functions</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-116308654-1');
+  </script>
+  </head>
+  <body>
+    <div class="site">
+
+      <div class = "content">
+        <main>
+      <!-- begin subtemplate -->
+            
+        <div class="textheader">
+          <h1 class="title">
+      
+      
+        Improved demo on testing functions
+      
+          </h1>
+      
+        </div>
+        <div class="content">
+<main>
+  <!-- begin content -->
+  <h2 id="0-overview">0. Overview</h2>
+
+<p>Now I have annotated 4 functions in cJSON, they are:</p>
+
+<ul>
+  <li>parse_string: https://github.com/DaveGamble/cJSON/blob/master/cJSON.c#L698</li>
+  <li>parse_object: https://github.com/DaveGamble/cJSON/blob/master/cJSON.c#L1497</li>
+  <li>parse_array:  https://github.com/DaveGamble/cJSON/blob/master/cJSON.c#L1341</li>
+  <li>parse_number: https://github.com/DaveGamble/cJSON/blob/master/cJSON.c#L266</li>
+</ul>
+
+<p>Also, I write some test cases, and a Perl script to do test, log generation and simple log processing automatically.</p>
+
+<h2 id="1-annotate-the-function">1. Annotate the function</h2>
+
+<p>Here is an example of how I annotated it:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">log_file</span><span class="p">;</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">log_dir</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"./temp/"</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="n">path</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="s">"./temp/"</span><span class="p">;</span>
+<span class="cp">#define LOG(msg) \
+    do {\
+        strcat(path, msg);\
+        log_file = fopen(path, "w");\
+        memset(path + sizeof(log_dir) - 1, 0, sizeof(path) - sizeof(log_dir));\
+        fclose(log_file);\
+    } while(0)
+</span><span class="cm">/* Build an array from input text. */</span>
+<span class="k">static</span> <span class="n">cJSON_bool</span> <span class="nf">parse_array</span><span class="p">(</span><span class="n">cJSON</span> <span class="o">*</span> <span class="k">const</span> <span class="n">item</span><span class="p">,</span> <span class="n">parse_buffer</span> <span class="o">*</span> <span class="k">const</span> <span class="n">input_buffer</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">input_buffer</span><span class="o">-&gt;</span><span class="n">depth</span> <span class="o">&gt;=</span> <span class="n">CJSON_NESTING_LIMIT</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: return false"</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="cm">/* to deeply nested */</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">buffer_at_offset</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">'['</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: != </span><span class="se">\'</span><span class="s">[</span><span class="se">\'</span><span class="s">"</span><span class="p">);</span> 
+        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span> <span class="cm">/* not an array */</span>
+    <span class="p">}</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: == </span><span class="se">\'</span><span class="s">[</span><span class="se">\'</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">can_access_at_index</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">buffer_at_offset</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">']'</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: == </span><span class="se">\'</span><span class="s">]</span><span class="se">\'</span><span class="s">"</span><span class="p">);</span>
+        <span class="cm">/* empty array */</span>
+        <span class="k">goto</span> <span class="n">success</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: != </span><span class="se">\'</span><span class="s">]</span><span class="se">\'</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">can_access_at_index</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">buffer_at_offset</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">','</span><span class="p">));</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">cannot_access_at_index</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="n">buffer_at_offset</span><span class="p">(</span><span class="n">input_buffer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">']'</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: != </span><span class="se">\'</span><span class="s">]</span><span class="se">\'</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span> <span class="cm">/* expected end of array */</span>
+    <span class="p">}</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: == </span><span class="se">\'</span><span class="s">]</span><span class="se">\'</span><span class="s">"</span><span class="p">);</span>
+
+<span class="nl">success:</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: return true"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+
+<span class="nl">fail:</span>
+    <span class="n">LOG</span><span class="p">(</span><span class="s">"parse_array: return false"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-test-cases">2. Test cases</h2>
+
+<p>I have come up with some test cases, below are the tests I used in the script</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">my</span> <span class="nv">@parse_string_test</span> <span class="o">=</span> 
+<span class="p">(</span><span class="s">'{"normal": "whatever"}'</span><span class="p">,</span>
+<span class="s">'{"empty": ""}'</span><span class="p">,</span> 
+<span class="s">'{"not correctly quoted: "whatever"}'</span><span class="p">,</span> 
+<span class="s">'{"escapes": "\n\r\t\b\f\"\\\\\/"}'</span><span class="p">,</span> <span class="c1"># By now, most predicates of the function has been covered</span>
+<span class="s">'{"numerical": "123.456"}'</span><span class="p">,</span> <span class="c1"># Some random strings</span>
+<span class="s">'{"I": "say,"}'</span><span class="p">,</span>
+<span class="s">'{"\"Perl": "is"}'</span><span class="p">,</span> 
+<span class="s">'{"very": "convenient"}'</span><span class="p">,</span> 
+<span class="s">'{"in": "such"}'</span><span class="p">,</span> 
+<span class="s">'{"scenario": "right?\""}'</span><span class="p">,</span>
+<span class="s">'{"Yeah!": "It is tota11y: r$ght"}'</span>
+<span class="p">);</span>
+<span class="k">my</span> <span class="nv">@parse_object_test</span> <span class="o">=</span> 
+<span class="p">(</span><span class="s">'{"normal": "obj"}'</span><span class="p">,</span>
+<span class="s">'{"nested": "John", "outside": {"inside": "Bob"}}'</span><span class="p">,</span>
+<span class="s">'{"deeper nested": {"first": {"second": {"third": {"fourth": {"fifth": "treasure"}}}}}}"'</span><span class="p">,</span>
+<span class="s">'{"numerical": 1234, {"inside": 5678}}'</span><span class="p">,</span>
+<span class="s">'{"num_array": [1, 2, 3, 4], "str_array": ["Monday", "Tuesday", "Wednesday", 
+"Thursday", "Friday"]}'</span>
+<span class="p">);</span>
+<span class="k">my</span> <span class="nv">@parse_array_test</span> <span class="o">=</span> 
+<span class="p">(</span><span class="s">'{"simple_num_arr": [1, 2, 3, 4]}'</span><span class="p">,</span>
+<span class="s">'{"simple_str_arr": ["1", "2", "3", "4"]}'</span><span class="p">,</span>
+<span class="s">'{"simple_mixed_arr": [1, "2", 3, "4"]}'</span><span class="p">,</span>
+<span class="s">'{"num_arrs": [1, 2, 3, 4], "arr1": [1234, 5678], "arr2": [7493, 0912]}'</span><span class="p">,</span>
+<span class="s">'{"str_arrs": ["1", "2", "3"], "arr1": ["123", "456"], "arr2": ["abc", "def"]}'</span><span class="p">,</span>
+<span class="s">'{"mixed_arrs": [1, "2", 3, "4"], "arr1": [42, "is", "the", "answer], 
+"arr2": [13, "is", "unlucky"]}'</span><span class="p">,</span>
+<span class="s">'{"nested_mixed_arrs": ["outside", ["middle": ["inside": "yo", "heart": "broken"], 
+"skeleton": [13, "not cool"]'</span><span class="p">,</span>
+<span class="s">'{"nested_mixed_arrs": ["outside", ["middle", [{"inside": "yo"}, {"heart": "broken"}]],
+"skeleton", [13, "not cool"]]}'</span><span class="p">,</span>
+<span class="s">'{"empty: [[],[],[],[[],[],[]]]"}'</span><span class="p">,</span>
+<span class="s">'{"invalid": [1234]}'</span><span class="p">,</span>
+<span class="p">);</span>
+<span class="k">my</span> <span class="nv">@parse_number_test</span> <span class="o">=</span> 
+<span class="p">(</span><span class="s">'{"normal": 123456789, "another": 434227}'</span><span class="p">,</span>
+<span class="s">'{"scientific": 1e5, "an0ther": 1E5, "plus": 1E+5, "minus": 1e-5}'</span><span class="p">,</span>
+<span class="s">'{"decimal": [1.1, 2.4e100, 9.324492123432323232323, 5.396E-432]}'</span><span class="p">,</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="3-generated-logs-after-simple-processed">3. Generated logs after simple processed.</h2>
+
+<p>This is a sample log of processing <code class="highlighter-rouge">{"normal": "obj"}</code>, with my comments:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open("./temp/*******", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_object: start", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# a valid JSON object should start with {
+open("./temp/parse_object: == '{'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3 
+# if it is an empty object?
+open("./temp/parse_object: != '}'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3     
+# it's a string, *first overestimate its length*
+open("./temp/parse_string: start", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3      
+# first character should be "
+open("./temp/parse_string: == '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3 
+# if find another ", the string ends here
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# if there is an escape character?
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# keep looking for the ending " and escape character
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# get the ending "
+open("./temp/parse_string: == '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# loop through the string literal, not care about the boundary this time
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: return true", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_object: == ':'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# another string, parse similarly
+open("./temp/parse_string: start", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: == '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: == '\"'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: != '\\'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_string: return true", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+# any more elements?
+open("./temp/parse_object: != ','", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_object: == '}'", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/parse_object: return true", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+open("./temp/*******", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+fstat(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+write(1, "{\n\t\"normal\":\t\"obj\"\n}\n", 21{
+	"normal":	"obj"
+}
+) = 21
+exit_group(0)                           = ?
++++ exited with 0 +++
+</code></pre></div></div>
+
+<h2 id="future-work">Future work</h2>
+
+<ul>
+  <li>
+    <p>I think I should come up with some proper test case, then input the <em>same</em> test cases to the 4 different functions above, and observe their behaviors.</p>
+  </li>
+  <li>
+    <p>Need to do more processing of the logs.</p>
+    <ul>
+      <li>If we have discussed and determined the log format, then I think we can start to think about the algorithm to compare the signatures.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>What do you think?</p>
+
+
+  <!-- end content -->
+  </main>
+</div>
+      <!-- end subtemplate -->
+      </main>
+      </div>
+      </div>
+
+    </div>
+  </body>
+</html>

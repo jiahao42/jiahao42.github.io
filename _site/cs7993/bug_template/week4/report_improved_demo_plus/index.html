@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+  The template is from Eliza Weisman,
+  see http://elizas.website
+-->
+<html>
+  <head>
+    <meta name="viewport" content="width=720, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="utf-8">
+    <title>Improved demo on testing functions</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-116308654-1');
+  </script>
+  </head>
+  <body>
+    <div class="site">
+
+      <div class = "content">
+        <main>
+      <!-- begin subtemplate -->
+            
+        <div class="textheader">
+          <h1 class="title">
+      
+      
+        Improved demo on testing functions
+      
+          </h1>
+      
+        </div>
+        <div class="content">
+<main>
+  <!-- begin content -->
+  <h2 id="0-some-modifications">0. Some modifications</h2>
+
+<p>I have edited the <code class="highlighter-rouge">LOG</code> macro in the annotated C source file, add delimiter to the log format:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">FILE</span> <span class="o">*</span><span class="n">log_file</span><span class="p">;</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">log_dir</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"./temp/"</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="n">path</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="s">"./temp/"</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="n">delimiter</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"$$"</span><span class="p">;</span>
+<span class="cp">#define LOG(msg) \
+    do {\
+        strcat(path, __func__);\
+        strcat(path, delimiter);\
+        strcat(path, msg);\
+        strcat(path, delimiter);\
+        log_file = fopen(path, "w");\
+        memset(path + sizeof(log_dir) - 1, 0, sizeof(path) - sizeof(log_dir));\
+        fclose(log_file);\
+    } while(0)
+</span></code></pre></div></div>
+
+<p>Now each log entry is like, which can be easily splitted:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">open</span><span class="p">(</span><span class="s">"./temp/parse_string$$=='</span><span class="se">\"</span><span class="s">'$$"</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="o">|</span><span class="n">O_CREAT</span><span class="o">|</span><span class="n">O_TRUNC</span><span class="p">,</span> <span class="mo">0666</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span>
+</code></pre></div></div>
+
+<p>The signature of <code class="highlighter-rouge">{"normal": "whatever"}</code> will be:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">*******</span>
+<span class="o">==</span><span class="sc">'{'</span>
+<span class="o">!=</span><span class="sc">'}'</span>
+<span class="o">==</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">==</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">==</span><span class="sc">':'</span>
+<span class="o">==</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">==</span><span class="sc">'\"'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">'\\'</span>
+<span class="o">!=</span><span class="sc">','</span>
+<span class="o">==</span><span class="sc">'}'</span>
+<span class="o">*******</span>
+</code></pre></div></div>
+
+  <!-- end content -->
+  </main>
+</div>
+      <!-- end subtemplate -->
+      </main>
+      </div>
+      </div>
+
+    </div>
+  </body>
+</html>

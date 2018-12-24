@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--
+  The template is from Eliza Weisman,
+  see http://elizas.website
+-->
+<html>
+  <head>
+    <meta name="viewport" content="width=720, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="utf-8">
+    <title>Writeup for phase 1</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-116308654-1');
+  </script>
+  </head>
+  <body>
+    <div class="site">
+
+      <div class = "content">
+        <main>
+      <!-- begin subtemplate -->
+            
+        <div class="textheader">
+          <h1 class="title">
+      
+      
+        Writeup for phase 1
+      
+          </h1>
+      
+        </div>
+        <div class="content">
+<main>
+  <!-- begin content -->
+  <ul>
+  <li>
+    <h5 id="0-extract-python-code-from-pdf-file-according-to-the-hint-from-the-suffix-of-my-resume-pypdf">0. Extract Python code from pdf file, according to the hint from the suffix of my resume (.py.pdf).</h5>
+  </li>
+  <li>
+    <h5 id="1-try-to-print-the-type-of-everything-to-get-some-hints-eg">1. Try to print the type of everything to get some hints, e.g.</h5>
+    <ul>
+      <li>code object</li>
+      <li>the filename is called <code class="highlighter-rouge">russian_doll.py</code></li>
+    </ul>
+  </li>
+  <li>
+    <h5 id="2-start-to-know-marshall-module-try-to-use-if-i-can-get-source-code-from-it">2. Start to know <code class="highlighter-rouge">marshall</code> module, try to use if I can get source code from it.</h5>
+  </li>
+  <li>
+    <h5 id="3-try-to-save-the-decompressed-content-as-zip-and-unzip-it-then-realize-it-is-endless-it-corresponds-to-the-name-russian_dollpy">3. Try to save the decompressed content as <code class="highlighter-rouge">.zip</code>, and unzip it. Then realize it is endless, it corresponds to the name <code class="highlighter-rouge">russian_doll.py</code>.</h5>
+  </li>
+  <li>
+    <h5 id="4-drag-zip-file-into-text-editor-realize-it-is-a-python-file-indeed-realize-that-this-is-the-file-which-will-be-executed-later">4. Drag zip file into text editor, realize it is a Python file indeed, realize that this is the file which will be executed later.</h5>
+  </li>
+  <li>
+    <h5 id="5-add-exception-to-see-that-what-really-happened-it-turns-out-that-it-will-do-something-to-get-the-correct-marshall-data-according-to-the-input-then-i-realize-what-the-hint-means-the-first-input-should-be-n">5. Add exception to see that what really happened. It turns out that it will do something to get the correct marshall data according to the input. Then I realize what the hint means, the first input should be <code class="highlighter-rouge">n</code>.</h5>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">c1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+  <span class="k">print</span> <span class="s">"Exception: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h5 id="6-print-more-things-to-see-what-happened-then-realize-what-happened-the-length-of-the-answer-should-be-13">6. Print more things to see what happened, then realize what happened, the length of the answer should be 13.</h5>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">c1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"New c1..."</span>
+    <span class="nb">eval</span><span class="p">(</span><span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">print</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c"># Bunch of encrypted code </span>
+    <span class="k">exec</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="mi">77</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h5 id="7-try-to-search-for-disassembler-for-marshall-object-then-i-found-dis-try-to-disassemble-the-code-object-in-the-source-code">7. Try to search for disassembler for marshall object, then I found dis. Try to disassemble the code object in the source code.</h5>
+  </li>
+  <li>
+    <h5 id="8-first-i-disassembled-x_func-which-you-can-see-it-here-important-thing-is-there-is-a-time-interval-check-which-is-very-interesting">8. First I disassembled <code class="highlighter-rouge">x_func()</code>, which you can see it here, important thing is there is a time interval check, which is very interesting.</h5>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">x</span><span class="o">.</span><span class="n">co_varnames</span>
+<span class="p">(</span><span class="s">'message'</span><span class="p">,</span> <span class="s">'split_string'</span><span class="p">,</span> <span class="s">'t0'</span><span class="p">,</span> <span class="s">'fd'</span><span class="p">,</span> <span class="s">'old_settings'</span><span class="p">,</span> <span class="s">'res'</span><span class="p">,</span> <span class="s">'t1'</span><span class="p">,</span> <span class="s">'x'</span><span class="p">,</span> <span class="s">'_'</span><span class="p">)</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">x</span><span class="o">.</span><span class="n">co_consts</span>
+<span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="s">':R:'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> 
+<span class="o">&lt;</span><span class="n">code</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x100a712b0</span><span class="p">,</span> <span class="nb">file</span> <span class="s">"/usr/local/bin/russian_doll.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">44</span><span class="o">&gt;</span><span class="p">,</span> 
+<span class="mi">4</span><span class="p">,</span> 
+<span class="o">&lt;</span><span class="n">code</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x101804030</span><span class="p">,</span> <span class="nb">file</span> <span class="s">"/usr/local/bin/russian_doll.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">47</span><span class="o">&gt;</span><span class="p">,</span> 
+<span class="s">'finished'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">(</span><span class="n">Pdb</span><span class="p">)</span> <span class="n">p</span> <span class="n">x</span><span class="o">.</span><span class="n">co_cellvars</span>
+<span class="p">(</span><span class="s">'passphrase'</span><span class="p">,)</span>
+<span class="mi">34</span>           <span class="mi">0</span> <span class="n">LOAD_CONST</span>               <span class="mi">1</span> <span class="p">(</span><span class="s">':R:'</span><span class="p">)</span>
+              <span class="mi">3</span> <span class="n">STORE_FAST</span>               <span class="mi">1</span> <span class="p">(</span><span class="n">split_string</span><span class="p">)</span>
+
+<span class="mi">36</span>           <span class="mi">6</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+              <span class="mi">9</span> <span class="n">LOAD_ATTR</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="mi">12</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">0</span>
+            <span class="mi">15</span> <span class="n">STORE_FAST</span>               <span class="mi">2</span> <span class="p">(</span><span class="n">t0</span><span class="p">)</span>
+
+<span class="o">......</span>
+
+<span class="mi">40</span>          <span class="mi">70</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">8</span> <span class="p">(</span><span class="nb">ord</span><span class="p">)</span>
+            <span class="mi">73</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">1</span> <span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+            <span class="mi">76</span> <span class="n">LOAD_ATTR</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">stdin</span><span class="p">)</span>
+            <span class="mi">79</span> <span class="n">LOAD_ATTR</span>                <span class="mi">9</span> <span class="p">(</span><span class="n">read</span><span class="p">)</span>
+            <span class="mi">82</span> <span class="n">LOAD_CONST</span>               <span class="mi">2</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="mi">85</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>
+            <span class="mi">88</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>
+            <span class="mi">91</span> <span class="n">STORE_DEREF</span>              <span class="mi">0</span> <span class="p">(</span><span class="n">passphrase</span><span class="p">)</span> <span class="c"># passphrase = ord(input)</span>
+
+<span class="mi">42</span>          <span class="mi">94</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">4</span> <span class="p">(</span><span class="n">termios</span><span class="p">)</span>
+            <span class="mi">97</span> <span class="n">LOAD_ATTR</span>               <span class="mi">10</span> <span class="p">(</span><span class="n">tcsetattr</span><span class="p">)</span>
+            <span class="mi">100</span> <span class="n">LOAD_FAST</span>                <span class="mi">3</span> <span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+            <span class="mi">103</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">4</span> <span class="p">(</span><span class="n">termios</span><span class="p">)</span>
+            <span class="mi">106</span> <span class="n">LOAD_ATTR</span>               <span class="mi">11</span> <span class="p">(</span><span class="n">TCSADRAIN</span><span class="p">)</span>
+            <span class="mi">109</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">old_settings</span><span class="p">)</span>
+            <span class="mi">112</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">3</span>
+            <span class="mi">115</span> <span class="n">POP_TOP</span>             
+
+<span class="mi">44</span>         <span class="mi">116</span> <span class="n">LOAD_CONST</span>               <span class="mi">3</span> <span class="p">(</span><span class="s">''</span><span class="p">)</span>
+            <span class="mi">119</span> <span class="n">LOAD_ATTR</span>               <span class="mi">12</span> <span class="p">(</span><span class="n">join</span><span class="p">)</span>
+            <span class="mi">122</span> <span class="n">LOAD_GLOBAL</span>             <span class="mi">13</span> <span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+            <span class="mi">125</span> <span class="n">LOAD_CLOSURE</span>             <span class="mi">0</span> <span class="p">(</span><span class="n">passphrase</span><span class="p">)</span>
+            <span class="mi">128</span> <span class="n">BUILD_TUPLE</span>              <span class="mi">1</span> <span class="c"># (''.join, map, res)</span>
+            <span class="mi">131</span> <span class="n">LOAD_CONST</span>               <span class="mi">4</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">code</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x10476d7b0</span><span class="p">,</span> 
+            <span class="nb">file</span> <span class="s">"/usr/local/bin/russian_doll.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">44</span><span class="o">&gt;</span><span class="p">)</span> <span class="c"># return value of code </span>
+            <span class="mi">134</span> <span class="n">MAKE_CLOSURE</span>             <span class="mi">0</span> 
+            <span class="mi">137</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="mi">140</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">2</span>
+            <span class="mi">143</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>
+            <span class="mi">146</span> <span class="n">STORE_FAST</span>               <span class="mi">5</span> <span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+<span class="mi">45</span>         <span class="mi">149</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="mi">152</span> <span class="n">LOAD_ATTR</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="mi">155</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">0</span>
+            <span class="mi">158</span> <span class="n">STORE_FAST</span>               <span class="mi">6</span> <span class="p">(</span><span class="n">t1</span><span class="p">)</span> <span class="c"># t1 = now()</span>
+
+<span class="mi">46</span>         <span class="mi">161</span> <span class="n">LOAD_FAST</span>                <span class="mi">6</span> <span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+            <span class="mi">164</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">t0</span><span class="p">)</span>
+            <span class="mi">167</span> <span class="n">BINARY_SUBTRACT</span>                 <span class="c"># t = t1 - t2</span>
+            <span class="mi">168</span> <span class="n">LOAD_CONST</span>               <span class="mi">5</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c"># t &gt; 4</span>
+            <span class="mi">171</span> <span class="n">COMPARE_OP</span>               <span class="mi">4</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span>
+            <span class="mi">174</span> <span class="n">POP_JUMP_IF_FALSE</span>      <span class="mi">213</span>      <span class="c"># if (t &lt; 4) goto wrong</span>
+
+<span class="mi">47</span>         <span class="mi">177</span> <span class="n">LOAD_CONST</span>               <span class="mi">3</span> <span class="p">(</span><span class="s">''</span><span class="p">)</span>
+            <span class="mi">180</span> <span class="n">LOAD_ATTR</span>               <span class="mi">12</span> <span class="p">(</span><span class="n">join</span><span class="p">)</span>
+            <span class="mi">183</span> <span class="n">LOAD_GLOBAL</span>             <span class="mi">13</span> <span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+            <span class="mi">186</span> <span class="n">LOAD_CLOSURE</span>             <span class="mi">0</span> <span class="p">(</span><span class="n">passphrase</span><span class="p">)</span>
+            <span class="mi">189</span> <span class="n">BUILD_TUPLE</span>              <span class="mi">1</span> <span class="c"># (''.join.map, passphrase)</span>
+            <span class="mi">192</span> <span class="n">LOAD_CONST</span>               <span class="mi">6</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">code</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x10476d830</span><span class="p">,</span> 
+            <span class="nb">file</span> <span class="s">"/usr/local/bin/russian_doll.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">47</span><span class="o">&gt;</span><span class="p">)</span>
+            <span class="mi">195</span> <span class="n">MAKE_CLOSURE</span>             <span class="mi">0</span>
+            <span class="mi">198</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="mi">201</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">2</span>
+            <span class="mi">204</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>
+            <span class="mi">207</span> <span class="n">STORE_FAST</span>               <span class="mi">5</span> <span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="mi">210</span> <span class="n">JUMP_FORWARD</span>             <span class="mi">0</span> <span class="p">(</span><span class="n">to</span> <span class="mi">213</span><span class="p">)</span>
+
+<span class="mi">48</span>     <span class="o">&gt;&gt;</span>  <span class="mi">213</span> <span class="n">LOAD_FAST</span>                <span class="mi">5</span> <span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="mi">216</span> <span class="n">LOAD_ATTR</span>               <span class="mi">14</span> <span class="p">(</span><span class="n">split</span><span class="p">)</span>
+            <span class="mi">219</span> <span class="n">LOAD_FAST</span>                <span class="mi">1</span> <span class="p">(</span><span class="n">split_string</span><span class="p">)</span> <span class="c"># :R:</span>
+            <span class="mi">222</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>  <span class="c"># x = res.split(':R:')</span>
+            <span class="mi">225</span> <span class="n">STORE_FAST</span>               <span class="mi">7</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="mi">49</span>         <span class="mi">228</span> <span class="n">LOAD_GLOBAL</span>             <span class="mi">15</span> <span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+            <span class="mi">231</span> <span class="n">LOAD_FAST</span>                <span class="mi">7</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="mi">234</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>
+            <span class="mi">237</span> <span class="n">LOAD_CONST</span>               <span class="mi">2</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="mi">240</span> <span class="n">COMPARE_OP</span>               <span class="mi">2</span> <span class="p">(</span><span class="o">==</span><span class="p">)</span> <span class="c"># if (len(x) != 1) goto 266</span>
+            <span class="mi">243</span> <span class="n">POP_JUMP_IF_FALSE</span>      <span class="mi">266</span>
+
+<span class="mi">50</span>         <span class="mi">246</span> <span class="n">LOAD_CONST</span>               <span class="mi">7</span> <span class="p">(</span><span class="s">'finished'</span><span class="p">)</span>
+            <span class="mi">249</span> <span class="n">STORE_FAST</span>               <span class="mi">8</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span>
+
+<span class="mi">51</span>         <span class="mi">252</span> <span class="n">LOAD_FAST</span>                <span class="mi">7</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="mi">255</span> <span class="n">LOAD_CONST</span>               <span class="mi">8</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="mi">258</span> <span class="n">BINARY_SUBSCR</span>                   <span class="c"># x[0]</span>
+            <span class="mi">259</span> <span class="n">LOAD_FAST</span>                <span class="mi">8</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span>  <span class="c"># finished</span>
+            <span class="mi">262</span> <span class="n">BUILD_TUPLE</span>              <span class="mi">2</span>      <span class="c"># (x[0], 'finished')</span>
+            <span class="mi">265</span> <span class="n">RETURN_VALUE</span>                    <span class="c"># correct return</span>
+
+<span class="mi">52</span>     <span class="o">&gt;&gt;</span>  <span class="mi">266</span> <span class="n">LOAD_FAST</span>                <span class="mi">7</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="mi">269</span> <span class="n">LOAD_CONST</span>               <span class="mi">8</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="mi">272</span> <span class="n">BINARY_SUBSCR</span>                   <span class="c"># x[0]</span>
+            <span class="mi">273</span> <span class="n">LOAD_FAST</span>                <span class="mi">7</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="mi">276</span> <span class="n">LOAD_CONST</span>               <span class="mi">2</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="mi">279</span> <span class="n">BINARY_SUBSCR</span>                   
+            <span class="mi">280</span> <span class="n">BUILD_TUPLE</span>              <span class="mi">2</span>      
+            <span class="mi">283</span> <span class="n">RETURN_VALUE</span>                    <span class="c"># wrong return</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h5 id="9-then-i-add-disassembler-to-c1x-y-in-this-case-everytime-it-use-exec-to-enter-a-new-level-it-will-print-the-disassembly-code-automatically">9. Then I add disassembler to <code class="highlighter-rouge">c1(x, y)</code>, in this case, everytime it use <code class="highlighter-rouge">exec</code> to enter a new level, it will print the disassembly code automatically:</h5>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">c1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"New c1..."</span>
+    <span class="nb">eval</span><span class="p">(</span><span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">print</span> <span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">exec</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">'-'</span> <span class="o">*</span> <span class="mi">77</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h5 id="10-the-acsii-code-of-the-current-answer-is-hidden-in-the-return-value-of-the-code">10. The ACSII code of the current answer is hidden in the return value of the code</h5>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">......</span>
+<span class="mi">27</span>          <span class="mi">24</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="mi">30</span>          <span class="mi">27</span> <span class="n">LOAD_ATTR</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="mi">33</span>          <span class="mi">30</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">0</span>
+<span class="mi">36</span>          <span class="mi">33</span> <span class="n">STORE_FAST</span>               <span class="mi">2</span> <span class="p">(</span><span class="n">_0</span><span class="p">)</span> <span class="c"># current time</span>
+<span class="mi">39</span>          <span class="mi">36</span> <span class="n">LOAD_CONST</span>               <span class="mi">2</span> <span class="p">(</span><span class="mf">1539268928.71756</span><span class="p">)</span> <span class="c"># October 11, 2018 2:42:08.717 PM</span>
+<span class="mi">42</span>          <span class="mi">39</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">_0</span><span class="p">)</span> <span class="c"># current time</span>
+<span class="mi">45</span>          <span class="mi">42</span> <span class="n">BINARY_SUBTRACT</span>          <span class="c"># 1539268928.71756 - current time</span>
+<span class="mi">46</span>          <span class="mi">43</span> <span class="n">STORE_FAST</span>               <span class="mi">3</span> <span class="p">(</span><span class="n">_2</span><span class="p">)</span> <span class="c"># 1539268928.71756 - current time</span>
+<span class="mi">49</span>          <span class="mi">46</span> <span class="n">LOAD_FAST</span>                <span class="mi">3</span> <span class="p">(</span><span class="n">_2</span><span class="p">)</span> 
+<span class="mi">52</span>          <span class="mi">49</span> <span class="n">LOAD_CONST</span>               <span class="mi">3</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+<span class="mi">55</span>          <span class="mi">52</span> <span class="n">COMPARE_OP</span>               <span class="mi">0</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">)</span> <span class="c"># 1539268928.71756 - current time &lt; 0?</span>
+<span class="mi">58</span>          <span class="mi">55</span> <span class="n">DUP_TOP</span>             
+<span class="mi">59</span>          <span class="mi">56</span> <span class="n">POP_JUMP_IF_TRUE</span>       <span class="mi">113</span>     <span class="c"># expired</span>
+<span class="mi">62</span>          <span class="mi">59</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="mi">65</span>          <span class="mi">62</span> <span class="n">LOAD_ATTR</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="mi">68</span>          <span class="mi">65</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">0</span>
+<span class="mi">71</span>          <span class="mi">68</span> <span class="n">STORE_FAST</span>               <span class="mi">2</span> <span class="p">(</span><span class="n">_0</span><span class="p">)</span> <span class="c"># current time</span>
+<span class="mi">74</span>          <span class="mi">71</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="mi">77</span>          <span class="mi">74</span> <span class="n">LOAD_ATTR</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="mi">80</span>          <span class="mi">77</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">0</span>      <span class="c"># current time</span>
+<span class="mi">83</span>          <span class="mi">80</span> <span class="n">STORE_FAST</span>               <span class="mi">4</span> <span class="p">(</span><span class="n">_1</span><span class="p">)</span> 
+<span class="mi">86</span>          <span class="mi">83</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">_1</span><span class="p">)</span>
+<span class="mi">89</span>          <span class="mi">86</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">_0</span><span class="p">)</span>
+<span class="mi">92</span>          <span class="mi">89</span> <span class="n">BINARY_SUBTRACT</span>     
+<span class="mi">93</span>          <span class="mi">90</span> <span class="n">STORE_FAST</span>               <span class="mi">3</span> <span class="p">(</span><span class="n">_2</span><span class="p">)</span> <span class="c"># time difference</span>
+<span class="mi">96</span>          <span class="mi">93</span> <span class="n">LOAD_FAST</span>                <span class="mi">3</span> <span class="p">(</span><span class="n">_2</span><span class="p">)</span>
+<span class="mi">99</span>          <span class="mi">96</span> <span class="n">LOAD_CONST</span>               <span class="mi">4</span> <span class="p">(</span><span class="mf">4.1</span><span class="p">)</span> 
+<span class="mi">102</span>          <span class="mi">99</span> <span class="n">COMPARE_OP</span>               <span class="mi">4</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span> <span class="c"># if &gt; 4.1s</span>
+<span class="mi">105</span>         <span class="mi">102</span> <span class="n">DUP_TOP</span>             
+<span class="mi">106</span>         <span class="mi">103</span> <span class="n">POP_JUMP_IF_TRUE</span>       <span class="mi">110</span>
+<span class="mi">109</span>         <span class="mi">106</span> <span class="n">LOAD_CONST</span>               <span class="mi">5</span> <span class="p">(</span><span class="mi">118</span><span class="p">)</span> <span class="c"># Answer to the next level!</span>
+<span class="mi">112</span>         <span class="mi">109</span> <span class="n">RETURN_VALUE</span>        
+<span class="mi">113</span>     <span class="o">&gt;&gt;</span>  <span class="mi">110</span> <span class="n">JUMP_ABSOLUTE</span>          <span class="mi">110</span>
+<span class="mi">116</span>     <span class="o">&gt;&gt;</span>  <span class="mi">113</span> <span class="n">LOAD_CONST</span>               <span class="mi">6</span> <span class="p">(</span><span class="s">'too slooooo00w!!'</span><span class="p">)</span>
+<span class="mi">119</span>         <span class="mi">116</span> <span class="n">PRINT_ITEM</span>          
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h5 id="11-finally-we-can-get-the-answer">11. Finally we can get the answer:</h5>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#  n   e    r  v   o  (t) (r) (X) (n) (") (M) (F) (})</span>
+<span class="c"># 110 101 114 118 111 116 114 89 110  35  77  70  125   </span>
+
+<span class="c">#                        _^_                                          _^_</span>
+<span class="c">#                       (   )________________________________________(   )</span>
+<span class="c">#                       |   |                                        |   |</span>
+<span class="c">#                       |   |        N                               |   |</span>
+<span class="c">#                       |   |        |                               |   |</span>
+<span class="c">#                       |   |      \   /     N 40&amp;#xb0; 45' 16.984"  |   |</span>
+<span class="c">#                       |   |   W -  o  - E                          |   |</span>
+<span class="c">#                       |   |      /   \     W 73&amp;#xb0; 59' 38.033"  |   |</span>
+<span class="c">#                       |   |        |                               |   |</span>
+<span class="c">#                       |   |        S                               |   |</span>
+<span class="c">#                       (_ _)________________________________________(_ _)</span>
+<span class="c">#                         v                                            v</span>
+
+<span class="c"># Congrutlations! You solved Phase 1 of the problem. Get the phase 2 challenge here: </span>
+<span class="c"># http://www.redballoonsecurity.com/1NPTMESGGL/JFS7BSFB23.tar.gz.gpg . Key to unlock </span>
+<span class="c"># the challenge:'rbssecretcongratz!'. Look in my memory for further instructions. </span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h5 id="12-use-lldb---attach-pid-pid-to-attach-to-the-process-and-use-process-save-core-core-to-dump-the-memory-and-search-for-the-email-o4yr7w3jo9redballoonsecuritycom">12. Use <code class="highlighter-rouge">lldb --attach-pid [pid]</code> to attach to the process and use <code class="highlighter-rouge">process save-core "core"</code> to dump the memory and search for the email: <em>o4yr7w3jo9@redballoonsecurity.com</em>.</h5>
+  </li>
+</ul>
+
+<p><strong>It is a very interesting program, I have to admit that I didn’t get all the details though I got the answer. When doing this challenge, I can feel that <em>Red Balloon Security</em> must be a very interesing company, and full of the old style hacker atmosphere, that’s really COOL!</strong></p>
+
+<p><strong>-Jiahao</strong></p>
+
+  <!-- end content -->
+  </main>
+</div>
+      <!-- end subtemplate -->
+      </main>
+      </div>
+      </div>
+
+    </div>
+  </body>
+</html>

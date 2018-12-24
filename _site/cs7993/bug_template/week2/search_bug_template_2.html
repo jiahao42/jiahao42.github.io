@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Current bug templates (Week 2)</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../../style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Current bug templates (Week 2)</h1>
+<p class="date">Sep 28, 2018</p>
+</header>
+<h2 id="overview">Overview</h2>
+<p>Overall, I extract a prototype from this <a href="https://github.com/php/php-src/commit/523f230c831d7b33353203fa34aee4e92ac12bba">bug</a>, the prototype get 2 matches in PHP source code, and the 2 matches are in the same file.</p>
+<h2 id="progress">Progress</h2>
+<p>So I tried to extract a prototype from this <a href="https://github.com/php/php-src/commit/523f230c831d7b33353203fa34aee4e92ac12bba">bug</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1">                                tmp_line, response_code);</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">                }</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">            }</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">-       <span class="cf">if</span> (tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\n&#39;</span>) {</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">+       <span class="cf">if</span> (tmp_line_len &gt;= <span class="dv">1</span> &amp;&amp; tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\n&#39;</span>) {</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">                --tmp_line_len;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">-           <span class="cf">if</span> (tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\r&#39;</span>) {</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">+           <span class="cf">if</span> (tmp_line_len &gt;= <span class="dv">1</span> &amp;&amp;tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\r&#39;</span>) {</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">                    --tmp_line_len;</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">                }</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">            }</a></code></pre></div>
+<p>The function where bug occurs is too long, so I tried to extract one function from the context. Basically the job of this snippet is to send a request, and then check the response code of the request.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">// propotype: php-src/ext/standard/http_fopen_wrapper.c</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dt">static</span> php_stream *php_stream_url_wrap_http_ex(...) {</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  ...</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    php_stream_write(stream, ZSTR_VAL(req_buf.s), ZSTR_LEN(req_buf.s));</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  ...</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="cf">if</span> (php_stream_get_line(stream, tmp_line, <span class="kw">sizeof</span>(tmp_line) - <span class="dv">1</span>, &amp;tmp_line_len) != NULL) {</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    ...</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="cf">if</span> (response_code &gt;= <span class="dv">200</span> &amp;&amp; response_code &lt; <span class="dv">400</span>) {</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">      ...</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">            <span class="cf">switch</span>(response_code) {</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">                <span class="cf">case</span> <span class="dv">403</span>:</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">                    php_stream_notify_error(context, PHP_STREAM_NOTIFY_AUTH_RESULT,</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">                            tmp_line, response_code);</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">                    <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">                <span class="cf">default</span>:</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">                    php_stream_notify_error(context, PHP_STREAM_NOTIFY_FAILURE,</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">                            tmp_line, response_code);</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">            }</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">            <span class="cf">if</span> (tmp_line_len &gt;= <span class="dv">1</span> &amp;&amp; tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\n&#39;</span>) {</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">                --tmp_line_len;</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">                <span class="cf">if</span> (tmp_line_len &gt;= <span class="dv">1</span> &amp;&amp;tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\r&#39;</span>) {</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">                    --tmp_line_len;</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">                }</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">            }</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">      ...</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">    }</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">  }</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">}</a></code></pre></div>
+<p>First I use the regex to search the source code of php:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1">FOCUS_STMTS <span class="op">=</span> <span class="vs">r&quot;&quot;&quot;.{0,80}write.{0,3200}response.{0,3200}403.{0,3200}==\s*\&#39;\\n\&#39;&quot;&quot;&quot;</span></a></code></pre></div>
+<p>It can only find one snippet of code, that’s where the bug occurs orginally, see the log:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1">:<span class="dv">655</span>:   <span class="co">/* send it */</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">656</span>:    php_stream_write(stream, ZSTR_VAL(req_buf.s), ZSTR_LEN(req_buf.s));</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">658</span>:    location[<span class="dv">0</span>] = &#39;\<span class="dv">0</span>&#39;;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">660</span>:    <span class="cf">if</span> (Z_ISUNDEF_P(response_header)) {</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">661</span>:        array_init(response_header);</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">662</span>:    }</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">664</span>:    <span class="cf">if</span> (!php_stream_eof(stream)) {</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">665</span>:        <span class="dt">size_t</span> tmp_line_len;</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">666</span>:        <span class="co">/* get response header */</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">668</span>:        <span class="cf">if</span> (php_stream_get_line(stream, tmp_line, <span class="kw">sizeof</span>(tmp_line) - <span class="dv">1</span>, &amp;tmp_line_len) != NULL) {</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">669</span>:            zval http_response;</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">671</span>:            <span class="cf">if</span> (tmp_line_len &gt; <span class="dv">9</span>) {</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">672</span>:                response_code = atoi(tmp_line + <span class="dv">9</span>);</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">673</span>:            } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">674</span>:                response_code = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">675</span>:            }</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">676</span>:            <span class="cf">if</span> (context &amp;&amp; NULL != (tmpzval = php_stream_context_get_option(context, <span class="st">&quot;http&quot;</span>, <span class="st">&quot;ignore_errors&quot;</span>))) {</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">677</span>:                ignore_errors = zend_is_true(tmpzval);</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">678</span>:            }</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">679</span>:            <span class="co">/* when we request only the header, don&#39;t fail even on error codes */</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">680</span>:            <span class="cf">if</span> ((options &amp; STREAM_ONLY_GET_HEADERS) || ignore_errors) {</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">681</span>:                reqok = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">682</span>:            }</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">684</span>:            <span class="co">/* status codes of 1xx are &quot;informational&quot;, and will be followed by a real response</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">./php-src/ext/standard/http_fopen_wrapper.c:685:             * e.g &quot;100 Continue&quot;. RFC 7231 states that unexpected 1xx status MUST be parsed,</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">./php-src/ext/standard/http_fopen_wrapper.c:686:             * and MAY be ignored. As such, we need to skip ahead to the &quot;real&quot; status*/</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">687</span>:            <span class="cf">if</span> (response_code &gt;= <span class="dv">100</span> &amp;&amp; response_code &lt; <span class="dv">200</span>) {</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">688</span>:                <span class="co">/* consume lines until we find a line starting &#39;HTTP/1&#39; */</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">689</span>:                <span class="cf">while</span> (</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">690</span>:                    !php_stream_eof(stream)</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">691</span>:                    &amp;&amp; php_stream_get_line(stream, tmp_line, <span class="kw">sizeof</span>(tmp_line) - <span class="dv">1</span>, &amp;tmp_line_len) != NULL</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">692</span>:                    &amp;&amp; ( tmp_line_len &lt; <span class="kw">sizeof</span>(<span class="st">&quot;HTTP/1&quot;</span>) - <span class="dv">1</span> || strncasecmp(tmp_line, <span class="st">&quot;HTTP/1&quot;</span>, <span class="kw">sizeof</span>(<span class="st">&quot;HTTP/1&quot;</span>) - <span class="dv">1</span>) )</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">693</span>:                );</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">695</span>:                <span class="cf">if</span> (tmp_line_len &gt; <span class="dv">9</span>) {</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">696</span>:                    response_code = atoi(tmp_line + <span class="dv">9</span>);</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">697</span>:                } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">698</span>:                    response_code = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">699</span>:                }</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">700</span>:            }</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">701</span>:            <span class="co">/* all status codes in the 2xx range are defined by the specification as successful;</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">./php-src/ext/standard/http_fopen_wrapper.c:702:             * all status codes in the 3xx range are for redirection, and so also should never</span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">./php-src/ext/standard/http_fopen_wrapper.c:703:             * fail */</span></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">704</span>:            <span class="cf">if</span> (response_code &gt;= <span class="dv">200</span> &amp;&amp; response_code &lt; <span class="dv">400</span>) {</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">705</span>:                reqok = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">706</span>:            } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">707</span>:                <span class="cf">switch</span>(response_code) {</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">708</span>:                    <span class="cf">case</span> <span class="dv">403</span>:</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">709</span>:                        php_stream_notify_error(context, PHP_STREAM_NOTIFY_AUTH_RESULT,</a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">710</span>:                                tmp_line, response_code);</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">711</span>:                        <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb4-51" data-line-number="51">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">712</span>:                    <span class="cf">default</span>:</a>
+<a class="sourceLine" id="cb4-52" data-line-number="52">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">713</span>:                        <span class="co">/* safety net in the event tmp_line == NULL */</span></a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">714</span>:                        <span class="cf">if</span> (!tmp_line_len) {</a>
+<a class="sourceLine" id="cb4-54" data-line-number="54">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">715</span>:                            tmp_line[<span class="dv">0</span>] = &#39;\<span class="dv">0</span>&#39;;</a>
+<a class="sourceLine" id="cb4-55" data-line-number="55">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">716</span>:                        }</a>
+<a class="sourceLine" id="cb4-56" data-line-number="56">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">717</span>:                        php_stream_notify_error(context, PHP_STREAM_NOTIFY_FAILURE,</a>
+<a class="sourceLine" id="cb4-57" data-line-number="57">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">718</span>:                                tmp_line, response_code);</a>
+<a class="sourceLine" id="cb4-58" data-line-number="58">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">719</span>:                }</a>
+<a class="sourceLine" id="cb4-59" data-line-number="59">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">720</span>:            }</a>
+<a class="sourceLine" id="cb4-60" data-line-number="60">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">721</span>:            <span class="cf">if</span> (tmp_line_len &gt;= <span class="dv">1</span> &amp;&amp; tmp_line[tmp_line_len - <span class="dv">1</span>] == <span class="ch">&#39;\n&#39;</span></a>
+<a class="sourceLine" id="cb4-61" data-line-number="61">-----------------------------------------------------------------------------</a></code></pre></div>
+<p>Then I thought the response code 403 may be too specific, so I removed the response code part and ran the script again, then I got something new (from the same file as the log above):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" data-line-number="1">of(<span class="st">&quot;</span><span class="sc">\r\n</span><span class="st">&quot;</span>)-<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">307</span>:        <span class="cf">if</span> (php_stream_write(stream, ZSTR_VAL(header.s), ZSTR_LEN(header.s)) != ZSTR_LEN(header.s)) {</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">308</span>:            php_stream_wrapper_log_error(wrapper, options, <span class="st">&quot;Cannot connect to HTTPS server through proxy&quot;</span>);</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">309</span>:            php_stream_close(stream);</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">310</span>:            stream = NULL;</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">311</span>:        }</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">312</span>:        smart_str_free(&amp;header);</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">314</span>:        <span class="cf">if</span> (stream) {</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">315</span>:            <span class="dt">char</span> header_line[HTTP_HEADER_BLOCK_SIZE];</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">317</span>:            <span class="co">/* get response header */</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">318</span>:            <span class="cf">while</span> (php_stream_gets(stream, header_line, HTTP_HEADER_BLOCK_SIZE<span class="dv">-1</span>) != NULL) {</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">./php-src/ext/standard/http_fopen_wrapper.c:<span class="dv">319</span>:                <span class="cf">if</span> (header_line[<span class="dv">0</span>] == <span class="ch">&#39;\n&#39;</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">-----------------------------------------------------------------------------</a></code></pre></div>
+<h2 id="problem">Problem</h2>
+<p>I think the current the problem is: we want to make the regex more general, but considering the regex we are using now:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" data-line-number="1">.{<span class="dv">0</span>,<span class="dv">80</span>}write.{<span class="dv">0</span>,<span class="dv">3200</span>}response.{<span class="dv">0</span>,<span class="dv">3200</span>}<span class="op">==\</span>s<span class="op">*\</span><span class="st">&#39;</span><span class="ch">\\</span><span class="st">n</span><span class="ch">\&#39;</span></a></code></pre></div>
+<p>It only has 4 keywords, there are not much things to remove, so I am not sure what’s the next step, should we just create some new templates, or keep working on this? We can do:</p>
+<ul>
+<li>increase or decrease the gap of keywords</li>
+<li>increase or decrease the number of keywords</li>
+<li>(something I don’t know yet)</li>
+</ul>
+<h2 id="outcome">Outcome</h2>
+<p>I have written this <a href="./search.py">Python script</a> to help me with it.</p>
+<p>I use this script to scan <a href="https://github.com/php/php-src">the source code of php</a> and an <a href="https://github.com/libming/libming">SWF library</a>, and here is the <a href="./bug_template.log">Log file</a>.</p>
+</body>
+</html>
