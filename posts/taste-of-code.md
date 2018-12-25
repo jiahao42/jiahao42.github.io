@@ -38,8 +38,8 @@ void remove_list_entry(linked_list* entry) {
 
 Note that the code have a if statement in the end, in order to distinguish the following two scenarios:
 
-* 1. The deleted node is the head of the list, now it needs a new head
-* 2. The deleted node is not the head of the list, now it just need to link the previous node to the next node.
+1. The deleted node is the head of the list, now it needs a new head
+2. The deleted node is not the head of the list, now it just need to link the previous node to the next node.
 
 However, Linus thought this snippet of code had no taste, he perferred to the following code:
 

@@ -54,3 +54,5 @@ When the host is asking how Steve Jobs knows which is the right direction:
 
 > Ultimately it comes down to taste. It's a matter of trying to expose yourself to the best things that humans have done. And then try to bring those things into what you are doing. Picasso had a saying: "Good artists copy. Great artists steal." We have always been shameless about stealing great ideas.  
 > Part of what made the Macintosh great was that the people working on it were musicians, poets, and artists, and zoologists, and historians. They also happened to be the best computer scientists in the world. But if it hadn't been computer science, these people would have been doing amazing things in other fields. We all brought to this a sort of "liberal arts" air, an attitude that we wanted to pull the best that we saw into this field. You don't get that if you are very narrow.
+
+EOF
