@@ -10,7 +10,7 @@ cmd: cat about.txt
 
 I am a first year Master student in the Department of Computer Science, Univeristy of Virginia.
 
-My research interest lies in Programming Language and Software Security. Currently, I am doing research with [Prof.Kwon](https://yonghwi-kwon.github.io) on software security.
+My research interest lies in Programming Language and Software Security. Currently, I am doing research with [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io) on Software Security.
 
 ## Contact
 + e-mail: (dot (at jc4mf virginia) edu)
