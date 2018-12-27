@@ -63,7 +63,7 @@ void remove_list_entry(linked_list* entry) {
 
 Different from the first snippet of code, this snippet of code doesn't have that `if statement`. Here we copy the address of next node to the `next` pointer of the previous node by using a pointer of pointer `indirect`.
 
-### Let's take a closer look at the code.
+## Let's take a closer look at the code.
 
 Here is the definition of `linked_list`, nothing special.
 
@@ -121,6 +121,8 @@ In the last line, since `*indirect` is pointing to the address of the `next` poi
                   *indirect \              /
                              +------------+
 ```                             
+
+Someone may argue about the readability of the code and it being over-smart, I don't want to get involved with these things here. My point is, it is really interesting to watch Linus Torvalds to show this snippet of code, because it remind us of refining our code consistently and don't take the code we have learned in the school as the dogma.
 
 ---
 

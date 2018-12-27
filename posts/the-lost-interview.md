@@ -11,7 +11,7 @@ tags: quote, Steve Jobs
 
 Some quotes from Steve Jobs in [The Lost Interview](https://www.youtube.com/watch?v=TRZAJY23xio).
 
-**Background**: this interview happened in 1995, 10 years ago, Steve was fired by Apple, he was in charge of [NeXT](https://en.wikipedia.org/wiki/NeXT) at that time, which is a company he founded after leaving Apple. Fun fact, in the next year of this interview (1996), Apple bought NeXT, and Steve went back to Apple.
+**Background**: this interview happened in 1995, 10 years ago, Steve Jobs was fired by Apple, he was in charge of [NeXT](https://en.wikipedia.org/wiki/NeXT) at that time, which is a company he founded after leaving Apple. Fun fact, in the next year of this interview (1996), Apple bought NeXT, and Steve Jobs went back to Apple.
 
 When the host is asking how Steve Jobs learns to run a company:
 
