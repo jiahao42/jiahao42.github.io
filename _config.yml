@@ -12,7 +12,7 @@ author:
   url:            http://jiahao-cai.info
   email:          jc4mf@virginia.com
 
-exclude: ["website.sublime-project", "website.sublime-workspace", "*.log", "*.fdb_latexmk", "*.synctex.gz", "*.aux"]
+exclude: ["website.sublime-project", "website.sublime-workspace", "*.log", "*.fdb_latexmk", "*.synctex.gz", "*.aux", "cs7993"]
 
 defaults:
   -
@@ -60,3 +60,6 @@ nav:
   - name:           "about.txt"
     href:           "/"
     kind:           "file"
+
+plugins:
+  - jekyll-sitemap
