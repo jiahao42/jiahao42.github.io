@@ -9,7 +9,8 @@ tags: quote, Richard Feynman
 
 <img src="../imgs/feynman_why.jpg" alt="Richard Feynman" height="250"/>
 
-Some quotes from Richard Feynman in [Fun to imagine](https://www.youtube.com/watch?v=Q1lL-hXO27Q).
+Some quotes from Richard Feynman of the interview [Fun to imagine](https://www.youtube.com/watch?v=Q1lL-hXO27Q).   
+The video is quite short, I will recommend you watch the video instead of watching the text below :)
 
 > Interviewer: If you get hold of two magnets, and you push them, you can feel this pushing between them. Turn them around the other way, and they slam together. Now, what is it, the feeling between those two magnets?   
 >

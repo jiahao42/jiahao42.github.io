@@ -122,7 +122,8 @@ In the last line, since `*indirect` is pointing to the address of the `next` poi
                              +------------+
 ```                             
 
-Someone may argue about the readability of the code and it being over-smart, I don't want to get involved with these things here. My point is, it is really interesting to watch Linus Torvalds to show this snippet of code, because it remind us of refining our code consistently and don't take the code we have learned in the school as the dogma.
+Someone may argue about the readability of the code and it being over-smart, but I don't want to get involved with these things here :)    
+My point is, it is really interesting to watch Linus Torvalds to show this snippet of code, because it remind us of refining our code consistently and don't take the code we have learned in the school as the dogma.
 
 ---
 
