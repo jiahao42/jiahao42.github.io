@@ -8,9 +8,10 @@ cmd: cat about.txt
 
 ## Who?
 
-I am a first-year Ph.D. student in the Department of Computer Science, Univeristy of Virginia.
+I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia. I am advised by [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io) and my research interest lies in Programming Language and Software Security. 
 
-My research interest lies in Programming Language and Software Security. Currently, I am doing research with [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io) on Software Security.
+Previously, I spent three years (2014 - 2017) in Beijing, China and one year (2017 - 2018) in Halmstad, Sweden.
+
 
 ## Contact
 + e-mail: (dot (at jc4mf virginia) edu)
