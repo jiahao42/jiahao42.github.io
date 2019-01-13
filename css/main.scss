@@ -150,8 +150,18 @@ div.content {
 
 .site {
   font-size: 115%;
-  width: 580px;
+  width: 50%;
+  max-width: 580px;
+  min-width: 300px;
   margin: 2em auto;
+}
+
+@media only screen and (max-width: 1024px) {
+  .site {
+    font-size: 115%;
+    width: 90%;
+    margin: 2em auto;
+  }
 }
 
 div.top-menu, div.footer {

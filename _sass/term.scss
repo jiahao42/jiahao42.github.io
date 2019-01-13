@@ -35,6 +35,29 @@ $light-orange: #EBCB8B;
     a { color: $gray; }
 }
 
+@media only screen and (max-width: 1024px) {
+    .term {
+        color: black;
+        font-family: $code-font-stack;
+    
+        // grid for stuff like fake "ls" commands
+        &-grid {
+            display: grid;
+            grid-template-columns: 7rem 7rem 7rem;
+            // grid-gap: 2rem;
+            // padding-left: 1rem;
+        }
+            // grid for stuff like fake "ls" commands
+        &-grid-single {
+            display: grid;
+            // grid-gap: 2rem;
+            // padding-left: 1rem;
+        }
+    
+        a { color: $gray; }
+    }
+}
+
 a {
     font-family: $code-font-stack;
 
