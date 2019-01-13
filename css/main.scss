@@ -150,13 +150,13 @@ div.content {
 
 .site {
   font-size: 115%;
-  width: 50%;
+  width: 60%;
   max-width: 580px;
   min-width: 300px;
   margin: 2em auto;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .site {
     font-size: 115%;
     width: 90%;
