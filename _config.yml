@@ -4,12 +4,12 @@ permalink:        pretty
 
 # Setup
 title:            Jiahao Cai Home Page
-url:              http://jiahao-cai.info
+url:              https://jiahao-cai.info
 paginate:         1
 baseurl:          /
 author:
   name:           Jiahao Cai
-  url:            http://jiahao-cai.info
+  url:            https://jiahao-cai.info
   email:          jc4mf@virginia.com
 
 exclude: ["website.sublime-project", "website.sublime-workspace", "*.log", "*.fdb_latexmk", "*.synctex.gz", "*.aux", "cs7993"]
