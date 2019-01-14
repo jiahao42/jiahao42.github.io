@@ -14,7 +14,7 @@ layout: common
             {% endfor %}
     </nav>
     <span class = "prompt host">jiahao-cai.info</span>
-    <span class = "prompt path">~{{page.pwd | prepend: '/' }}</span> {{page.cmd}}
+    <span class = "prompt path">~{% if page.pwd %}{{page.pwd | prepend: "/"}}{% endif %}</span> {{page.cmd}}
 </header>
 <main>
   <!-- begin content -->
@@ -23,6 +23,6 @@ layout: common
 </main>
 <footer class="term">
     <span class = "prompt host">jiahao-cai.info</span>
-    <span class = "prompt path">~{{page.pwd | prepend: '/' }}</span>
+    <span class = "prompt path">~{% if page.pwd %}{{page.pwd | prepend: "/"}}{% endif %}</span>
     <span class = "blinking-cursor">_</span>
 </footer>
