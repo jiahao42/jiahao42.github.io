@@ -8,7 +8,7 @@ cmd: cat about.txt
 
 ## Who?
 
-I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia. I am advised by [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io) and my research interest lies in Programming Language and Software Security. 
+I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia (U.Va.). I am advised by [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io) and my research interest lies in Programming Language and Software Security. 
 
 Previously, I spent three years (2014 - 2017) in Beijing, China and one year (2017 - 2018) in Halmstad, Sweden.
 
