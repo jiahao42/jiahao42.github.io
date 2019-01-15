@@ -2,6 +2,7 @@
 layout: term
 title: Jiahao Cai Home Page
 cmd: cat about.txt
+description: Jiahao Cai, Ph.D. Student, Department of Computer Science, University of Virginia.
 ---
 
 # Jiahao Cai
