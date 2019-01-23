@@ -19,5 +19,5 @@ Previously, I spent three years (2014 - 2017) in Beijing, China and one year (20
 
 ## Elsewhere
 + <a class = "dir" href="https://github.com/jiahao42">Github</a>
++ <a class = "dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow</a>
 + <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a>
-+ profile on <a class = "dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow careers</a>
