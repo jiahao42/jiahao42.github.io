@@ -4,6 +4,9 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/etc/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/paper/</loc>
 </url>
 <url>
@@ -20,13 +23,5 @@
 </url>
 <url>
 <loc>http://localhost:4000/posts/the-why-questions/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/etc/tcsh.html</loc>
-<lastmod>2019-01-22T11:22:11-05:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/etc/zsh.html</loc>
-<lastmod>2019-01-22T11:22:09-05:00</lastmod>
 </url>
 </urlset>

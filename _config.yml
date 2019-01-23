@@ -35,14 +35,15 @@ defaults:
     values:
       layout: "post"
       author: "Jiahao Cai"
+  -
+    scope:
+      path: "misc/**"
+    values:
       sitemap: false
   -
     scope:
-      path: "misc"
-      type: "pages"
+      path: "etc/*.html"
     values:
-      layout: "post"
-      author: "Jiahao Cai"
       sitemap: false
 
 kramdown:
