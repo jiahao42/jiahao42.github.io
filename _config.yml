@@ -35,6 +35,15 @@ defaults:
     values:
       layout: "post"
       author: "Jiahao Cai"
+      sitemap: false
+  -
+    scope:
+      path: "misc"
+      type: "pages"
+    values:
+      layout: "post"
+      author: "Jiahao Cai"
+      sitemap: false
 
 kramdown:
   input: GFM
