@@ -18,7 +18,7 @@ Previously, I spent three years (2014 - 2017) in Beijing, China and one year (20
 
 ## Service
 
-Teaching Assistant: [CS4414: Operating Systems](https://www.cs.virginia.edu/~cr4bd/4414/S2019/) - Spring 2019
++ Teaching Assistant: [CS4414: Operating Systems](https://www.cs.virginia.edu/~cr4bd/4414/S2019/) - Spring 2019
 
 ## Elsewhere
 + <a class = "dir" href="https://github.com/jiahao42">Github</a>
