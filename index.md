@@ -2,7 +2,7 @@
 layout: term
 title: Jiahao Cai Home Page
 cmd: cat about.txt
-description: Jiahao Cai, Ph.D. Student, Department of Computer Science, University of Virginia.
+description: Jiahao Cai, Ph.D. Student, Department of Computer Science, University of Virginia (U.Va.).
 ---
 
 # Jiahao Cai
@@ -17,7 +17,6 @@ Previously, I spent three years (2014 - 2017) in Beijing, China and one year (20
 + e-mail: (dot (at jc4mf virginia) edu)
 
 ## Service
-
 + Teaching Assistant: [CS4414: Operating Systems](https://www.cs.virginia.edu/~cr4bd/4414/S2019/) - Spring 2019
 
 ## Elsewhere
