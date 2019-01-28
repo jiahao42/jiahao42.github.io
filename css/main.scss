@@ -292,6 +292,15 @@ ul {
   margin-left: 2rem;
   padding:  0;
 }
+
+@media only screen and (max-width: 768px) {
+  ul {
+    list-style: none;
+    // margin-left: 0;
+    margin-left: 1rem;
+    padding:  0;
+  }
+}
 //
 // li {
 //   font-family: $sans-font-stack;
