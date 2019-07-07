@@ -4,10 +4,11 @@
 @import "fonts.scss";
 @import "term.scss";
 
-p.quote{
+div.myquote{
+  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
   float: right;
   position: relative;
-  height: 0;    
+  height: 0;
 }
 
 /* Common vars */

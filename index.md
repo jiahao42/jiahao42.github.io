@@ -11,8 +11,8 @@ $.getJSON("quote.json", function(json) {
   var _quote = json[index];
   console.log(index);
   console.log(_quote); // this will show the info it in firebug console
-  var quote = document.createElement("p"); 
-  quote.className = "quote";
+  var quote = document.createElement("div"); 
+  quote.className = "myquote";
   quote.textContent = _quote.saying + ' --' + _quote.author;
   console.log(quote);
   var site = document.getElementsByClassName("site")[0];
