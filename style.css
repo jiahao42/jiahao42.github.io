@@ -17,6 +17,14 @@ body.mobile div.inner {
   padding: 2% 4% 4% 4%;
 }
 
+
+.quote{
+  float: right;
+  position: relative;
+  height: 0;    
+}
+
+
 pre.samp {
   border-style:outset;
   /* background-color:#FFF8DC; */
