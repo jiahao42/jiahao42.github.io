@@ -4,20 +4,21 @@
   see the original at http://elizas.website
 -->
 <html>
-  <head>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% if page.description %}
-    <meta name="description" content="{{ page.description }}">
-    {% endif %}
-    <title>{{ page.title }}</title>
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if page.description %}
+  <meta name="description" content="{{ page.description }}">
+  {% endif %}
+  <title>{{ page.title }}</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/main.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
@@ -28,19 +29,23 @@
 
     gtag('config', 'UA-116308654-1');
   </script>
-  </head>
-  <body>
-    <div class="site">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
 
-      <div class = "content">
-        <main>
-      <!-- begin subtemplate -->
-      {{ content }}
-      <!-- end subtemplate -->
+<body>
+  <div class="site">
+
+    <div class="content">
+      <main>
+        <!-- begin subtemplate -->
+        {{ content }}
+        <!-- end subtemplate -->
       </main>
-      </div>
-      </div>
-
     </div>
-  </body>
+  </div>
+
+  </div>
+</body>
+
 </html>

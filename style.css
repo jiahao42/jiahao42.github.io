@@ -18,7 +18,7 @@ body.mobile div.inner {
 }
 
 
-.quote{
+p.quote{
   float: right;
   position: relative;
   height: 0;    

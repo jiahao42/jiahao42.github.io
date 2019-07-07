@@ -6,10 +6,18 @@ description: Jiahao Cai, Ph.D. Student, Department of Computer Science, Universi
 ---
 
 <script>
-var quote = document.createElement("div"); 
-quote.innerHTML = '<div class="quote"> hello world </div>';
-var site = getElementByClass("site");
-document.body.insertBefore(site, quote);
+$.getJSON("quote.json", function(json) {
+  index = Math.floor(Math.random() * json.length);
+  var _quote = json[index];
+  console.log(index);
+  console.log(_quote); // this will show the info it in firebug console
+  var quote = document.createElement("p"); 
+  quote.className = "quote";
+  quote.textContent = _quote.saying + ' --' + _quote.author;
+  console.log(quote);
+  var site = document.getElementsByClassName("site")[0];
+  document.body.insertBefore(quote, site);
+});
 </script>
 
 # Jiahao Cai
