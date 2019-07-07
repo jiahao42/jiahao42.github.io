@@ -6,7 +6,10 @@ description: Jiahao Cai, Ph.D. Student, Department of Computer Science, Universi
 ---
 
 <script>
-document.body.innerHTML += '<div class="quote"> hello world </div>';
+var quote = document.createElement("div"); 
+quote.innerHTML = '<div class="quote"> hello world </div>';
+var site = getElementByClass("site");
+document.body.insertBefore(site, quote);
 </script>
 
 # Jiahao Cai
