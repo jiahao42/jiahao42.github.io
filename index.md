@@ -13,7 +13,7 @@ $.getJSON("quote.json", function(json) {
   console.log(_quote); // this will show the info it in firebug console
   var quote = document.createElement("p"); 
   // quote.className = "quote";
-  quote.textContent = _quote.saying + ' --' + _quote.author;
+  quote.innerHTML = _quote.saying + '<br><center> --' + _quote.author + '</center>';
   quote.style.cssText = "margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
   console.log(quote);
   var site = document.getElementsByClassName("site")[0];
