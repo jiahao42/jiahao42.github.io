@@ -4,12 +4,12 @@
 @import "fonts.scss";
 @import "term.scss";
 
-div.myquote{
-  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-  float: right;
-  position: relative;
-  height: 0;
-}
+// p.quote{
+//   float: right;
+//   position: relative;
+//   height: 0;
+//   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+// }
 
 /* Common vars */
 
@@ -21,7 +21,7 @@ $ultralight-grey: #aaa;
 $text-header-black:  #333;
 
 body {
-  background-color: #FFF;
+  background-color: #AAAA;
   font: 16px $code-font-stack;
   font-size: small;
   color: $gray;

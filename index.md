@@ -11,9 +11,10 @@ $.getJSON("quote.json", function(json) {
   var _quote = json[index];
   console.log(index);
   console.log(_quote); // this will show the info it in firebug console
-  var quote = document.createElement("div"); 
-  quote.className = "myquote";
+  var quote = document.createElement("p"); 
+  // quote.className = "quote";
   quote.textContent = _quote.saying + ' --' + _quote.author;
+  quote.style.cssText = "margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
   console.log(quote);
   var site = document.getElementsByClassName("site")[0];
   document.body.insertBefore(quote, site);
