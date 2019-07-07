@@ -18,13 +18,6 @@ body.mobile div.inner {
 }
 
 
-p.quote{
-  float: right;
-  position: relative;
-  height: 0;    
-}
-
-
 pre.samp {
   border-style:outset;
   /* background-color:#FFF8DC; */

@@ -4,6 +4,12 @@
 @import "fonts.scss";
 @import "term.scss";
 
+p.quote{
+  float: right;
+  position: relative;
+  height: 0;    
+}
+
 /* Common vars */
 
 $text-body-grey: #515151;
