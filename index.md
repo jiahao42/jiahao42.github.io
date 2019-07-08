@@ -5,21 +5,6 @@ cmd: cat about.txt
 description: Jiahao Cai, Ph.D. Student, Department of Computer Science, University of Virginia.
 ---
 
-<script>
-$.getJSON("quote.json", function(json) {
-  index = Math.floor(Math.random() * json.length);
-  var _quote = json[index];
-  console.log(index);
-  console.log(_quote); // this will show the info it in firebug console
-  var quote = document.createElement("div"); 
-  quote.innerHTML = '<i>' + _quote.saying + '</i><br><p align="right"> --' + _quote.author + '</p>';
-  quote.style.cssText = "width:15em;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
-  console.log(quote);
-  var site = document.getElementsByClassName("site")[0];
-  document.body.insertBefore(quote, site);
-});
-</script>
-
 # Jiahao Cai
 
 ## Who?
@@ -39,3 +24,19 @@ Previously, I spent three years (2014-2017) in Beijing, China and one year (2017
 <!-- + <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a> -->
 + <a class = "dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow</a>
 
+
+
+<script>
+$.getJSON("quote.json", function(json) {
+  index = Math.floor(Math.random() * json.length);
+  var _quote = json[index];
+  console.log(index);
+  console.log(_quote); // this will show the info it in firebug console
+  var quote = document.createElement("div"); 
+  quote.innerHTML = '<i>' + _quote.saying + '</i><br><p align="right"> --' + _quote.author + '</p>';
+  quote.style.cssText = "width:20%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
+  console.log(quote);
+  var site = document.getElementsByClassName("site")[0];
+  document.body.insertBefore(quote, site);
+});
+</script>
