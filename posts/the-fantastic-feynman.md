@@ -2,7 +2,7 @@
 layout: post
 title: The fantastic Mr. Feynman
 pwd: posts
-cmd: cat The-fantanstic-Mr.Feynman
+cmd: cat "The fantanstic Mr.Feynman"
 date: Jul 07 2018
 tags: quote, Richard Feynman
 ---

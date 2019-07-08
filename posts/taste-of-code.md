@@ -2,7 +2,7 @@
 layout: post
 title: Taste of code
 pwd: posts
-cmd: cat Taste-of-code
+cmd: cat "Taste of code"
 date: Aug 10 2018
 tags: Linus Torvalds, programming
 ---

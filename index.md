@@ -11,7 +11,7 @@ description: Jiahao Cai, Ph.D. Student, Department of Computer Science, Universi
 
 I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia. I am advised by [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io) and my research interest lies in Software Security and Programming Language. 
 
-Previously, I spent three years (2014-2017) in Beijing, China and one year (2017-2018) in Halmstad, Sweden.
+Previously, I spent three years (2014-2017) in Beijing, China, and one year (2017-2018) in Halmstad, Sweden.
 
 ## Contact
 + e-mail: (dot (at jc4mf virginia) edu)
@@ -21,8 +21,9 @@ Previously, I spent three years (2014-2017) in Beijing, China and one year (2017
 
 ## Elsewhere
 + <a class = "dir" href="https://github.com/jiahao42">Github</a>
-<!-- + <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a> -->
 + <a class = "dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow</a>
+<!-- + <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a> -->
++ <a class = "dir" href="https://linkedin.com/in/jiahao-cai/">LinkedIn</a>
 
 
 
@@ -35,7 +36,6 @@ $.getJSON("quote.json", function(json) {
   var quote = document.createElement("div"); 
   quote.innerHTML = '<i>' + _quote.saying + '</i><br><p align="right"> --' + _quote.author + '</p>';
   quote.style.cssText = "width:15%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 4%;height:0;";
-  console.log(quote);
   var site = document.getElementsByClassName("site")[0];
   document.body.insertBefore(quote, site);
 });

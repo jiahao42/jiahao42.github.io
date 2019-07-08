@@ -2,7 +2,7 @@
 layout: post
 title: The why questions
 pwd: posts
-cmd: cat The-why-questions
+cmd: cat "The why questions"
 date: Aug 13 2018
 tags: quote, Richard Feynman
 ---

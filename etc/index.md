@@ -1,6 +1,6 @@
 ---
 layout: dir
-title: etc
+title: etc - Jiahao Cai Home Page
 pwd: etc
 cmd: ls -R
 ---

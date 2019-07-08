@@ -2,7 +2,7 @@
 layout: post
 title: The lost interview
 pwd: posts
-cmd: cat The-lost-interview
+cmd: cat "The lost interview"
 date: May 31 2018
 tags: quote, Steve Jobs
 ---
