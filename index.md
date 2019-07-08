@@ -24,19 +24,3 @@ Previously, I spent three years (2014-2017) in Beijing, China, and one year (201
 + <a class = "dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow</a>
 <!-- + <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a> -->
 + <a class = "dir" href="https://linkedin.com/in/jiahao-cai/">LinkedIn</a>
-
-
-
-<script>
-$.getJSON("quote.json", function(json) {
-  index = Math.floor(Math.random() * json.length);
-  var _quote = json[index];
-  console.log(index);
-  console.log(_quote); // this will show the info it in firebug console
-  var quote = document.createElement("div"); 
-  quote.innerHTML = '<i>' + _quote.saying + '</i><br><p align="right"> --' + _quote.author + '</p>';
-  quote.style.cssText = "width:15%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 4%;height:0;";
-  var site = document.getElementsByClassName("site")[0];
-  document.body.insertBefore(quote, site);
-});
-</script>
