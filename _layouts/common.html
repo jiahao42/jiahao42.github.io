@@ -40,7 +40,7 @@
       var quote = document.createElement("div");
       quote.className = 'quote';
       quote.innerHTML = '<i>' + _quote.saying + '</i><br><p align="right"> --' + _quote.author + '</p>';
-      // quote.style.cssText = "width:15%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 4%;height:0;";
+      quote.style.cssText = "width:15%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 4%;height:0;max-width: 200px;";
       var site = document.getElementsByClassName("site")[0];
       document.body.insertBefore(quote, site);
     });
