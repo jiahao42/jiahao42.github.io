@@ -42,22 +42,21 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3 { text-transform: uppercase; }
 h1 {
-  font-size: 160%;
-  margin-top: 1.8rem;
-  margin-bottom: 1.8rem;
-  &:before { content: "# "; }
-}
-h2 {
   font-size: 140%;
   margin-top: 1.6rem;
   margin-bottom: 1.6rem;
+  &:before { content: "# "; }
+}
+h2 {
+  font-size: 120%;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
   &:before { content: "## "; }
 }
 h3 {
   // font-size: 125%;
-
-  margin-top: 1.4rem;
-  margin-bottom: 1.4rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
   &:before { content: "### "; }
 }
 
@@ -156,7 +155,7 @@ div.content {
 .site {
   font-size: 115%;
   width: 60%;
-  // max-width: 580px;
+  max-width: 600px;
   min-width: 300px;
   margin: 2em auto;
 }
