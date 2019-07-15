@@ -8,12 +8,12 @@ integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="ano
 $.getJSON("/quote.json", function (json) {
   var style = document.createElement('style');
   style.innerHTML =
-    '@media screen and (max-width: 1300px) {' +
+    '@media screen and (max-width: 768px) {' +
     'div.quote {' +
     'visibility: hidden;' +
     'display: none;}' +
     '}' +
-    'div.quote{width:10%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;max-width: 320px;min-width: 240px;}'
+    'div.quote{width:10%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;max-width: 300px;min-width: 160px;}'
   var site = document.getElementsByClassName("site")[0];
   document.body.insertBefore(style, site);
   index = Math.floor(Math.random() * json.length);
