@@ -22,7 +22,7 @@ $.getJSON("/quote.json", function (json) {
   console.log(_quote);
   var quote = document.createElement("div");
   quote.className = 'quote';
-  quote.innerHTML = _quote.saying + '<p align="right"> --' + _quote.author + '</p>';
+  quote.innerHTML = '<i>' + _quote.saying + '</i><p align="right"> --' + _quote.author + '</p>';
   // quote.style.cssText = "width:15em;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
   document.body.insertBefore(quote, site);
 });
