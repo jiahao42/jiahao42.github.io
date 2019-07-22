@@ -5,9 +5,9 @@
 @import "term.scss";
 
 // quote.style.cssText = "width:15%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 4%;height:0;";
-div.quote{
-  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-}
+// div.quote{
+//   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+// }
 
 /* Common vars */
 
@@ -22,7 +22,7 @@ body {
   background-color: #FFF;
   font: 14px $code-font-stack;
   // margin-left: 10px;
-  font-size: small;
+  font-size: 10pt; //small;
   color: $gray;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
