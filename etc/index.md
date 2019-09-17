@@ -19,5 +19,5 @@ Here are some random things I like:
 [(Humor) A Day in the Life of a Grad Student](http://www.cs.unc.edu/~azuma/grad.day)    
 [(Humor) Lord of the Rings as an allegory for getting the Ph.D.](http://danny.oz.au/danny/humour/phd_lotr.html)    
 
-./books:
+./books:     
 [The Ph.D. Grind - A Ph.D. Student Memoir](http://pgbovine.net/PhD-memoir/pguo-PhD-grind.pdf)
