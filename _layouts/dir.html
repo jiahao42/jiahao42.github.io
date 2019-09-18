@@ -13,16 +13,16 @@ $.getJSON("/quote.json", function (json) {
     'visibility: hidden;' +
     'display: none;}' +
     '}' +
-    'div.quote{width:15%;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;max-width: 300px;min-width: 200px;}'
+    'div.quote{width:10%;margin-top: 20px;position: absolute;margin-left: 72%;margin-right: 2em;height:0;max-width: 350px;min-width: 250px;font-family:"Monaco", monospace;font-size: 0.8rem;}'
   var site = document.getElementsByClassName("site")[0];
   document.body.insertBefore(style, site);
   index = Math.floor(Math.random() * json.length);
   var _quote = json[index];
   console.log(index);
-  console.log(_quote); // this will show the info it in firebug console
+  console.log(_quote);
   var quote = document.createElement("div");
   quote.className = 'quote';
-  quote.innerHTML = _quote.saying + '<p align="right"> --' + _quote.author + '</p>';
+  quote.innerHTML = '<i>' + _quote.saying + '</i><p align="right"> --' + _quote.author + '</p>';
   // quote.style.cssText = "width:15em;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
   document.body.insertBefore(quote, site);
 });
