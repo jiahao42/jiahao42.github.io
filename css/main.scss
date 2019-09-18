@@ -21,8 +21,6 @@ $text-header-black:  #333;
 body {
   background-color: #FFF;
   font: 12px $code-font-stack;
-  // margin-left: 10px;
-  // font-size: small;
   color: $gray;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -155,7 +153,7 @@ div.content {
 /*** site ***/
 
 .site {
-  font-size: 115%;
+  font-size: 1.2vw; // 115%;
   width: 70%;
   max-width: 630px;
   min-width: 300px;
@@ -164,7 +162,7 @@ div.content {
 
 @media only screen and (max-width: 768px) {
   .site {
-    font-size: 115%;
+    font-size: 1.2vw; // 115%;
     width: 90%;
     margin: 2em auto;
   }
