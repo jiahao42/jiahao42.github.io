@@ -18,7 +18,6 @@ Here are some random things I like:
 South Park   
 The IT Crowd   
 King of the Hill   
-Agents of S.H.I.E.L.D.    
 
 ./posts:    
 ["So long, and thanks for the Ph.D.!"](https://www.cs.princeton.edu/~jrex/teaching/spring2005/fft/azuma.html)     
