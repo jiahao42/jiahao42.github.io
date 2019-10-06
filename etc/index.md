@@ -14,10 +14,11 @@ Here are some random things I like:
 [The Fantastic Mr.Feynman BBC](https://www.dailymotion.com/video/x164gtn)      
 [Richard Feynman - The World from another point of view](https://www.youtube.com/watch?v=GNhlNSLQAFE)    
 
-./series:
+./series:   
 South Park   
 The IT Crowd   
 King of the Hill   
+Agents of S.H.I.E.L.D.    
 
 ./posts:    
 ["So long, and thanks for the Ph.D.!"](https://www.cs.princeton.edu/~jrex/teaching/spring2005/fft/azuma.html)     
