@@ -9,7 +9,7 @@ description: Jiahao Cai, Ph.D. Student, Department of Computer Science, Universi
 
 ## Who?
 
-I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia. My research interest lies in but not limited to System Security, Binary Analysis, and Programming Language. 
+I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia. My research interest lies in but not limited to Programming Language, Program Analysis and Software Security. 
 
 Previously, I spent three years (2014-2017) in Beijing, China, and one year (2017-2018) in Halmstad, Sweden.
 
