@@ -14,7 +14,7 @@ description: Jiahao Cai, Ph.D. Student, Department of Computer Science, Universi
 Previously, I spent three years (2014-2017) in Beijing, China, and one year (2017-2018) in Halmstad, Sweden.
 
 ## Contact
-+ e-mail: (dot (at jc4mf virginia) edu)
++ e-mail: (dot (at process idle) systems)
 + address: Rice Hall 336, 85 Engineer's Way, Charlottesville, VA
 
 ## Teaching
