@@ -15,7 +15,7 @@ Previously, I spent three years (2014-2017) in Beijing, China, and one year (201
 
 ## Contact
 + e-mail: (dot (at process idle) systems)
-+ address: Rice Hall 336, 85 Engineer's Way, Charlottesville, VA
++ address: <del>Rice Hall 336, 85 Engineer's Way, Charlottesville, VA</del>
 
 ## Teaching
 + Teaching Assistant: [CS4414: Operating Systems](https://www.cs.virginia.edu/~cr4bd/4414/S2019/) - Spring 2019
