@@ -9,7 +9,8 @@ description: Jiahao Cai, Ph.D. Student, Department of Computer Science, Universi
 
 ## Who?
 
-<del>I am currently a Ph.D. student in the Department of Computer Science, Univeristy of Virginia. I work with [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io/) and my research interest lies in but not limited to Program Analysis, System Security, and Programming Language.</del> <font color="red">I have already left the Ph.D program, and I will be leaving UVa in May 2020. I had awesome and unusual experience at UVa.</font> 
+<del>I am currently a Ph.D. student in the Department of Computer Science, Univeristy of Virginia.
+<!-- I work with [Prof. Yonghwi Kwon](https://yonghwi-kwon.github.io/) and --> My research interest lies in but not limited to Program Analysis, System Security, and Programming Language.</del> <font color="red">I have already left the Ph.D program, and I will be leaving UVa in May 2020. I had awesome and unusual experience at UVa.</font> 
 
 Previously, I spent three years (2014-2017) in Beijing, China, and one year (2017-2018) in Halmstad, Sweden.
 
