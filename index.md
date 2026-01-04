@@ -25,7 +25,7 @@ Currently Staff Software Engineer @Google.
 * \- 2018-2020: graduate study @University of Virginia
   1. I attended the *<u>PhD program</u>* and then *<u>dropped out</u>* (with a Master degree).
   2. My research interest lies in but not limited to *<u>Program Analysis</u>*, *<u>System Security</u>*, and *<u>Programming Language</u>*.
-* \- Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 as an exchange student in Halmstad, Sweden.
+* \- Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden as an exchange student.
 
 ## Contact
 + e-mail: (dot (at process idle) systems)
