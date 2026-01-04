@@ -22,7 +22,7 @@ Currently Staff Software Engineer @Google.
   2. Worked on *<u>Decompiler</u>* and its large-scale pipeline.
   3. Built a *<u>Web IDE</u>* for reverse engineers to review decompiled code.
   4. I also worked on *<u>semantic code diff</u>*, trying to defeat code obfuscation. *<u>GPT-3.5</u>* blew my mind, I sensed a paradigm shift and changed team.
-* \- 2018-2020: graduate study @University of Virginia
+* \- 2018-2020: Graduate study @University of Virginia
   1. I attended the *<u>PhD program</u>* and then *<u>dropped out</u>* (with a Master degree).
   2. My research interest lies in but not limited to *<u>Program Analysis</u>*, *<u>System Security</u>*, and *<u>Programming Language</u>*.
 * \- Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden as an exchange student.
