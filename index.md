@@ -11,19 +11,19 @@ description: Jiahao Cai, Staff Software Engineer at Google
 
 Currently Staff Software Engineer at Google.
 
-* Two and a half years (2023-2026) at LLM-assisted coding at Google
-  * Started with code completion, one-shot code generation, and code chat.
-  * Tech Lead for Data Science Agent, the **first publicly launched coding agent at Google** (announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s)).
-  * Fun time with **0 to 1 projects**, I worked on everything including backend/frontend/code execution infra/agents/eval/SFT/RL/..., [talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents, etc.
-  * Worked on early things before they had names, e.g., multi-agents, context engineering...(still kicking myself for not coining these terms before they became buzzwords)
+- Two and a half years (2023-2026) at LLM-assisted coding at Google
+  - Started with code completion, one-shot code generation, and code chat.
+  - Tech Lead for Data Science Agent, the *first publicly launched coding agent at Google* (announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s)).
+  - Fun time with *0 to 1 projects*, I worked on everything including backend/frontend/code execution infra/agents/eval/SFT/RL/..., [talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents, etc.
+  - Worked on early things before they had names, e.g., multi-agents, context engineering...(still kicking myself for not coining these terms before they became buzzwords)
 * Three years (2020-2023) at Android Security at Google
-  * Hunted Android malware using **Static Analysis** and ML.
-  * Worked on **Decompiler** and its large-scale pipeline.
-  * Built a **Web IDE** for reverse engineers to review decompiled code.
-  * I also worked on **semantic code diff**, trying to defeat code obfuscation. When **GPT-3.5** was out, I sensed a paradigm shift.
+  * Hunted Android malware using *Static Analysis* and ML.
+  * Worked on *Decompiler* and its large-scale pipeline.
+  * Built a *Web IDE* for reverse engineers to review decompiled code.
+  * I also worked on *semantic code diff*, trying to defeat code obfuscation. When *GPT-3.5* was out, I sensed a paradigm shift.
 * Two years (2018-2020) at University of Virginia
-  * I attended the **PhD program** and then **dropped out** (with a Master degree).
-  * My research interest lies in but not limited to **Program Analysis**, **System Security**, and **Programming Language**.
+  * I attended the *PhD program* and then *dropped out* (with a Master degree).
+  * My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
 * Three years (2014-2017) in Beijing, China, and one year (2017-2018) as an exchange student in Halmstad, Sweden.
 * Before that, I lived in Zhejiang, China.
 
