@@ -14,8 +14,9 @@ Currently Staff Software Engineer @Google.
 * \- Two and a half years (2023-now) on LLM-assisted coding @Google
   1. Started with code completion, one-shot code generation, and code chat.
   2. Tech Lead of the *<u>first public coding agent @Google</u>*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
-  3. Fun time with *<u>0 to 1 projects</u>*, I worked on everything including backend/frontend/code execution infra/agents/eval/SFT/RL/..., [talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents, etc.
-  4. Worked on early things before they had names, e.g., multi-agent, context engineering... (still kicking myself for not coining these terms before they became buzzwords)
+  3. Fun time with *<u>0 to 1 projects</u>*, I worked on everything including coding agents/code execution infra/eval/SFT/RL/frontend/backend/...
+  4. [Talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents (undisclosed), etc.
+  5. Worked on early things before they had names, e.g., multi-agent, tool call, context engineering... (still kicking myself for not coining these terms before they became buzzwords)
 * \- Three years (2020-2023) on Android Security @Google
   1. Hunted Android malware using *<u>Static Analysis</u>* and *<u>ML</u>*.
   2. Worked on *<u>Decompiler</u>* and its large-scale pipeline.
