@@ -1,6 +1,6 @@
 ---
 layout: term
-title: Jiahao Cai Home Page @Google
+title: Jiahao Cai Home Page
 cmd: cat about.txt
 description: Jiahao Cai, Staff Software Engineer at Google
 ---
