@@ -15,8 +15,8 @@ Currently Staff Software Engineer @Google.
   1. Tech Lead of the *<u>first public coding agent @Google</u>*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
   2. [Talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents (undisclosed), etc.
   3. Drove *<u>0 to 1 projects</u>*, I worked on everything including agents/eval/SFT/RL/code execution infra/frontend/backend/...
-  5. Worked on code completion/generation in Google’s Colab, Android Studio, GCP Code Assist, and other developer products.
-  4. Worked on things before they had names, e.g., multi-agent, structured output, tool call, context engineering...
+  4. Worked on *<u>code completion/generation</u>* in Google’s Colab, Android Studio, GCP Code Assist, and other developer products.
+  5. Worked on things before they had names, e.g., multi-agent, structured output, tool call, context engineering...
 
 * \- 2020.06-2023.04: Android Security @Google
   1. Hunted Android malware using *<u>Static Analysis</u>* and *<u>ML</u>*.
@@ -24,7 +24,7 @@ Currently Staff Software Engineer @Google.
   3. Built a *<u>Web IDE</u>* for reverse engineers to review decompiled code.
   4. I also worked on *<u>semantic code diff</u>*, trying to defeat code obfuscation. *<u>GPT-3.5</u>* blew my mind, I sensed a paradigm shift and changed team.
 
-* \- 2018-2020: Graduate study @University of Virginia
+* \- 2018.08-2020.05: Graduate study @University of Virginia
   1. I attended the *<u>PhD program</u>* and then *<u>dropped out</u>* (with a Master degree).
   2. My research interest lies in but not limited to *<u>Program Analysis</u>*, *<u>System Security</u>*, and *<u>Programming Language</u>*.
 
