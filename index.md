@@ -2,19 +2,19 @@
 layout: term
 title: Jiahao Cai Home Page
 cmd: cat about.txt
-description: Jiahao Cai, Staff Software Engineer at Google
+description: Jiahao Cai, Staff Engineer at Google
 ---
 
 # Jiahao Cai
 
 ## Who?
 
-Currently Staff Software Engineer @Google.
+Currently Staff Engineer @Google.
 
 * \- 2023.05-now: AI for coding @Google
   1. Tech Lead of the *<u>first public coding agent @Google</u>*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
   2. [Talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents (undisclosed), etc.
-  3. Drove *<u>0 to 1 projects</u>* as full stack AI engineer, worked on agents/eval/SFT/RL/code execution infra/backend/frontend/...
+  3. Drove *<u>0 to 1 projects</u>* from research to production, worked on agents/eval/SFT/RL/code execution infra/backend/frontend/...
   4. Worked on *<u>code completion/generation</u>* in Google’s Colab, Android Studio, GCP Code Assist, and other developer products.
   5. Worked on things before they had names, e.g., multi-agent, structured output, tool call, context engineering...
 
