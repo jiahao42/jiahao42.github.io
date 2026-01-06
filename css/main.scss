@@ -138,7 +138,8 @@ a {
     color: #a0a;
     text-decoration: underline;
     &:hover {
-        border-bottom: 2px solid;
+        background-color: #a0a;
+        color: #fff;
     }
 }
 //a:visited { color: #696969; }
