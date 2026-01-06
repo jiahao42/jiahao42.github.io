@@ -135,11 +135,11 @@ div.halftitle {
 }
 
 a {
-    color: #a0a;
+    color: $purple;
     text-decoration: underline;
     font-weight: bold;
     &:hover {
-        background-color: #a0a;
+        background-color: $purple;
         color: #fff;
     }
 }
