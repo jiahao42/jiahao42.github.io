@@ -1,8 +1,6 @@
 @import "fonts.scss";
 @import "vars.scss";
 
-$light-gray: #65737e;
-
 .term {
     color: black;
     font-family: $code-font-stack;
@@ -59,7 +57,7 @@ a {
         color: $purple;
         &:after {
             content: "/";
-            color: $gray;
+            color: $purple;
             border-bottom: none;
             &:hover {
                 border-bottom: none;
