@@ -13,7 +13,7 @@ Currently Staff Engineer @Google.
 
 
 <details markdown="1">
-    <summary>2023.05-now: AI for coding @Google</summary>
+<summary>2023.05-now: AI for coding @Google</summary>
 
 1. Tech Lead of the *first public coding agent @Google*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
 2. [Talked](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) at academic conferences, [wrote](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 2.5, filed patents (undisclosed), etc.
@@ -24,18 +24,21 @@ Currently Staff Engineer @Google.
 </details>
 
 <details markdown="1">
-    <summary>2020.06-2023.04: Android Security @Google</summary>
+<summary>2020.06-2023.04: Android Security @Google</summary>
 
 1. Hunted Android malware using *Static Analysis* and *ML*.
 2. Worked on *Decompiler* and its large-scale pipeline.
 3. Built a *Web IDE* for reverse engineers to review decompiled code.
 4. I also worked on *semantic code diff*, trying to defeat code obfuscation. *GPT-3.5* blew my mind, I sensed a paradigm shift and changed team.
+
 </details>
 
 <details markdown="1">
-    <summary>2018.08-2020.05: Graduate study @University of Virginia</summary>
+<summary>2018.08-2020.05: Graduate study @University of Virginia</summary>
+
   1. I attended the *PhD program* and then *dropped out* (with a Master degree).
   2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
+
 </details>
 
 * \- Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden as an exchange student.
