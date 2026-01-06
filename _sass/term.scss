@@ -58,10 +58,10 @@ a {
         text-decoration: none;
         &:after {
             content: "/";
-            color: #fff;
             border-bottom: none;
             &:hover {
                 border-bottom: none;
+                color: #fff;
             }
         }
     }
