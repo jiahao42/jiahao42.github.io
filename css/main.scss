@@ -105,7 +105,6 @@ h2 {
 }
 
 em {
-    text-decoration: underline;
     color: $intl-orange;
 }
 
@@ -137,7 +136,7 @@ div.halftitle {
 
 a {
     color: #479;
-    text-decoration: none;
+    text-decoration: underline;
     &:hover {
         border-bottom: 2px solid;
     }
