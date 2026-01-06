@@ -145,6 +145,10 @@ a {
 }
 //a:visited { color: #696969; }
 
+details a {
+    text-shadow: 1px 1px 10px $purple;
+}
+
 img.titleimage {
     float: left;
     border: 2px solid black;
