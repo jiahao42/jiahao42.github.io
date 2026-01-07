@@ -136,7 +136,6 @@ div.halftitle {
 
 a {
     color: $purple;
-    text-decoration: underline;
     font-weight: bold;
     &:hover {
         background-color: $purple;
@@ -146,6 +145,7 @@ a {
 //a:visited { color: #696969; }
 
 details a {
+    text-decoration: underline;
     text-shadow: 1px 1px 10px $purple;
 }
 
