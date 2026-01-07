@@ -137,6 +137,7 @@ div.halftitle {
 a {
     color: $purple;
     font-weight: bold;
+    text-decoration: none;
     &:hover {
         background-color: $purple;
         color: #fff;
