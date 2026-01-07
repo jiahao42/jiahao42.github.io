@@ -28,7 +28,7 @@ Currently Staff Engineer @Google.
 
 1. Hunted Android malware using *Static Analysis* and *ML*.
 2. Worked on *Decompiler* and its large-scale pipeline.
-3. Built a *cloud-based web IDE* for reverse engineers to review/search/navigate/diff decompiled code.
+3. Built a *cloud-based web IDE* for reverse engineers to search/navigate/compare decompiled code.
 4. I also worked on *semantic code diff*, trying to defeat code obfuscation. *GPT-3.5* blew my mind, I sensed a paradigm shift and changed team.
 
 </details>
