@@ -36,8 +36,8 @@ Currently Staff Engineer @Google.
 <details markdown="1">
 <summary>2018.08-2020.05: Graduate study @University of Virginia</summary>
 
-  1. I attended the *PhD program* and then *dropped out* (with a Master degree).
-  2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
+1. I attended the *PhD program* and then *dropped out* (with a Master degree).
+2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
 
 </details>
 
