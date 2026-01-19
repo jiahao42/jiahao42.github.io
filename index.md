@@ -34,7 +34,7 @@ Currently Staff Engineer @Google.
 </details>
 
 <details markdown="1">
-<summary>2018.08-2020.05: Graduate study @University of Virginia Computer Science</summary>
+<summary>2018.08-2020.05: Computer science graduate program @University of Virginia</summary>
 
 1. I attended the *PhD program* and then *dropped out* (with a Master degree).
 2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
