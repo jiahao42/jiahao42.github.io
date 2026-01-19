@@ -13,7 +13,7 @@ Currently Staff Engineer @Google.
 
 
 <details markdown="1" open>
-<summary>2023.05-now: *Specialized coding models & agents* @Google Labs</summary>
+<summary>2023.05-now: <em>Specialized coding models & agents</em> @Google Labs</summary>
 
 1. Tech Lead of the *first public coding agent @Google*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
 2. [Presented](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) agents at academic conferences, [published](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs for developers, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to Gemini 1.0/1.5/2.0/2.5/3.0, <a onclick="alert('not published yet :)')">filed</a> patents for [Jules](https://jules.google), etc.
@@ -24,7 +24,7 @@ Currently Staff Engineer @Google.
 </details>
 
 <details markdown="1">
-<summary>2020.06-2023.04: *Program analysis & Malware hunting* @Google Android Security</summary>
+<summary>2020.06-2023.04: <em>Program analysis & Malware hunting</em> @Google Android Security</summary>
 
 1. Hunted Android malware using *Static Analysis* and *ML*.
 2. Worked on *Decompiler* and its large-scale pipeline.
