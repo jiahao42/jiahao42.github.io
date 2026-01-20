@@ -16,6 +16,7 @@ My main theme is writing code to do something on code. For example, I write code
 * to restore source code from compiled/obfuscated shenanigans
 * to discover vulnerabilities in code
 
+## Experience
 
 <details markdown="1" open>
 <summary>2023.05-now: <em>Specialized coding models & agents</em> @Google Labs</summary>
