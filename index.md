@@ -34,10 +34,11 @@ Currently Staff Engineer @Google.
 </details>
 
 <details markdown="1">
-<summary>2018.08-2020.05: Computer science @University of Virginia</summary>
+<summary>2018.08-2020.05: <em>Security research</em> @University of Virginia CS Department</summary>
 
 1. I attended the *PhD program* and then *dropped out* (with a Master degree).
 2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
+3. Discovered vulnerabilities like *CVE-2020-23171* and *CVE-2020-23172* using my automated analysis tools (not published unfortunately).
 
 </details>
 
