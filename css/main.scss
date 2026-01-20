@@ -326,7 +326,6 @@ a.extra:hover {
 /*** lists ***/
 
 ul {
-    list-style: none;
     // margin-left: 0;
     margin-left: 2rem;
     padding: 0;
@@ -334,12 +333,18 @@ ul {
 
 @media only screen and (max-width: 768px) {
     ul {
-        list-style: none;
         // margin-left: 0;
         margin-left: 1rem;
         padding: 0;
     }
 }
+
+li::marker {
+    content: "* "; /* The character you want */
+    color: $purple; /* Custom color */
+    font-size: 1.2em; /* Custom size */
+}
+
 //
 // li {
 //   font-family: $sans-font-stack;
