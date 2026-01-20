@@ -14,8 +14,7 @@ My main theme is writing code to do something on code. For example, I write code
 * to generate more code
 * to optimize existing code
 * to restore source code from compiled/obfuscated shenanigans
-* to discover vulnerabilities in code
-* to identify malicious behavior in code
+* to discover vulnerabilities & identify malicious behavior in code
 
 ## Experience
 
