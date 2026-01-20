@@ -343,7 +343,7 @@ ul {
 li::marker {
     content: "* "; /* The character you want */
     color: $purple; /* Custom color */
-    font-size: 1.2em; /* Custom size */
+    opacity: 0.5;
 }
 
 //
