@@ -10,7 +10,7 @@ description: Jiahao Cai, Staff Engineer at Google
 ## Who?
 
 Currently Staff Engineer @Google.\
-My main theme is writing code to do something on code. For example, I write code...
+My main theme is *writing code to do something on code*. For example, I write code...
 * to generate more code
 * to optimize existing code
 * to restore source code from compiled/obfuscated shenanigans
