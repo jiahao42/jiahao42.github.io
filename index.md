@@ -16,6 +16,8 @@ My main theme is *writing code to do something on code*. For example, I write co
 * to restore source code from compiled/obfuscated shenanigans
 * to discover vulnerabilities & identify malicious behavior in code
 
+I also believe that we should be friends with *synthesized personality*. #agi
+
 ## Experience
 
 <details markdown="1" open>
