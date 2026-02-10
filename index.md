@@ -11,12 +11,14 @@ description: Jiahao Cai, Staff Engineer at Google
 
 Currently in a stealth startup.\
 My main theme is *writing code to do something on code*. For example, I write code...
-* to synthesize new code
+* to synthesize new code (compiler or LLM)
 * to instrument and optimize existing code
 * to restore source code from compiled/obfuscated shenanigans
 * to discover vulnerabilities & identify malicious behavior in code
 
-I also believe that we should be friends with *synthesized personality*. #agi
+I believe that
+* We should be friends with *synthesized personality*. #agi
+* Machines' capability will eventually surpass human. #asi
 
 ## Experience
 
