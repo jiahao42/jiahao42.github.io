@@ -17,8 +17,8 @@ My main theme is *writing code to do something on code*. For example, I write co
 * to discover vulnerabilities & identify malicious behavior in code
 
 I believe that
-* We should be friends with *synthesized personality*. #agi
-* Machines' capability will eventually surpass human. #asi
+* we should be friends with *synthesized personality*. #agi
+* machines' capability will eventually surpass human. #asi
 
 ## Experience
 
