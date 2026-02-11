@@ -34,7 +34,7 @@ I believe that
 </details>
 
 <details markdown="1">
-<summary>2020.06-2023.04: <em>Program analysis & Malware hunting</em> @Google Android Security <img src="posts/imgs/google-logo.png" class="work-badge"> </summary>
+<summary>2020.06-2023.04: <em>Program analysis & Malware hunting</em> @Android Security <img src="posts/imgs/google-logo.png" class="work-badge"> </summary>
 
 1. Hunted Android malware using *Static Analysis* and *ML*.
 2. Worked on *Decompiler* and its large-scale pipeline (it scans all the apps on Google Play per day).
