@@ -48,7 +48,7 @@ I believe that
 
 1. I attended the *PhD program* and then *dropped out* (with a Master degree).
 2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
-3. Discovered vulnerabilities like <img src="posts/imgs/hack.png" class="inline-badge"> *CVE-2020-23171* and <img src="posts/imgs/hack.png" class="inline-badge"> *CVE-2020-23172* using my automated analysis tools (not published unfortunately).
+3. Discovered vulnerabilities like <img src="posts/imgs/red.svg" class="inline-badge"> *CVE-2020-23171* and <img src="posts/imgs/red.svg" class="inline-badge"> *CVE-2020-23172* using my automated analysis tools (not published unfortunately).
 
 </details>
 

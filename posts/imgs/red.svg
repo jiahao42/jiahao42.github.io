@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    id="svg2459"
+    sodipodi:docname="malware_hazard_symbol-red.svg"
+    inkscape:export-filename="/home/pkricton/Images/malware-hazard-symbol-red.png"
+    viewBox="0 0 334.89 333.99"
+    sodipodi:version="0.32"
+    inkscape:export-xdpi="85.449226"
+    version="1.0"
+    inkscape:output_extension="org.inkscape.output.svg.inkscape"
+    inkscape:export-ydpi="85.449226"
+    inkscape:version="0.46"
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      inkscape:pageshadow="2"
+      guidetolerance="10"
+      pagecolor="#ffffff"
+      gridtolerance="10000"
+      inkscape:window-height="1020"
+      inkscape:zoom="1.2764562"
+      objecttolerance="10"
+      showgrid="false"
+      borderopacity="1.0"
+      inkscape:current-layer="layer1"
+      inkscape:cx="93.020413"
+      inkscape:cy="192.98265"
+      showguides="true"
+      inkscape:window-y="86"
+      inkscape:window-x="91"
+      inkscape:window-width="1350"
+      inkscape:guide-bbox="true"
+      inkscape:pageopacity="0.0"
+      inkscape:document-units="px"
+  />
+  <g
+      id="layer1"
+      inkscape:label="Layer 1"
+      inkscape:groupmode="layer"
+      transform="translate(-169.84 -290.15)"
+    >
+    <g
+        id="g3280"
+      >
+      <g
+          id="g3366"
+          style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+        >
+        <g
+            id="g3358"
+            style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+          >
+          <path
+              id="path13"
+              d="m284.16 408.85l23.85 10.14 29.15-17.74v-23.06l-53 30.66z"
+              style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+              sodipodi:nodetypes="ccssc"
+          />
+          <use
+              id="use2413"
+              style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+              xlink:href="#path13"
+              transform="matrix(-1 0 0 1 674.33 -.073306)"
+              height="990"
+              width="351.66501"
+              y="0"
+              x="0"
+          />
+        </g
+        >
+        <g
+            id="g3343"
+            style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+            transform="translate(0 -1.4877)"
+          >
+          <path
+              id="path3210"
+              d="m306.46 497.35l14.02-8.09 16.69 28.91v67.78l-75.81 39.67-76.26-44.02 70.21 18.32 58.46-43.4-7.31-59.17z"
+              style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+              sodipodi:nodetypes="ccccscssc"
+          />
+          <use
+              id="use2542"
+              style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+              xlink:href="#path3210"
+              transform="matrix(-1 0 0 1 674.33 .0057556)"
+              height="332.21567"
+              width="334.58145"
+              y="0"
+              x="0"
+          />
+        </g
+        >
+        <use
+            id="use3347"
+            style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+            xlink:href="#g3343"
+            transform="matrix(-.5 -.86603 .86603 -.5 94.899 1003.9)"
+            height="332.21567"
+            width="334.58145"
+            y="0"
+            x="0"
+        />
+        <use
+            id="use3349"
+            style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+            xlink:href="#g3343"
+            transform="matrix(-.5 .86603 -.86603 -.5 916.85 420.05)"
+            height="332.21567"
+            width="334.58145"
+            y="0"
+            x="0"
+        />
+        <use
+            id="use3362"
+            style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+            xlink:href="#g3358"
+            transform="matrix(-.5 .86603 -.86603 -.5 915.34 419.18)"
+            height="332.21567"
+            width="334.58145"
+            y="0"
+            x="0"
+        />
+        <use
+            id="use3364"
+            style="stroke:#b80000;stroke-width:2;fill:#ff0000"
+            xlink:href="#g3358"
+            transform="matrix(-.5 -.86603 .86603 -.5 95.986 1003.3)"
+            height="332.21567"
+            width="334.58145"
+            y="0"
+            x="0"
+        />
+      </g
+      >
+      <g
+          id="g3183"
+          transform="matrix(-.5 .86603 -.86603 -.5 916.93 420.06)"
+        >
+        <path
+            id="path3179"
+            sodipodi:nodetypes="ccccccc"
+            style="fill-rule:evenodd;fill:#ff0000"
+            transform="translate(169.84 290.15)"
+            d="m166.31 226.79l1 1.71 1.04-1.65 0.13 66.94-1.17-0.6-1.13 0.59 0.13-66.99z"
+        />
+      </g
+      >
+      <path
+          id="path3181"
+          sodipodi:nodetypes="ccccccc"
+          style="fill-rule:evenodd;fill:#ff0000"
+          d="m374.43 454.29l0.98-1.72-1.97-0.04 57.93-33.62 0.06 1.31 1.08 0.69-58.08 33.38z"
+      />
+      <g
+          id="g3186"
+          transform="translate(0 -.043260)"
+        >
+        <path
+            id="path3188"
+            d="m166.31 226.79l1 1.71 1.04-1.65 0.13 66.94-1.17-0.6-1.13 0.59 0.13-66.99z"
+            sodipodi:nodetypes="ccccccc"
+            style="fill-rule:evenodd;fill:#ff0000"
+            transform="translate(169.84 290.15)"
+        />
+      </g
+      >
+      <path
+          id="path3214"
+          sodipodi:nodetypes="ccccccc"
+          style="fill-rule:evenodd;fill:#ff0000"
+          d="m336.07 379.96l1.09-0.68 1.12 0.63-0.01 20.76-1.11-0.63-1.13 0.72 0.04-20.8z"
+      />
+      <path
+          id="path3216"
+          sodipodi:nodetypes="ccccccc"
+          style="fill-rule:evenodd;fill:#ff0000"
+          d="m418.23 520.2l0.05 1.29-1.11 0.65-17.98-10.38 1.1-0.66-0.06-1.33 18 10.43z"
+      />
+      <path
+          id="path3218"
+          sodipodi:nodetypes="ccccccc"
+          style="fill-rule:evenodd;fill:#ff0000"
+          d="m257.01 522.18l-1.13-0.6-0.02-1.29 17.98-10.37 0.02 1.28 1.19 0.61-18.04 10.37z"
+      />
+    </g
+    >
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >Malware Hazard Symbol - Red</dc:title
+        >
+        <dc:date
+          >2009-11-19T15:42:04</dc:date
+        >
+        <dc:description
+          >Symbol to label potential sources of malware. Based on the standard biohazard symbol. This variation red with stroke edges</dc:description
+        >
+        <dc:source
+          >https://openclipart.org/detail/28414/malware-hazard-symbol---red-by-pbcrichton</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >PBCrichton</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >computer</rdf:li
+            >
+            <rdf:li
+              >hazard</rdf:li
+            >
+            <rdf:li
+              >malware</rdf:li
+            >
+            <rdf:li
+              >symbol</rdf:li
+            >
+            <rdf:li
+              >trojan</rdf:li
+            >
+            <rdf:li
+              >unchecked</rdf:li
+            >
+            <rdf:li
+              >virus</rdf:li
+            >
+            <rdf:li
+              >warning</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>
