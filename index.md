@@ -55,7 +55,7 @@ I believe that
 Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden as an exchange student.
 
 ## Contact
-+ e-mail: (*dot* (*at* process idle) systems)
++ e-mail: (*dot* (*at* hi jiahao-cai) info)
 + address: San Jose, California
 
 ## Teaching
