@@ -18,7 +18,10 @@ But we have a problem.
 
 It's not a memory problem, of course human has long-term memory, can even organize the knowledge in dreams, huge advantages against LLM. But companies like Letta or mem0 will solve it.
 
-It's also not a tooling problem, human has build things like IDE to speed up the "knowledge decoding". But coding agents have been proven to do amazing things with simple tools (i.e. read, write, grep), they are the super coders with 1970s' tools. I doubt the agents will need complex harness in the future, and even if they do, Anthropic will know first and own it fast.
+<!--It's also not a tooling problem, human has build things like IDE to speed up the "knowledge decoding". But coding agents have been proven to do amazing things with simple tools (i.e. read, write, grep), they are the super coders with 1970s' tools. I doubt the agents will need complex harness in the future, and even if they do, Anthropic will know first and own it fast.-->
+It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<sup>*</sup>. The constraint isn't what they can do; it's what they can know.
+
+*: I call them "super codes from 1970s" :)
 
 To me, the problem is bigger - the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means - so every collaborator, human or AI, starts from zero.*
@@ -27,26 +30,25 @@ To me, the problem is bigger - the shared decoded layer doesn't exist:
 
 Back in 2016, I was obsessed with reverse engineering, specifically binary analysis. One practice I had was - by looking at this C code, can I "compile" it in my head and imagine the corresponding disassembly code? It was hard but fun.
 
-10 years later, LLM lifted the abstraction to a whole new level, everyone can "compile" human language to code. Put-ads-into-utility-app era is destined to end, everyone can one-shot utlility app now. Customized, ad-free, all you need is a couple dollar of tokens.
+10 years later, LLM lifted the abstraction to a whole new level, everyone can "compile" human language to code. Put-ads-into-utility-app era is destined to end, everyone can one-shot utility app now. Customized, ad-free, all you need is a couple dollar of tokens.
 
-However, the "compilation" is crumbling in many places. It's forcing people to take code review more seriously ([exmaple](https://x.com/lukOlejnik/status/2031257644724342957)), but people will not be able to keep up with the exploded PRs.
+However, the "compilation" is crumbling in many places. It's forcing people to take code review more seriously ([example](https://x.com/lukOlejnik/status/2031257644724342957)), but people will not be able to keep up with the exploded PRs.
 
-*We believe that the paradigm shift of programming is in the right direction, but the shift is too lossy.*
+*The paradigm shift of programming is in the right direction, but the shift is too lossy.*
 
-### The spec-driven is dead, long live the spec-driven
+### Re-thinking spec
 
-For years, we've been building specs, but it's not well adopted. A couple of reasons:
+Specs were supposed to be the shared truth. They weren't.
 
-1. Specs are written for humans, consumed once, then abandoned.    
-They're a communication artifact, not a living artifact. The moment code diverges from the spec - which happens in O(hour) - the spec becomes historical fiction.
-2. Text is the wrong shape.    
-A decoded codebase is a graph, but text forces you to linearize a non-linear thing.
-3. Every reader starts from zero.    
-Human or AI, each session re-decodes the codebase from scratch. The decoded understanding is never written back in a richer form. There's no accumulation. The codebase never gets smarter about itself.
+The reason isn't that engineers are lazy or that specs are a bad idea. It's structural. Specs were written for humans, consumed once, then abandoned - a communication artifact, not a living one. The moment code diverges from the spec (which happens `O(hour)`), the spec becomes historical fiction. Nobody updates it because nobody has to.
 
-But what if the spec is the decoded knowledge? What if the spec is a live graph, not text?
+Text also turns out to be the wrong shape. A decoded codebase is a graph - nodes, edges, dependencies, rationale. Text forces you to linearize something that is fundamentally non-linear. You lose the structure the moment you write it down.
 
-*We believe that text spec is dead, and the journey of live graph spec has just begun.*
+And so every reader - human or AI - starts from zero. Each session re-decodes the codebase from scratch. The decoded understanding is never written back in a richer form. There's no accumulation. The codebase never gets smarter about itself.
+
+But the instinct behind specs was right. What if the spec is the decoded knowledge? What if it's a live graph, not a document?
+
+*Text spec is dead. The live graph spec is just beginning.*
 
 ### Rust, but for business rules
 
@@ -55,7 +57,7 @@ Anthropic chose Rust to build a C compiler, because Rust is memory-safe by const
 The underlying principle is interesting: the Rust compiler is the precise, unambiguous oracle that says yes or no, and the model doesn't need to understand memory safety; it just needs to produce code that passes the check.     
 *This is a model running probabilistic attacks against a deterministic gate*. It generates, fails, learns from the error, regenerates - thousands of times - until something gets through. The goal isn't comprehension, it's convergence.
 
-*We believe that we need to build the Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks you business.*
+*We need to build Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks you business.*
 
 ### The missing layer
 
@@ -64,7 +66,7 @@ A new layer must emerge, and it should be able to:
 * preserve the decoded knowledge in a way that both human and AI can instantly understand
 * be able to enforce ground truth on the probablistic models
 
-*We believe a knowledge graph spec layer must exist, it's where human and AI collaborate to shape the software, and it will be the foundation of many AI-native software from the future.*
+*A knowledge graph spec layer must emerge, it's where human and AI collaborate to shape the software, and it will be the foundation of many AI-native software from the future.*
 
 #### A tiny example
 
@@ -78,6 +80,10 @@ Why does every reader have pay the full decoding cost every time, when we only n
 
 In Python, if something walks like a duck and quacks like a duck, it's a duck.
 
-In our ultimate vision, you don't verify code. You verify behavior. If the graph shows the software does what you need, that's all you need to know. The implementation is irrelevant, it's the trivial compiled artifact nobody needs to read. That's "duck software".
+That's our ultimate vision for software: you don't verify code. You verify behavior. If the graph shows the software does what you need, i.e. expresses the right intent, enforces the right rules, then the implementation is irrelevant. It's the compiled artifact that nobody needs to read.
 
-And that, is what we are building for the future.
+We're not there yet. Nobody is. But every layer of abstraction in computing history looked impossible until it didn't - and then it looked inevitable. Assembly to C. C to Python. Python to prompts.
+
+The next layer is the meaning layer. The decoded, shared, living representation of what software actually does and why.
+
+That's what I call "duck software". And we are building it now.
