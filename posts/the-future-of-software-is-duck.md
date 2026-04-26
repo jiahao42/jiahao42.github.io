@@ -76,7 +76,7 @@ The next layer needs to do three things: cover the lossy translation between int
 
 *A knowledge graph spec layer must emerge, it's where human and AI collaborate to shape the software, and it will be the foundation of AI-native software going forward.*
 
-#### A tiny example
+#### A tiny example - HIPAA
 
 A new engineer adds a "care coordinator" role. They grep for patient record access, find 4 files saying slightly different things, pick the one that looks most recent. Claude Code adds a billing integration, but it misses the Notion doc, exposes records to billing admins. The PR looks fine. It ships. The HIPAA rationale lived in someone's head, and that person left.
 
