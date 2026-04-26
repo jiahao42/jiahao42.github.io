@@ -3,7 +3,7 @@ layout: post
 title: The future of software is... Duck
 pwd: posts
 cmd: cat "The future of software is... Duck"
-date: Apr 22 2026
+date: Apr 26 2026
 tags: software, programming, AI
 ---
 
