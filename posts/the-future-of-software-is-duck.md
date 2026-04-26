@@ -37,11 +37,11 @@ However, the "compilation" is crumbling in many places. It's forcing people to t
 
 For years, we've been building specs, but it's not well adopted. A couple of reasons:
 
-1. Specs are written for humans, consumed once, then abandoned
+1. Specs are written for humans, consumed once, then abandoned    
 They're a communication artifact, not a living artifact. The moment code diverges from the spec - which happens in O(hour) - the spec becomes historical fiction.
-2. Text is the wrong shape
+2. Text is the wrong shape    
 A decoded codebase is a graph, but text forces you to linearize a non-linear thing.
-3. Every reader starts from zero
+3. Every reader starts from zero    
 Human or AI, each session re-decodes the codebase from scratch. The decoded understanding is never written back in a richer form. There's no accumulation. The codebase never gets smarter about itself.
 
 But what if the spec is the decoded knowledge? What if *the spec is a live graph*, not text?
