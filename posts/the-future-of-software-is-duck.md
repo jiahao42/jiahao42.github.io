@@ -23,7 +23,7 @@ It's also not a tooling problem, tooling will evolve - but the bottleneck was ne
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
 
-<sup>*</sup>: I call them "super codes from 1970s" :)
+<sup>*</sup>: I call them "super coders from 1970s" :)
 
 ### Moving towards higher abstraction
 
@@ -58,6 +58,18 @@ The underlying principle is interesting: the Rust compiler is the precise, unamb
 
 *We need to build Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks your business.*
 
+### Why not them?
+
+AWS has more infrastructure context than any security company alive. They see every packet, every API call, every misconfiguration across millions of customers. By pure data advantage, they should be the best security company in the world.
+
+Wiz reached $100M ARR faster than any SaaS company in history, built almost entirely on top of AWS. AWS didn't build Wiz. They couldn't.
+
+Wiz's identity is finding what's wrong with your cloud. That's adversarial to AWS's identity, which is: your cloud is reliable and good. Deep security work means telling customers their setup is dangerously misconfigured. AWS can't say that loudly. Wiz iterates around "how does an attacker see your infrastructure?" AWS iterates around "how do we scale to a trillion API calls." Different cognitive focus, baked into the org from day one.
+
+The same structure applies here. The companies with the most context on your codebase are structurally incentivized to maximize inference, not minimize it. Every prompt the graph intercepts is a token they don't bill. That's not a flaw in their strategy, it's just not their strategy.
+
+*Scale and depth don't share a roadmap. That asymmetry is why Wiz exists, and why we will.*
+
 ### What's next?
 
 The next layer needs to do three things: cover the lossy translation between intent and code, preserve decoded knowledge in a form both human and AI can instantly use, and enforce ground truth against the probabilistic models generating code beneath it.
@@ -70,7 +82,7 @@ A new engineer adds a "care coordinator" role. They grep for patient record acce
 
 But imagine a graph bootstraps from your code automatically - it already knows `patient.record` requires role in `["doctor", "nurse"]`. A senior engineer notices the HIPAA edge is missing, adds it once. Now the care coordinator PR hits that node, hard stop, with the exact regulation attached. Claude Code's billing integration, same. The rule is permanent. The rationale doesn't disappear when the engineer leaves, because it was never in their head to begin with.
 
-Why does every reader have pay the full decoding cost every time, when we only need to pay it once with the new layer?
+Why does every reader have pay to the full decoding cost every time, when we only need to pay it once with the new layer?
 
 ### The future of software is... Duck
 
