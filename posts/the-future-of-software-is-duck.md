@@ -20,10 +20,10 @@ It's not a memory problem, of course human has long-term memory, can even organi
 
 It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<sup>*</sup>. The constraint isn't what they can do; it's what they can figure out in the context window.
 
-*: I call them "super codes from 1970s" :)
-
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
+
+<sup>*</sup>: I call them "super codes from 1970s" :)
 
 ### Moving towards higher abstraction
 
