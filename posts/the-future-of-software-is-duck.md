@@ -76,7 +76,8 @@ Why does every reader have pay the full decoding cost every time, when we only n
 
 In Python, if something walks like a duck and quacks like a duck, it's a duck.
 
-That's our ultimate vision for software: you don't verify code. You verify behavior. If the graph shows the software does what you need, i.e. expresses the right intent, enforces the right rules, then the implementation is irrelevant. It's the compiled artifact that nobody needs to read.
+That's our ultimate vision for software:    
+You don't verify code. You verify behavior. Let's say you want to develop a booking app, if the graph shows it books like you envisioned and governs like you defined, it's your booking app. The underneath implementation is irrelevant. It's the compiled artifact that nobody needs to read.
 
 We're not there yet, but every layer of abstraction in computing history looked impossible until it didn't, and then it looked inevitable. Assembly to C. C to Python. Python to prompts.
 
