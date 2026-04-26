@@ -513,6 +513,27 @@ img {
     border-radius: 5px;
 }
 
+/* Table of Contents */
+.toc {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.toc-label {
+  margin-bottom: 0.3rem;
+  color: $ultralight-grey;
+}
+
+.toc-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.toc-h4 {
+  margin-left: 1rem;
+}
+
 /* Tables */
 table {
     margin-bottom: 1rem;
