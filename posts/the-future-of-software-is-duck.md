@@ -37,14 +37,14 @@ However, the "compilation" is crumbling in many places. It's forcing people to t
 
 For years, we've been building specs, but it's not well adopted. A couple of reasons:
 
-1. Specs are written for humans, consumed once, then abandoned    
+1. Specs are written for humans, consumed once, then abandoned.    
 They're a communication artifact, not a living artifact. The moment code diverges from the spec - which happens in O(hour) - the spec becomes historical fiction.
-2. Text is the wrong shape    
+2. Text is the wrong shape.    
 A decoded codebase is a graph, but text forces you to linearize a non-linear thing.
-3. Every reader starts from zero    
+3. Every reader starts from zero.    
 Human or AI, each session re-decodes the codebase from scratch. The decoded understanding is never written back in a richer form. There's no accumulation. The codebase never gets smarter about itself.
 
-But what if the spec is the decoded knowledge? What if *the spec is a live graph*, not text?
+But what if the spec is the decoded knowledge? What if the spec is a live graph, not text?
 
 *We believe that text spec is dead, and the journey of live graph spec has just begun.*
 
@@ -52,7 +52,7 @@ But what if the spec is the decoded knowledge? What if *the spec is a live graph
 
 Anthropic chose Rust to build a C compiler, because Rust is memory-safe by construction - once it compiles, it almost certainly doesn't have memory bugs.
 
-The underlying principle is interesting: the Rust compiler is the precise, unambiguous oracle that says yes or no, and the model doesn't need to understand memory safety; it just needs to produce code that passes the check.
+The underlying principle is interesting: the Rust compiler is the precise, unambiguous oracle that says yes or no, and the model doesn't need to understand memory safety; it just needs to produce code that passes the check.     
 *This is a model running probabilistic attacks against a deterministic gate*. It generates, fails, learns from the error, regenerates - thousands of times - until something gets through. The goal isn't comprehension, it's convergence.
 
 *We believe that we need to build the Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks you business.*
@@ -66,7 +66,7 @@ A new layer must emerge, and it should be able to:
 
 *We believe a knowledge graph spec layer must exist, it's where human and AI collaborate to shape the software, and it will be the foundation of many AI-native software from the future.*
 
-##### A tiny example
+#### A tiny example
 
 A new engineer adds a "care coordinator" role. They grep for patient record access, find 4 files saying slightly different things, pick the one that looks most recent. Claude Code adds a billing integration - misses the Notion doc, exposes records to billing admins. The PR looks fine. It ships. The HIPAA rationale lived in someone's head, and that person left.
 
