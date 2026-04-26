@@ -18,8 +18,7 @@ But we have a problem.
 
 It's not a memory problem, of course human has long-term memory, can even organize the knowledge in dreams, huge advantages against LLM. But companies like Letta or mem0 will solve it.
 
-<!--It's also not a tooling problem, human has build things like IDE to speed up the "knowledge decoding". But coding agents have been proven to do amazing things with simple tools (i.e. read, write, grep), they are the super coders with 1970s' tools. I doubt the agents will need complex harness in the future, and even if they do, Anthropic will know first and own it fast.-->
-It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<sup>*</sup>. The constraint isn't what they can do; it's what they can know.
+It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<sup>*</sup>. The constraint isn't what they can do; it's what they can figure out in the context window.
 
 *: I call them "super codes from 1970s" :)
 
@@ -57,16 +56,13 @@ Anthropic chose Rust to build a C compiler, because Rust is memory-safe by const
 The underlying principle is interesting: the Rust compiler is the precise, unambiguous oracle that says yes or no, and the model doesn't need to understand memory safety; it just needs to produce code that passes the check.     
 *This is a model running probabilistic attacks against a deterministic gate*. It generates, fails, learns from the error, regenerates - thousands of times - until something gets through. The goal isn't comprehension, it's convergence.
 
-*We need to build Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks you business.*
+*We need to build Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks your business.*
 
-### The missing layer
+### What's next?
 
-A new layer must emerge, and it should be able to:
-* cover the lossy part towards higher abstraction
-* preserve the decoded knowledge in a way that both human and AI can instantly understand
-* be able to enforce ground truth on the probablistic models
+The next layer needs to do three things: cover the lossy translation between intent and code, preserve decoded knowledge in a form both human and AI can instantly use, and enforce ground truth against the probabilistic models generating code beneath it.
 
-*A knowledge graph spec layer must emerge, it's where human and AI collaborate to shape the software, and it will be the foundation of many AI-native software from the future.*
+*A knowledge graph spec layer must emerge, it's where human and AI collaborate to shape the software, and it will be the foundation of AI-native software going forward.*
 
 #### A tiny example
 
