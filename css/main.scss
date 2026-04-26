@@ -529,7 +529,11 @@ img {
 .toc-list {
     margin-top: 0;
     margin-bottom: 0;
+    margin-left: 0;
     list-style: none;
+    li::marker {
+        content: "";
+    }
 }
 
 .toc-h4 {
