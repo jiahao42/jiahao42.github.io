@@ -82,13 +82,13 @@ A new engineer adds a "care coordinator" role. They grep for patient record acce
 
 But imagine a graph bootstraps from your code automatically - it already knows `patient.record` requires role in `["doctor", "nurse"]`. A senior engineer notices the HIPAA edge is missing, adds it once. Now the care coordinator PR hits that node, hard stop, with the exact regulation attached. Claude Code's billing integration, same. The rule is permanent. The rationale doesn't disappear when the engineer leaves, because it was never in their head to begin with.
 
-Why does every reader have pay to the full decoding cost every time, when we only need to pay it once with the new layer?
+*Why does every reader have pay to the full decoding cost every time, when we only need to pay it once with the new layer?*
 
 ### The future of software is... Duck
 
 In Python, if something walks like a duck and quacks like a duck, it's a duck.
 
-That's our ultimate vision for software:    
+That's our *ultimate vision* for software:    
 You don't verify code. You verify behavior. Let's say you want to develop a booking app, if the graph shows it books like you envisioned and governs like you defined, it's your booking app. The underneath implementation is irrelevant. It's the compiled artifact that nobody needs to read.
 
 We're not there yet, but every layer of abstraction in computing history looked impossible until it didn't, and then it looked inevitable. Assembly to C. C to Python. Python to prompts.
