@@ -18,12 +18,12 @@ But we have a problem.
 
 It's not a memory problem, of course human has long-term memory, can even organize the knowledge in dreams, huge advantages against LLM. But companies like Letta or mem0 will solve it.
 
-It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<sup>*</sup>. The constraint isn't what they can do; it's what they can figure out in the context window.
+It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<a href="#grep" id="grep_ref"><sup>*</sup></a>. The constraint isn't what they can do; it's what they can figure out in the context window.
 
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
 
-<sup>*</sup>: I call them "super coders from 1970s" :)
+<b id="grep"><sup>*</sup></b>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a></p> 
 
 ### Moving towards higher abstraction
 
