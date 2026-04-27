@@ -23,7 +23,7 @@ It's also not a tooling problem, tooling will evolve - but the bottleneck was ne
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
 
-<i id="grep">[1]</i>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a>
+<span class="ref"><i id="grep">[1]</i>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a></span>
 
 ### Moving towards higher abstraction
 
@@ -35,7 +35,7 @@ However, the "compilation" is crumbling in many places. It's forcing people to t
 
 *The paradigm shift of programming is in the right direction, but the shift is too lossy.*
 
-<i id="amz">[1]</i>: Amazon: Junior and mid-level engineers can no longer push AI-assisted code without a senior signing off, https://x.com/lukOlejnik/status/2031257644724342957 <a href="#amz_ref">↩</a>
+<span class="ref"><i id="amz">[1]</i>: Amazon: Junior and mid-level engineers can no longer push AI-assisted code without a senior signing off, https://x.com/lukOlejnik/status/2031257644724342957 <a href="#amz_ref">↩</a><span>
 
 ### Re-thinking spec
 
@@ -51,7 +51,7 @@ But the instinct behind specs was right. What if the spec is the decoded knowled
 
 *Text spec is dead. The live graph spec is just beginning.*
 
-<i id="ak">[1]</i>: Andrej Karpathy on LLM Knowledge Base: https://x.com/karpathy/status/2039805659525644595 <a href="#ak_ref">↩</a>
+<span class="ref"><i id="ak">[1]</i>: Andrej Karpathy on LLM Knowledge Base: https://x.com/karpathy/status/2039805659525644595 <a href="#ak_ref">↩</a></span>
 
 
 ### Rust, but for business rules
