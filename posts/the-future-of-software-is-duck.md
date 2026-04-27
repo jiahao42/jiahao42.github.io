@@ -23,7 +23,7 @@ It's also not a tooling problem, tooling will evolve - but the bottleneck was ne
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
 
-<b id="grep">[1]</b>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a>
+<i id="grep">[1]</i>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a>
 
 ### Moving towards higher abstraction
 
@@ -31,9 +31,11 @@ Back in 2016, I was obsessed with reverse engineering, specifically binary analy
 
 10 years later, LLM lifted the abstraction to a whole new level, everyone can "compile" human language to code. Put-ads-into-utility-app era is destined to end, everyone can one-shot utility app now. Customized, ad-free, all you need is a couple dollar of tokens.
 
-However, the "compilation" is crumbling in many places. It's forcing people to take code review more seriously ([example](https://x.com/lukOlejnik/status/2031257644724342957)), but people will not be able to keep up with the exploded PRs.
+However, the "compilation" is crumbling in many places. It's forcing people to take code review more seriously<a href="#amz" id="amz_ref"><sup>[1]</sup></a>, but people will not be able to keep up with the exploded PRs.
 
 *The paradigm shift of programming is in the right direction, but the shift is too lossy.*
+
+<i id="amz">[1]</i>: Amazon: Junior and mid-level engineers can no longer push AI-assisted code without a senior signing off, https://x.com/lukOlejnik/status/2031257644724342957 <a href="#amz_ref">↩</a>
 
 ### Re-thinking spec
 
@@ -49,7 +51,7 @@ But the instinct behind specs was right. What if the spec is the decoded knowled
 
 *Text spec is dead. The live graph spec is just beginning.*
 
-<b id="ak">[1]</b>: similar view from Andrej Karpathy: https://x.com/karpathy/status/2039805659525644595 <a href="#ak_ref">↩</a>
+<i id="ak">[1]</i>: Andrej Karpathy on LLM Knowledge Base: https://x.com/karpathy/status/2039805659525644595 <a href="#ak_ref">↩</a>
 
 
 ### Rust, but for business rules
