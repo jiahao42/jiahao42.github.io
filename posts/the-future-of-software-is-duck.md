@@ -99,5 +99,7 @@ That's what I call "duck software". And we are building it now.
 
 
 <span class="ref"><i id="grep">[1]</i>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a></span>
+
 <span class="ref"><i id="amz">[2]</i>: Amazon: Junior and mid-level engineers can no longer push AI-assisted code without a senior signing off, https://x.com/lukOlejnik/status/2031257644724342957 <a href="#amz_ref">↩</a><span>
+
 <span class="ref"><i id="ak">[3]</i>: Andrej Karpathy on LLM Knowledge Base: https://x.com/karpathy/status/2039805659525644595 <a href="#ak_ref">↩</a></span>
