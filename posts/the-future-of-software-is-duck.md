@@ -45,9 +45,11 @@ Text also turns out to be the wrong shape. A decoded codebase is a graph that in
 
 And so every reader - human or AI - starts from zero. Each session re-decodes the codebase from scratch. The decoded understanding is never written back in a richer form. There's no accumulation. The codebase never gets smarter about itself.
 
-But the instinct behind specs was right. What if the spec is the decoded knowledge? What if it's a live graph, not a document?
+But the instinct behind specs was right. What if the spec is the decoded knowledge? What if it's a live graph, not a document<sup>*</sup>?
 
 *Text spec is dead. The live graph spec is just beginning.*
+
+<sup>*</sup>: similar view from Andrej Karpathy: https://x.com/karpathy/status/2039805659525644595
 
 ### Rust, but for business rules
 
