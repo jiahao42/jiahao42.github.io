@@ -18,12 +18,12 @@ But we have a problem.
 
 It's not a memory problem, of course human has long-term memory, can even organize the knowledge in dreams, huge advantages against LLM. But companies like Letta or mem0 will solve it.
 
-It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<a href="#grep" id="grep_ref"><sup>*</sup></a>. The constraint isn't what they can do; it's what they can figure out in the context window.
+It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<a href="#grep" id="grep_ref"><sup>[1]</sup></a>. The constraint isn't what they can do; it's what they can figure out in the context window.
 
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
 
-<b id="grep"><sup>*</sup></b>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a></p> 
+<b id="grep">[1]</b>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a>
 
 ### Moving towards higher abstraction
 
@@ -45,11 +45,12 @@ Text also turns out to be the wrong shape. A decoded codebase is a graph that in
 
 And so every reader - human or AI - starts from zero. Each session re-decodes the codebase from scratch. The decoded understanding is never written back in a richer form. There's no accumulation. The codebase never gets smarter about itself.
 
-But the instinct behind specs was right. What if the spec is the decoded knowledge? What if it's a live graph, not a document<sup>*</sup>?
+But the instinct behind specs was right. What if the spec is the decoded knowledge? What if it's a live graph, not a document<a href="#ak" id="ak_ref"><sup>[1]</sup></a>?
 
 *Text spec is dead. The live graph spec is just beginning.*
 
-<sup>*</sup>: similar view from Andrej Karpathy: https://x.com/karpathy/status/2039805659525644595
+<b id="ak">[1]</b>: similar view from Andrej Karpathy: https://x.com/karpathy/status/2039805659525644595 <a href="#ak_ref">↩</a>
+
 
 ### Rust, but for business rules
 
