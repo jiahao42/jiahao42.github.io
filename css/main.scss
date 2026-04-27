@@ -523,6 +523,7 @@ img {
 
 .toc .toc-label {
     font-size: 120%;
+    margin-top: 0;
     margin-left: 0;
     margin-bottom: 0.3rem;
     color: #000;
@@ -535,6 +536,9 @@ img {
     list-style: none;
     li::marker {
         content: "";
+    }
+    li {
+        margin-bottom: 0.15rem;
     }
 }
 
