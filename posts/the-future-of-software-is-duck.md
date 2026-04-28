@@ -18,7 +18,7 @@ But we have a problem.
 
 It's not a memory problem, of course human has long-term memory, can even organize the knowledge in dreams, huge advantages against LLM. But companies like Letta or mem0 will solve it.
 
-It's also not a tooling problem, tooling will evolve - but the bottleneck was never the tools. Agents today do remarkable things with read, write, and grep<a href="#grep" id="grep_ref"><sup>[1]</sup></a>. The constraint isn't what they can do; it's what they can figure out in the context window.
+It's also not a tooling problem, agents today do remarkable things with just read, write, and grep<a href="#grep" id="grep_ref"><sup>[1]</sup></a>. The harness matters, but frontier labs will own that layer fast - that's what I learned building the first coding agent at Google. At the end of the day, an agent is a co-design problem between model and harness, and the model is winning.
 
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
@@ -57,6 +57,15 @@ The underlying principle is interesting: the Rust compiler is the precise, unamb
 *This is a model running probabilistic attacks against a deterministic gate*. It generates, fails, learns from the error, regenerates for thousands of times, until something gets through. The goal isn't comprehension, it's convergence.
 
 *We need to build Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks your business.*
+
+
+##### Tokenmaxxing
+
+Tokenmaxxing is a weird trend led by Meta, the leader burned through 281 billion tokens in a month. Similar things happened in Microsoft and Salesforce.
+
+It's created to answer "how do we measure AI adoption?", but it's obviously wrong. More tokens mean more probabilistic generation. But probabilistic generation without a deterministic gate is just noise at scale.
+
+Eventually, the metric will revert to what it always was: reliable features shipped, just 10x faster with AI + graph spec :)
 
 ### Why not them?
 
