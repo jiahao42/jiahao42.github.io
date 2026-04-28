@@ -23,7 +23,7 @@ It's also not a tooling problem, agents today do remarkable things with just rea
 To me, the problem is bigger, the shared decoded layer doesn't exist:      
 *Human decodes privately, in their heads. Claude decodes privately, per session. No one is building a living, shared representation of what the codebase means, so every collaborator, human or AI, starts from zero.*
 
-### Moving towards higher abstraction
+### Moving towards higher abstraction, at what cost?
 
 Back in 2016, I was obsessed with reverse engineering, specifically binary analysis. One practice I had was: by looking at this C code, can I "compile" it in my head and imagine the corresponding disassembly code? It was hard but fun.
 
@@ -33,8 +33,7 @@ However, the "compilation" is crumbling in many places. It's forcing people to t
 
 *The paradigm shift of programming is in the right direction, but the shift is too lossy.*
 
-
-### Re-thinking spec
+### Re-thinking the software spec
 
 Specs were supposed to be the shared truth. They weren't.
 
@@ -66,7 +65,7 @@ It's created to answer "how do we measure AI adoption?", but it's obviously wron
 
 Eventually, the metric will revert to what it always was: reliable features shipped, just 10x faster with AI + graph spec :)
 
-### Why not them?
+### Why not you-know-who companies?
 
 AWS has more infrastructure context than any security company alive. They see every packet, every API call, every misconfiguration across millions of customers. By pure data advantage, they should be the best security company in the world.
 
@@ -74,7 +73,7 @@ Wiz reached $100M ARR faster than any SaaS company in history, built almost enti
 
 Wiz's identity is finding what's wrong with your cloud. That's adversarial to AWS's identity, which is: your cloud is reliable and good. Deep security work means telling customers their setup is dangerously misconfigured. AWS can't say that loudly. Wiz iterates around "how does an attacker see your infrastructure?" AWS iterates around "how do we scale to a trillion API calls." Different cognitive focus, baked into the org from day one.
 
-The same structure applies here. The companies with the most context on your codebase are structurally incentivized to maximize inference, not minimize it. Every prompt the graph intercepts is a token they don't bill. That's not a flaw in their strategy, it's just not their strategy.
+The same structure applies here. The you-know-who companies with the most context on your codebase are structurally incentivized to maximize inference, not minimize it. Every prompt the graph intercepts is a token they don't bill. That's not a flaw in their strategy, it's just not their strategy.
 
 *Scale and depth don't share a roadmap. That asymmetry is why Wiz exists, and why we will.*
 
