@@ -58,8 +58,7 @@ The underlying principle is interesting: the Rust compiler is the precise, unamb
 
 *We need to build Rust at a higher abstraction, e.g. business rules, if it compiles, it never breaks your business.*
 
-
-##### Tokenmaxxing
+#### Tokenmaxxing
 
 Tokenmaxxing is a weird trend led by Meta, the leader burned through 281 billion tokens in a month. Similar things happened in Microsoft and Salesforce.
 
