@@ -104,6 +104,7 @@ The next layer is the meaning layer. The decoded, shared, living representation 
 
 That's what I call "duck software". And we are building it now.
 
+---
 
 <span class="ref"><i id="grep">[1]</i>: I call them "super coders from 1970s" :) <a href="#grep_ref">↩</a></span>
 
