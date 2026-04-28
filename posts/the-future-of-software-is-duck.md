@@ -79,7 +79,7 @@ The same structure applies here. The companies with the most context on your cod
 
 *Scale and depth don't share a roadmap. That asymmetry is why Wiz exists, and why we will.*
 
-### What's next?
+### The emerging layer
 
 The next layer needs to do three things: cover the lossy translation between intent and code, preserve decoded knowledge in a form both human and AI can instantly use, and enforce ground truth against the probabilistic models generating code beneath it.
 
