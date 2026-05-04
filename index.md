@@ -9,7 +9,7 @@ description: Jiahao Cai, Staff Engineer at Google
 
 ## Who?
 
-Currently in a stealth startup.\
+Currently co-founding a stealth startup.\
 My main theme is *writing code to do something on code*. For example, I write code...
 * to synthesize new code (compiler or LLM)
 * to instrument and optimize existing code
