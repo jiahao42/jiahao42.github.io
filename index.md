@@ -2,7 +2,7 @@
 layout: term
 title: Jiahao Cai Home Page
 cmd: cat about.txt
-description: Jiahao Cai, Staff Engineer at Google
+description: Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.
 ---
 
 # Jiahao Cai
