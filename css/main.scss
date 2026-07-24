@@ -46,12 +46,11 @@ h6 {
 }
 
 h1,
-h2,
-h3 {
+h2 {
     text-transform: uppercase;
 }
 h1 {
-    font-size: 140%;
+    font-size: 130%;
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
     &:before {
@@ -67,7 +66,7 @@ h2 {
     }
 }
 h3 {
-    // font-size: 125%;
+    font-size: 110%;
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
     &:before {
@@ -129,7 +128,8 @@ div.halftitle {
     // margin: 1em 0;
     // letter-spacing: 0.1px;
     padding: 0;
-    margin-left: 1rem;
+    // align body text with its headings, which hang at the true left margin
+    margin-left: 0;
     margin-bottom: 0;
     text-align: left;
     line-height: 1.5em;
@@ -149,6 +149,36 @@ a {
     }
 }
 //a:visited { color: #696969; }
+
+/* Disclosure blocks - styled as expandable shell output rather than
+   the browser's default web-widget triangle */
+details {
+    margin-bottom: 0.5rem;
+
+    > summary {
+        cursor: pointer;
+        list-style: none; // hide default marker (Firefox)
+        &::-webkit-details-marker {
+            display: none; // hide default marker (WebKit)
+        }
+        &:before {
+            content: "[+] ";
+            color: $purple;
+            font-weight: bold;
+        }
+        &:hover {
+            background-color: rgba($purple, 0.08);
+        }
+        &:focus-visible {
+            outline: 2px solid $purple;
+            outline-offset: 2px;
+        }
+    }
+
+    &[open] > summary:before {
+        content: "[-] ";
+    }
+}
 
 details a {
     text-decoration: underline;
