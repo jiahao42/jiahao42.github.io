@@ -6,9 +6,10 @@
  *  1. colors
  ***********************************/
 
-// international aerospace orange, darkened for text contrast on white
-// (#ff4f00 was ~3.3:1 and failed WCAG AA for body text)
-$intl-orange: #cc3f00;
+// international aerospace orange
+// Note: ~3.3:1 on white, below WCAG AA for body text. Kept deliberately
+// for its punch; #cc3f00 is the accessible alternative if that changes.
+$intl-orange: #ff4f00;
 // international engineering orange
 $eng-orange: #ba160c;
 // safety yellow
