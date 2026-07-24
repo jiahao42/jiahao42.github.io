@@ -4,38 +4,67 @@
   see the original at http://elizas.website
 -->
 <html>
-  <head>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="Jiahao Cai, Ph.D. Student, Department of Computer Science, University of Virginia (UVa).">
-    
-    <title>Jiahao Cai Home Page</title>
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.">
+  
+  <title>Jiahao Cai Home Page</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/main.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'UA-116308654-1');
-  </script>
-  </head>
-  <body>
-    <div class="site">
+  gtag('config', 'UA-116308654-2');
+</script>
 
-      <div class = "content">
-        <main>
-      <!-- begin subtemplate -->
-      <header class="term">
+</head>
+
+<body>
+  <div class="site">
+
+    <div class="content">
+      <main>
+        <!-- begin subtemplate -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+$.getJSON("/quote.json", function (json) {
+  var style = document.createElement('style');
+  style.innerHTML =
+    '@media screen and (max-width: 600px) {' +
+    'div.quote {' +
+    'visibility: hidden;' +
+    'display: none;}' +
+    '}' +
+    'div.quote{width:10%;margin-top: 20px;position: absolute;margin-left: 76%;margin-right: 2em;height:0;max-width: 350px;min-width: 250px;font-family:"Monaco", monospace;font-size: 0.8rem;}'
+  var site = document.getElementsByClassName("site")[0];
+  document.body.insertBefore(style, site);
+  index = Math.floor(Math.random() * json.length);
+  var _quote = json[index];
+  console.log(index);
+  console.log(_quote);
+  var quote = document.createElement("div");
+  quote.className = 'quote';
+  quote.innerHTML = '<i>' + _quote.saying + '</i><p align="right"> --' + _quote.author + '</p>';
+  // quote.style.cssText = "width:15em;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
+  document.body.insertBefore(quote, site);
+});
+</script>
+
+<header class="term">
     <!-- TODO: make these into <p>s? -->
     <span class = "prompt host">jiahao-cai.info</span>
     <span class = "prompt path">~</span> ls
@@ -53,12 +82,12 @@
             
             <span>
                 <a class="term-nav dir"
-                   href="/etc">etc</a>
+                   href="/paper">paper</a>
             </span>
             
             <span>
                 <a class="term-nav dir"
-                   href="/paper">paper</a>
+                   href="/etc">etc</a>
             </span>
             
             <span>
@@ -76,16 +105,69 @@
 
 <h2 id="who">Who?</h2>
 
-<p>I am currently a Ph.D. candidate in the Department of Computer Science, Univeristy of Virginia (U.Va.). I am advised by <a href="https://yonghwi-kwon.github.io">Prof. Yonghwi Kwon</a> and my research interest lies in Programming Language and Software Security.</p>
+<p>Currently co-founding a stealth startup.<br />
+My main theme is <em>writing code to do something on code</em>. For example, I write code…</p>
+<ul>
+  <li>to synthesize new code (compiler or LLM)</li>
+  <li>to instrument and optimize existing code</li>
+  <li>to restore source code from compiled/obfuscated shenanigans</li>
+  <li>to discover vulnerabilities &amp; identify malicious behavior in code</li>
+</ul>
 
-<p>Previously, I spent three years (2014 - 2017) in Beijing, China and one year (2017 - 2018) in Halmstad, Sweden.</p>
+<p>I believe that</p>
+<ul>
+  <li>we should be friends with <em>synthesized personality</em>. #agi</li>
+  <li>machines’ capability will eventually surpass human. #asi</li>
+</ul>
+
+<h2 id="experience">Experience</h2>
+
+<details open="">
+  <summary>2023.05-2026.01: <em>Specialized coding LLM &amp; agents</em> @Google Labs <img src="posts/imgs/google-logo.png" class="work-badge" /> </summary>
+
+  <ol>
+    <li>Tech Lead of the <em>first public coding agent @Google</em>, announced at <a href="https://www.youtube.com/watch?v=ddcZnW1HKUY&amp;t=3676s">I/O ‘24</a>.</li>
+    <li><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-kCC9EAAAAJ&amp;citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C">Presented</a> agents at academic conferences, <a href="https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/">published</a> Google blogs for developers, <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-kCC9EAAAAJ&amp;citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC">contributed</a> to the Gemini model family (1.0/1.5/2.0/2.5), <a onclick="alert('not published yet :)')">filed</a> patents for <img src="posts/imgs/jules.png" class="inline-badge" /> <a href="https://jules.google">Jules</a>, etc.</li>
+    <li>Drove <em>0 to 1 projects</em> from research to production, worked on agents/eval/SFT/RL/code execution infra/backend/frontend/…</li>
+    <li>Worked on <a href="https://web.archive.org/web/20250326012721/https://lablab.ai/tech/google/codey">code completion/generation model</a> in Google’s Colab, Android Studio, GCP Code Assist, and other <em>developer products</em>.</li>
+    <li>Worked on things <em>before they had names</em>, e.g., multi-agent, structured output, tool call, context engineering…</li>
+  </ol>
+
+</details>
+
+<details>
+  <summary>2020.06-2023.04: <em>Static analysis &amp; Malware hunting</em> @Android Security <img src="posts/imgs/google-logo.png" class="work-badge" /> </summary>
+
+  <ol>
+    <li>Hunted Android malware using <em>Static Analysis</em> and <em>AI/ML</em>.</li>
+    <li>Worked on <em>Decompiler</em> and its large-scale pipeline that scans all the apps on Google Play.</li>
+    <li>Built a <em>cloud-based web IDE for reverse engineers</em> to search/navigate/diff decompiled code.</li>
+    <li>Wrestled with <em>all the languages that can be used to write Android apps</em>, Java, Kotlin, JavaScript, C/C++, Go, Dart… Of course, JVM bytecode and Assembly too.</li>
+    <li>I also worked on <em>semantic code diff</em>, trying to defeat code obfuscation. <em>GPT-3.5</em> blew my mind, I sensed a paradigm shift and changed team.</li>
+  </ol>
+
+</details>
+
+<details>
+  <summary>2018.08-2020.05: <em>Security research</em> @UVa CS Department <img src="posts/imgs/uva-logo.png" class="work-badge" /> </summary>
+
+  <ol>
+    <li>I attended the <em>PhD program</em> and then <em>dropped out</em> (with a Master degree).</li>
+    <li>My research interest lies in but not limited to <em>Program Analysis</em>, <em>System Security</em>, and <em>Programming Language</em>.</li>
+    <li>Discovered vulnerabilities like <img src="posts/imgs/red.svg" class="inline-badge" /> <em>CVE-2020-23171</em> and <img src="posts/imgs/red.svg" class="inline-badge" /> <em>CVE-2020-23172</em> using my automated analysis tools (not published unfortunately).</li>
+  </ol>
+
+</details>
+
+<p>Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden as an exchange student.</p>
 
 <h2 id="contact">Contact</h2>
 <ul>
-  <li>e-mail: (dot (at jc4mf virginia) edu)</li>
+  <li>e-mail: (<em>dot</em> (<em>at</em> hi jiahao-cai) info)</li>
+  <li>address: San Jose, California</li>
 </ul>
 
-<h2 id="service">Service</h2>
+<h2 id="teaching">Teaching</h2>
 <ul>
   <li>Teaching Assistant: <a href="https://www.cs.virginia.edu/~cr4bd/4414/S2019/">CS4414: Operating Systems</a> - Spring 2019</li>
 </ul>
@@ -93,10 +175,11 @@
 <h2 id="elsewhere">Elsewhere</h2>
 <ul>
   <li><a class="dir" href="https://github.com/jiahao42">Github</a></li>
-  <li><a class="dir" href="https://twitter.com/caterpillarous">Twitter</a></li>
   <li><a class="dir" href="https://stackoverflow.com/users/story/5685664">Stack Overflow</a></li>
+  <li><a class="dir" href="https://x.com/__endif">Twitter</a> 
+<!-- + <a class = "dir" href="https://twitter.com/caterpillarous">Twitter</a> --></li>
+  <li><a class="dir" href="https://linkedin.com/in/jiahao-cai/">LinkedIn</a></li>
 </ul>
-
 
   <!-- end content -->
 </main>
@@ -106,11 +189,12 @@
     <span class = "blinking-cursor">_</span>
 </footer>
 
-      <!-- end subtemplate -->
+        <!-- end subtemplate -->
       </main>
-      </div>
-      </div>
-
     </div>
-  </body>
+  </div>
+
+  </div>
+</body>
+
 </html>

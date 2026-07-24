@@ -4,36 +4,65 @@
   see the original at http://elizas.website
 -->
 <html>
-  <head>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>etc</title>
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>etc - Jiahao Cai Home Page</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/main.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'UA-116308654-1');
-  </script>
-  </head>
-  <body>
-    <div class="site">
+  gtag('config', 'UA-116308654-2');
+</script>
 
-      <div class = "content">
-        <main>
-      <!-- begin subtemplate -->
-      <header class="term">
+</head>
+
+<body>
+  <div class="site">
+
+    <div class="content">
+      <main>
+        <!-- begin subtemplate -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+$.getJSON("/quote.json", function (json) {
+  var style = document.createElement('style');
+  style.innerHTML =
+    '@media screen and (max-width: 600px) {' +
+    'div.quote {' +
+    'visibility: hidden;' +
+    'display: none;}' +
+    '}' +
+    'div.quote{width:10%;margin-top: 20px;position: absolute;margin-left: 76%;margin-right: 2em;height:0;max-width: 350px;min-width: 250px;font-family:"Monaco", monospace;font-size: 0.8rem;}'
+  var site = document.getElementsByClassName("site")[0];
+  document.body.insertBefore(style, site);
+  index = Math.floor(Math.random() * json.length);
+  var _quote = json[index];
+  console.log(index);
+  console.log(_quote);
+  var quote = document.createElement("div");
+  quote.className = 'quote';
+  quote.innerHTML = '<i>' + _quote.saying + '</i><p align="right"> --' + _quote.author + '</p>';
+  // quote.style.cssText = "width:15em;margin-top: 20px;position: absolute;margin-left: 70%;margin-right: 5%;height:0;";
+  document.body.insertBefore(quote, site);
+});
+</script>
+
+<header class="term">
     <!-- TODO: make these into <p>s? -->
     <span class = "prompt host">jiahao-cai.info</span>
     <span class = "prompt path">~</span> ls
@@ -51,12 +80,12 @@
             
             <span>
                 <a class="term-nav dir"
-                   href="/etc">etc</a>
+                   href="/paper">paper</a>
             </span>
             
             <span>
                 <a class="term-nav dir"
-                   href="/paper">paper</a>
+                   href="/etc">etc</a>
             </span>
             
             <span>
@@ -70,11 +99,32 @@
     <br />
     <span class = "prompt host">jiahao-cai.info</span>
     <span class = "prompt path">~/etc
-    </span> ls
+    </span> ls -R
 </header>
 <main>
     <!-- begin content -->
-    
+    <p>Here are some random things I like:</p>
+
+<p>./videos:  <br />
+<a href="https://www.youtube.com/watch?v=LmhTW3fsnmg">Offense &amp; Defense: Notes on the Shape of the Beast - Sergey Bratus</a>    <br />
+<a href="https://www.youtube.com/watch?v=YR5ApYxkU-U">Pink Floyd - Another Brick In The Wall (HQ)</a>    <br />
+<a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc">Steve Jobs’ 2005 Stanford Commencement Address</a>    <br />
+<a href="https://www.dailymotion.com/video/x164gtn">The Fantastic Mr.Feynman BBC</a>    <br />
+<a href="https://www.youtube.com/watch?v=GNhlNSLQAFE">Richard Feynman - The World from another point of view</a></p>
+
+<p>./series: <br />
+South Park <br />
+The IT Crowd <br />
+King of the Hill</p>
+
+<p>./posts:  <br />
+<a href="https://www.cs.princeton.edu/~jrex/teaching/spring2005/fft/azuma.html">“So long, and thanks for the Ph.D.!”</a>   <br />
+<a href="http://www.cs.unc.edu/~azuma/grad.day">(Humor) A Day in the Life of a Grad Student</a>  <br />
+<a href="http://danny.oz.au/danny/humour/phd_lotr.html">(Humor) Lord of the Rings as an allegory for getting the Ph.D.</a></p>
+
+<p>./books:   <br />
+<a href="http://pgbovine.net/PhD-memoir/pguo-PhD-grind.pdf">The Ph.D. Grind - A Ph.D. Student Memoir</a></p>
+
 
     <!-- end content -->
 </main>
@@ -84,11 +134,12 @@
     <span class = "blinking-cursor">_</span>
 </footer>
 
-      <!-- end subtemplate -->
+        <!-- end subtemplate -->
       </main>
-      </div>
-      </div>
-
     </div>
-  </body>
+  </div>
+
+  </div>
+</body>
+
 </html>

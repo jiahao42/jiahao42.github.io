@@ -4,36 +4,39 @@
   see the original at http://elizas.website
 -->
 <html>
-  <head>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>Taste of code</title>
 
-    <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Taste of code</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/main.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116308654-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'UA-116308654-1');
-  </script>
-  </head>
-  <body>
-    <div class="site">
+  gtag('config', 'UA-116308654-2');
+</script>
 
-      <div class = "content">
-        <main>
-      <!-- begin subtemplate -->
-      <div class="above-post">
+</head>
+
+<body>
+  <div class="site">
+
+    <div class="content">
+      <main>
+        <!-- begin subtemplate -->
+        <div class="above-post">
 <div class="textheader">
   <h1 class="post-title">
           Taste of code
@@ -47,7 +50,7 @@
     &nbsp;back</a> -->
 </div>
 <div class="content">
-<main>
+<main id="post-content">
   <!-- begin content -->
   <p><img src="../imgs/linus-on-TED.png" alt="Linus on TED" height="250" /></p>
 
@@ -103,11 +106,11 @@
 }
 </code></pre>
 
-<p>Different from the first snippet of code, this snippet of code doesn’t have that <code class="highlighter-rouge">if statement</code>. Here we copy the address of next node to the <code class="highlighter-rouge">next</code> pointer of the previous node by using a pointer of pointer <code class="highlighter-rouge">indirect</code>.</p>
+<p>Different from the first snippet of code, this snippet of code doesn’t have that <code class="language-plaintext highlighter-rouge">if statement</code>. Here we copy the address of next node to the <code class="language-plaintext highlighter-rouge">next</code> pointer of the previous node by using a pointer of pointer <code class="language-plaintext highlighter-rouge">indirect</code>.</p>
 
 <h2 id="lets-take-a-closer-look-at-the-code">Let’s take a closer look at the code.</h2>
 
-<p>Here is the definition of <code class="highlighter-rouge">linked_list</code>, nothing special.</p>
+<p>Here is the definition of <code class="language-plaintext highlighter-rouge">linked_list</code>, nothing special.</p>
 
 <pre><code class="language-C">typedef struct Node {
     int data;
@@ -115,7 +118,7 @@
 } linked_list;
 </code></pre>
 
-<p>Suppose we have 5 nodes (1/2/3/4/5) in the linked list, <code class="highlighter-rouge">head</code> is pointing to first node and we want to delete second node.</p>
+<p>Suppose we have 5 nodes (1/2/3/4/5) in the linked list, <code class="language-plaintext highlighter-rouge">head</code> is pointing to first node and we want to delete second node.</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          entry -+
    head                          |
@@ -124,7 +127,7 @@
       +---+     +-------+     +-------+     +-------+     +-------+     +--------+
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">linked_list** indirect = &amp;head;</code> this line will create a pointer of pointer points to <code class="highlighter-rouge">head</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">linked_list** indirect = &amp;head;</code> this line will create a pointer of pointer points to <code class="language-plaintext highlighter-rouge">head</code>.</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                         entry -+
   head                          |
@@ -139,15 +142,15 @@
    indirect
 </code></pre></div></div>
 
-<p>And we do a <code class="highlighter-rouge">while loop</code></p>
+<p>And we do a <code class="language-plaintext highlighter-rouge">while loop</code></p>
 
 <pre><code class="language-C">while ((*indirect) != entry)
   indirect = &amp;(*indirect)-&gt;next;
 </code></pre>
 
-<p>First <code class="highlighter-rouge">indirect</code> points to <code class="highlighter-rouge">head</code>, <code class="highlighter-rouge">*indirect</code> is equivalent to <code class="highlighter-rouge">head</code>, which points to the first node. Apprently, <code class="highlighter-rouge">(*indirect) != entry</code> at first, so the <code class="highlighter-rouge">while loop</code> continues. In <code class="highlighter-rouge">indirect = &amp;(*indirect)-&gt;next</code>, if we are familiar with <a href="https://en.cppreference.com/w/c/language/operator_precedence">C Operator Precedence</a>, we know that the precedence of <code class="highlighter-rouge">-&gt;</code> is high than that of <code class="highlighter-rouge">&amp;</code>, so this line is to get the address of the <code class="highlighter-rouge">next</code> pointer.</p>
+<p>First <code class="language-plaintext highlighter-rouge">indirect</code> points to <code class="language-plaintext highlighter-rouge">head</code>, <code class="language-plaintext highlighter-rouge">*indirect</code> is equivalent to <code class="language-plaintext highlighter-rouge">head</code>, which points to the first node. Apprently, <code class="language-plaintext highlighter-rouge">(*indirect) != entry</code> at first, so the <code class="language-plaintext highlighter-rouge">while loop</code> continues. In <code class="language-plaintext highlighter-rouge">indirect = &amp;(*indirect)-&gt;next</code>, if we are familiar with <a href="https://en.cppreference.com/w/c/language/operator_precedence">C Operator Precedence</a>, we know that the precedence of <code class="language-plaintext highlighter-rouge">-&gt;</code> is high than that of <code class="language-plaintext highlighter-rouge">&amp;</code>, so this line is to get the address of the <code class="language-plaintext highlighter-rouge">next</code> pointer.</p>
 
-<p>In the last line, since <code class="highlighter-rouge">*indirect</code> is pointing to the address of the <code class="highlighter-rouge">next</code> pointer of the first node, <code class="highlighter-rouge">*indirect = entry-&gt;next;</code> will rewrite the <code class="highlighter-rouge">next</code> pointer of the first node with the address of the third node, and it’s done, the second node is not a part of the list any more.</p>
+<p>In the last line, since <code class="language-plaintext highlighter-rouge">*indirect</code> is pointing to the address of the <code class="language-plaintext highlighter-rouge">next</code> pointer of the first node, <code class="language-plaintext highlighter-rouge">*indirect = entry-&gt;next;</code> will rewrite the <code class="language-plaintext highlighter-rouge">next</code> pointer of the first node with the address of the third node, and it’s done, the second node is not a part of the list any more.</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          entry -+
    head                          |
@@ -176,6 +179,7 @@ My point is, it is really interesting to watch Linus Torvalds to show this snipp
   <!-- end content -->
   </main>
 </div>
+<script src="/js/toc.js"></script>
 <div class="below-post">
 
   <a class="meta">tagged: Linus Torvalds, programming</a>
@@ -184,11 +188,12 @@ My point is, it is really interesting to watch Linus Torvalds to show this snipp
  -->
 </div>
 
-      <!-- end subtemplate -->
+        <!-- end subtemplate -->
       </main>
-      </div>
-      </div>
-
     </div>
-  </body>
+  </div>
+
+  </div>
+</body>
+
 </html>
