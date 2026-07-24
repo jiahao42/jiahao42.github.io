@@ -4,17 +4,8 @@ layout: common
 
 <script>
 fetch("/quote.json").then(function (r) { return r.json(); }).then(function (json) {
-  var style = document.createElement('style');
-  style.textContent =
-    '@media screen and (max-width: 600px) {' +
-    'div.quote {' +
-    'visibility: hidden;' +
-    'display: none;}' +
-    '}' +
-    'div.quote{width:10%;margin-top: 20px;position: absolute;margin-left: 76%;margin-right: 2em;height:0;max-width: 350px;min-width: 250px;font-family:"Monaco", monospace;font-size: 0.8rem;}';
-  var site = document.getElementsByClassName("site")[0];
-  document.body.insertBefore(style, site);
   var _quote = json[Math.floor(Math.random() * json.length)];
+  var site = document.getElementsByClassName("site")[0];
   var quote = document.createElement("div");
   quote.className = 'quote';
   quote.innerHTML = '<i>' + _quote.saying + '</i><p align="right"> --' + _quote.author + '</p>';
