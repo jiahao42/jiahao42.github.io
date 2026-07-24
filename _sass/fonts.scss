@@ -3,7 +3,7 @@
 $serif-font-stack: "Source Serif Pro", "Times New Roman",serif;
 $sans-font-stack: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$code-font-stack: "Monaco", monospace; // Consolas, Iosevka, Monaco
+$code-font-stack: "Source Code Pro", "Monaco", monospace; // Consolas, Iosevka, Monaco
 
 @font-face {
     font-family: 'Source Sans Pro';
@@ -140,7 +140,16 @@ $code-font-stack: "Monaco", monospace; // Consolas, Iosevka, Monaco
     font-family: 'Source Code Pro';
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: local('Source Code Pro'), url("/fonts/SourceCodePro-Regular.woff") format('woff');
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Source Code Pro Semibold'), url("/fonts/SourceCodePro-Semibold.woff") format('woff');
 }
 
 @font-face {
