@@ -36,10 +36,11 @@ I believe that
 <details markdown="1">
 <summary>2020.06-2023.04: <em>Program analysis & Malware hunting</em> @Android Security <img src="posts/imgs/google-logo.png" class="work-badge"> </summary>
 
-1. Hunted Android malware using *Static Analysis* and *ML*.
+1. Hunted Android malware using *Static Analysis* and *AI/ML*.
 2. Worked on *Decompiler* and its large-scale pipeline (it scans all the apps on Google Play per day).
 3. Built a *cloud-based web IDE* for reverse engineers to search/navigate/compare decompiled code.
-4. I also worked on *semantic code diff*, trying to defeat code obfuscation. *GPT-3.5* blew my mind, I sensed a paradigm shift and changed team.
+4. Dealt with all the languages that can be used to write Android apps, Java, Kotlin, JavaScript, C/C++, Go, Dart... Of course, JVM bytecode and Assembly too.
+5. I also worked on *semantic code diff*, trying to defeat code obfuscation. *GPT-3.5* blew my mind, I sensed a paradigm shift and changed team.
 
 </details>
 
