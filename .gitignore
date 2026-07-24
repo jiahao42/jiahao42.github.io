@@ -1,3 +1,7 @@
 .DS_Store
 
 node_modules/
+
+# Jekyll build artifacts (site is built remotely by GitHub Pages from source)
+_site/
+.sass-cache/
