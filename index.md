@@ -39,7 +39,7 @@ I believe that
 1. Hunted Android malware using *Static Analysis* and *AI/ML*.
 2. Worked on *Decompiler* and its large-scale pipeline (it scans all the apps on Google Play per day).
 3. Built a *cloud-based web IDE* for reverse engineers to search/navigate/compare decompiled code.
-4. Dealt with *all the languages that can be used to write Android apps*, Java, Kotlin, JavaScript, C/C++, Go, Dart... Of course, JVM bytecode and Assembly too.
+4. Wrestled with *all the languages that can be used to write Android apps*, Java, Kotlin, JavaScript, C/C++, Go, Dart... Of course, JVM bytecode and Assembly too.
 5. I also worked on *semantic code diff*, trying to defeat code obfuscation. *GPT-3.5* blew my mind, I sensed a paradigm shift and changed team.
 
 </details>
