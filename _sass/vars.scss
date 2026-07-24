@@ -6,8 +6,9 @@
  *  1. colors
  ***********************************/
 
-// international aerospace orange
-$intl-orange: #ff4f00;
+// international aerospace orange, darkened for text contrast on white
+// (#ff4f00 was ~3.3:1 and failed WCAG AA for body text)
+$intl-orange: #cc3f00;
 // international engineering orange
 $eng-orange: #ba160c;
 // safety yellow
@@ -21,7 +22,8 @@ $blue: blue;
 // VGA magenta
 $purple: #aa00aa;
 $light-purple: #e16dfb;
-$green: #acc697;
+// darkened from #acc697, which was only ~1.9:1 against white
+$green: #4e7a35;
 $red: #ff0000;
 $orange: orange;
 $light-orange: yellow;
