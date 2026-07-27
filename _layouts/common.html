@@ -14,11 +14,13 @@
   {% endif %}
   <title>{{ page.title }}</title>
 
+  <!-- The ?v= is a cache buster: it changes every build, so browsers fetch the
+       new stylesheet instead of serving a stale cached copy. -->
   <!-- syntax highlighting CSS -->
-  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/syntax.css?v={{ site.time | date: '%s' }}">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/main.css?v={{ site.time | date: '%s' }}">
 
   <!-- Google tag (gtag.js) - Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BN2ZZR04QV"></script>
