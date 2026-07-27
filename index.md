@@ -28,8 +28,8 @@ I believe that
 1. Tech Lead of the *first public coding agent @Google*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
 2. [Presented](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u5HHmVD_uO8C) agents at academic conferences, [published](https://developers.googleblog.com/en/meet-jules-tools-a-command-line-companion-for-googles-async-coding-agent/) Google blogs for developers, [contributed](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A-kCC9EAAAAJ&citation_for_view=A-kCC9EAAAAJ:u-x6o8ySG0sC) to the Gemini model family (1.0/1.5/2.0/2.5), <a onclick="alert('not published yet :)')">filed</a> patents for <img src="posts/imgs/jules.png" class="inline-badge"> [Jules](https://jules.google), etc.
 3. Drove *0 to 1 projects* from research to production, worked on agents/eval/SFT/RL/code execution infra/backend/frontend/...
-4. Worked on [code completion/generation model](https://web.archive.org/web/20250326012721/https://lablab.ai/tech/google/codey) in Google’s Colab, Android Studio, GCP Code Assist, and other *developer products*.
-5. Worked on things *before they had names*, e.g., multi-agent, structured output, tool call, context engineering...
+4. Worked on [code completion/generation model](https://web.archive.org/web/20250326012721/https://lablab.ai/tech/google/codey) in Google’s Colab, Android Studio, GCP Code Assist, and other developer products.
+5. Worked on things before they had names, e.g., multi-agent, structured output, tool call, context engineering...
 
 </details>
 
@@ -39,8 +39,8 @@ I believe that
 1. Hunted Android malware using *Static Analysis* and *AI/ML*.
 2. Worked on *Decompiler* and its large-scale pipeline that scans all the apps on Google Play.
 3. Built a *cloud-based web IDE for reverse engineers* to search/navigate/diff decompiled code.
-4. Wrestled with *all the languages that can be used to write Android apps*, Java, Kotlin, JavaScript, C/C++, Go, Dart... Of course, JVM bytecode and Assembly too.
-5. I also worked on *semantic code diff*, trying to defeat code obfuscation. *GPT-3.5* blew my mind, I sensed a paradigm shift and changed team.
+4. Wrestled with all the languages that can be used to write Android apps, Java, Kotlin, JavaScript, C/C++, Go, Dart... Of course, JVM bytecode and Assembly too.
+5. I also worked on *semantic code diff*, trying to defeat code obfuscation. GPT-3.5 blew my mind, I sensed a paradigm shift and changed team.
 
 </details>
 
@@ -48,8 +48,8 @@ I believe that
 <summary>2018.08-2020.05: <em>Security research</em> @UVa CS Department <img src="posts/imgs/uva-logo.png" class="work-badge"> </summary>
 
 1. I attended the *PhD program* and then *dropped out* (with a Master degree).
-2. My research interest lies in but not limited to *Program Analysis*, *System Security*, and *Programming Language*.
-3. Discovered vulnerabilities like <img src="posts/imgs/red.svg" class="inline-badge"> *CVE-2020-23171* and <img src="posts/imgs/red.svg" class="inline-badge"> *CVE-2020-23172* using my automated analysis tools (not published unfortunately).
+2. My research interest lies in but not limited to Program Analysis, System Security, and Programming Language.
+3. Discovered vulnerabilities like <img src="posts/imgs/red.svg" class="inline-badge"> CVE-2020-23171 and <img src="posts/imgs/red.svg" class="inline-badge"> CVE-2020-23172 using my automated analysis tools (not published unfortunately).
 
 </details>
 
