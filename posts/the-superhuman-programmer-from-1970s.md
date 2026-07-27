@@ -25,7 +25,7 @@ Every generation of the problem has the same shape - somebody produces an index,
 | `ctags`/`etags` | lexer/scanner | vim/emacs | developer |
 | symbol-based codebase indexing | parser + symbol/dep graph | IDE (the JetBrains series) | developer |
 | vector/embedding-based codebase indexing | embedding model | IDE (Cursor) / hosted service (Sourcegraph, Greptile) | developer |
-| LLM agent | the agent | the same agent | the same agent |
+| LLM agent w/ `grep`/`find` | the agent | the same agent | the same agent |
 
 That last row is the whole post. In every row above it, the producer and the consumer are different things, which means the index is an artifact: it survives the query that created it, and somebody other than its author can read it. In the last row, producer, consumer, and user collapse into one process, and the index it builds has a lifetime of one session.
 
