@@ -244,9 +244,17 @@ div.content {
 .site {
     font-size: 0.9rem;
     width: 76%;
-    max-width: 860px;
+    // ~88 characters per line at 0.9rem Monaco, down from ~99 at 860px.
+    max-width: 760px;
     min-width: 300px;
     margin: 1em auto;
+}
+
+/* Posts run wider than listing pages: prose goes to ~95 chars, and code blocks
+   to ~102, which is enough for the widest ASCII diagram to sit without a
+   scrollbar. The class comes from the page's own layout, set in common.html. */
+.site.post {
+    max-width: 820px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -491,10 +499,10 @@ pre {
     padding: 1rem;
     font-size: 0.8rem;
     line-height: 1.4;
+    // Scroll rather than wrap. Wrapping (pre-wrap + break-all) reflows ASCII
+    // diagrams mid-token and destroys their column alignment.
     white-space: pre;
-    white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word;
+    overflow-x: auto;
     background-color: #f9f9f9;
     code {
         padding: 0;
