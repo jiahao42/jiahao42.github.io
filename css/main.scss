@@ -252,7 +252,7 @@ div.content {
 
 /* Posts run wider than listing pages: prose goes to ~95 chars, and code blocks
    to ~102, which is enough for the widest ASCII diagram to sit without a
-   scrollbar. The class comes from the page's own layout, set in common.html. */
+   scrollbar. The .post class is added in common.html. */
 .site.post {
     max-width: 820px;
 }
@@ -642,11 +642,6 @@ tbody tr:nth-child(odd) th {
  *
  *  Based on Poole (https://github.com/poole/poole/blob/master/public/css/poole.css)
  */
-
-.page,
-.post {
-    margin-bottom: 4em;
-}
 
 /* Blog post or page title */
 .page-title,
