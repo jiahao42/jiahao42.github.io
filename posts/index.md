@@ -7,8 +7,8 @@ cmd: ls -l
 
 total 5   
 \-rw\-r\-\-r\-\-  Jiahao  Apr 22 2026   [The future of software is... Duck](the-future-of-software-is-duck)   
+lrwxrwxrwx  Jiahao  Jan 26 2026   [Ground Oddity -> http://idle.systems](http://idle.systems)
 \-rw\-r\-\-r\-\-  Jiahao  Aug 13 2018   [The why questions](the-why-questions)   
 \-rw\-r\-\-r\-\-  Jiahao  Aug 10 2018   [Taste of code](taste-of-code)   
 \-rw\-r\-\-r\-\-  Jiahao  Jul 07 2018   [The fantanstic Mr.Feynman](the-fantastic-feynman)   
-\-rw\-r\-\-r\-\-  Jiahao  May 31 2018   [The lost interview](the-lost-interview)   
-lrwxrwxrwx  Jiahao  Feb 03 2018   [Ground Oddity -> http://idle.systems](http://idle.systems)
+\-rw\-r\-\-r\-\-  Jiahao  May 31 2018   [The lost interview](the-lost-interview)
