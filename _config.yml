@@ -30,7 +30,7 @@ defaults:
       author: "Jiahao Cai"
   -
     scope:
-      path: "etc"
+      path: "misc"
       type: "pages"
     values:
       layout: "post"
@@ -38,11 +38,6 @@ defaults:
   -
     scope:
       path: "misc/*.html"
-    values:
-      sitemap: false
-  -
-    scope:
-      path: "etc/*.html"
     values:
       sitemap: false
 
@@ -61,15 +56,9 @@ nav:
   - name:           "posts"
     href:           "/posts"
     kind:           "dir"
-  - name:           "paper"
-    href:           "/paper"
+  - name:           "misc"
+    href:           "/misc"
     kind:           "dir"
-  - name:           "etc"
-    href:           "/etc"
-    kind:           "dir"
-  # - name:           "misc"
-  #   href:           "/misc"
-  #   kind:           "dir"
   - name:           "about.txt"
     href:           "/"
     kind:           "file"
