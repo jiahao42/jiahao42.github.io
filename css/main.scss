@@ -150,6 +150,18 @@ a {
 }
 //a:visited { color: #696969; }
 
+/* Monaco ships a single face, so <strong> only ever gets a weak synthetic
+   bold and never falls through to the next family in the stack. Borrow a real
+   700 from Menlo, which Apple built as Monaco's successor and which matches it
+   almost exactly - advance 0.6021em vs 0.6001em, x-height 0.5469em vs 0.5454em.
+   (Source Code Pro Semibold is the non-mac fallback; its x-height is 12%
+   shorter than Monaco's, so bold set in it reads smaller, not heavier.) */
+strong,
+b {
+    font-family: "Menlo", "Source Code Pro", monospace;
+    font-weight: 700;
+}
+
 /* Disclosure blocks - styled as expandable shell output rather than
    the browser's default web-widget triangle */
 details {
@@ -545,6 +557,23 @@ img {
     max-width: 100%;
     margin: 0 0 1rem;
     border-radius: 5px;
+}
+
+/* Figures - image and caption centered as a single unit. Overrides the
+   browser default figure margin (1em 40px), which would indent the block. */
+figure {
+    margin: 1.5rem 0;
+    text-align: center;
+
+    img {
+        display: block;
+        margin: 0 auto 0.5rem;
+    }
+
+    figcaption {
+        color: $light-gray;
+        font-size: 90%;
+    }
 }
 
 /* Table of Contents */
