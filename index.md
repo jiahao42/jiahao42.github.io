@@ -21,9 +21,7 @@ For example, I write code...
 ## Experience
 
 <details markdown="1" open>
-<summary>2026.01-Now: <strong>Co-founder</strong> @Stealth Startup</summary>
-
-1. Everything.
+<summary>2026.01-Now: <strong>Everything</strong> @Stealth Startup</summary>
 
 </details>
 
