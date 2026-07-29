@@ -23,7 +23,7 @@ For example, I write code...
 <details markdown="1" open>
 <summary>2026.01-Now: <strong>Co-founder</strong> @Stealth Startup</summary>
 
-* Everything.
+1. Everything.
 
 </details>
 
