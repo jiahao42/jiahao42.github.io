@@ -10,8 +10,7 @@ description: Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.
 ## Who?
 
 <details markdown="1">
-<summary>I like to <em>write code to do something on code</em>.</summary>
-For example, I write code...
+<summary>I like to <em>write code to do something on code</em>. For example, I write code...</summary>
 * to synthesize new code (compiler or LLM)
 * to instrument and optimize existing code
 * to restore source code from compiled/obfuscated shenanigans
