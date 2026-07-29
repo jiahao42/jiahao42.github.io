@@ -9,20 +9,22 @@ description: Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.
 
 ## Who?
 
-Currently co-founding a stealth startup.\
-My main theme is *writing code to do something on code*. For example, I write code...
+<details markdown="1">
+<summary>I like to <em>write code to do something on code</em>.</summary>
+For example, I write code...
 * to synthesize new code (compiler or LLM)
 * to instrument and optimize existing code
 * to restore source code from compiled/obfuscated shenanigans
 * to discover vulnerabilities & identify malicious behavior in code
-
-I believe that
-* we should be friends with *synthesized personality*. #agi
-* machines' capability will eventually surpass human. #asi
+</details>
 
 ## Experience
 
 <details markdown="1" open>
+<summary>2026.01-Now: <strong>Co-founder</strong> @Stealth Startup</summary>
+</details>
+
+<details markdown="1">
 <summary>2023.05-2026.01: <strong>Specialized coding LLM & agents</strong> @Google Labs <img src="posts/imgs/google-logo.png" class="work-badge"> </summary>
 
 1. Tech Lead of the *first public coding agent @Google*, announced at [I/O '24](https://www.youtube.com/watch?v=ddcZnW1HKUY&t=3676s).
@@ -53,7 +55,7 @@ I believe that
 
 </details>
 
-Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden as an exchange student.
+Before coming to the US, I spent 2014-2017 in Beijing, China, and 2017-2018 in Halmstad, Sweden.
 
 ## Contact
 + e-mail: (*dot* (*at* hi jiahao-cai) info)
