@@ -442,8 +442,14 @@ li::before {
     right: 100%;
     padding-right: 0.4em;
     color: rgba($purple, 0.7);
-    font-size: 120%;
-    transform: translateY(0.2em);
+    /* Keep the marker's font metrics identical to the text, so its box is the
+       same height as the text line (19px) rather than the 22px a 120%
+       font-size produced. The larger bullet comes from scale(), which is
+       purely visual and leaves metrics alone. The asterisk's ink sits high in
+       the font, so drop it 0.315em to sit on the lowercase optical centre -
+       measured off rendered pixels rather than eyeballed. */
+    font-size: 100%;
+    transform: translateY(0.315em) scale(1.2);
 }
 
 //
