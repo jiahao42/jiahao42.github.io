@@ -10,7 +10,8 @@ description: Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.
 ## Who?
 
 <details markdown="1">
-<summary>I like to <em>write code to do something on code</em>. For example, I write code...</summary>
+<summary>I like to <em>write code to do something on code</em>.</summary>
+For example, I write code...
 * to synthesize new code (compiler or LLM)
 * to instrument and optimize existing code
 * to restore source code from compiled/obfuscated shenanigans
@@ -21,6 +22,7 @@ description: Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.
 
 <details markdown="1" open>
 <summary>2026.01-Now: <strong>Co-founder</strong> @Stealth Startup</summary>
+* Everything.
 </details>
 
 <details markdown="1">
