@@ -174,9 +174,18 @@ details {
             display: none; // hide default marker (WebKit)
         }
         &:before {
-            content: "[+] ";
+            content: "[+]";
             color: $purple;
             font-weight: bold;
+            // Mirror img.work-badge's box (2em tall, vertical-align: middle) so
+            // rows without an icon get the same line height as rows with one.
+            // The marker is on every row, so it sets a consistent floor.
+            display: inline-block;
+            height: 2em;
+            line-height: 2em;
+            vertical-align: middle;
+            // inline-block collapses the trailing space, so space it manually
+            margin-right: 1ch;
         }
         &:hover {
             background-color: rgba($purple, 0.08);
@@ -188,7 +197,7 @@ details {
     }
 
     &[open] > summary:before {
-        content: "[-] ";
+        content: "[-]";
     }
 }
 
