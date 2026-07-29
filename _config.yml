@@ -23,13 +23,6 @@ defaults:
       layout: main
   -
     scope:
-      path: "notebook"
-      type: "posts"
-    values:
-      layout: "post"
-      author: "Jiahao Cai"
-  -
-    scope:
       path: "misc"
       type: "pages"
     values:
@@ -38,6 +31,13 @@ defaults:
   -
     scope:
       path: "misc/*.html"
+    values:
+      sitemap: false
+  -
+    # Globs only match direct children, so misc/*.html misses misc/csig/.
+    # A plain path is a prefix match and covers the subdirectory.
+    scope:
+      path: "misc/csig"
     values:
       sitemap: false
 
