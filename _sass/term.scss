@@ -24,6 +24,12 @@
     }
 }
 
+// The header stacks several prompt lines around the fake `ls` output, and at
+// the font's natural line-height they read as one dense block. Open them up.
+header.term {
+    line-height: 1.8;
+}
+
 @media only screen and (max-width: 900px) {
     .term {
         color: black;
