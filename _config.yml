@@ -50,18 +50,15 @@ sass:
 
 # Navigation
 nav:
-  - name:           "code"
-    href:           "https://github.com/jiahao42"
-    kind:           "dir"
+  - name:           "about.txt"
+    href:           "/"
+    kind:           "file"
   - name:           "posts"
     href:           "/posts"
     kind:           "dir"
   - name:           "misc"
     href:           "/misc"
     kind:           "dir"
-  - name:           "about.txt"
-    href:           "/"
-    kind:           "file"
 
 plugins:
   - jekyll-sitemap
