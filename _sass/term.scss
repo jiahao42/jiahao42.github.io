@@ -24,10 +24,13 @@
     }
 }
 
-// The header stacks several prompt lines around the fake `ls` output, and at
-// the font's natural line-height they read as one dense block. Open them up.
-header.term {
-    line-height: 1.8;
+// A command and the output it produced read as one unit, so they stay tight
+// together. The gap goes between whole units instead: before a prompt that
+// follows some output, or one that follows another prompt.
+.term-grid + .term-line,
+.term-grid-single + .term-line,
+.term-line + .term-line {
+    margin-top: 0.8em;
 }
 
 @media only screen and (max-width: 900px) {

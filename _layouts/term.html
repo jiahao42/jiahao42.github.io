@@ -14,9 +14,7 @@ fetch("/quote.json").then(function (r) { return r.json(); }).then(function (json
 </script>
 
 <header class="term">
-    <!-- TODO: make these into <p>s? -->
-    <span class = "prompt host">jiahao-cai.info</span>
-    <span class = "prompt path">~</span> ls
+    <div class="term-line"><span class="prompt host">jiahao-cai.info</span><span class="prompt path">~</span> ls</div>
     <nav class="term-grid">
         {% for nav in site.nav %}
             <span>
@@ -25,8 +23,7 @@ fetch("/quote.json").then(function (r) { return r.json(); }).then(function (json
             </span>
             {% endfor %}
     </nav>
-    <span class = "prompt host">jiahao-cai.info</span>
-    <span class = "prompt path">~{% if page.pwd %}{{page.pwd | prepend: "/"}}{% endif %}</span> {{page.cmd}}
+    <div class="term-line"><span class="prompt host">jiahao-cai.info</span><span class="prompt path">~{% if page.pwd %}{{page.pwd | prepend: "/"}}{% endif %}</span> {{page.cmd}}</div>
 </header>
 <main>
   <!-- begin content -->
@@ -34,7 +31,5 @@ fetch("/quote.json").then(function (r) { return r.json(); }).then(function (json
   <!-- end content -->
 </main>
 <footer class="term">
-    <span class = "prompt host">jiahao-cai.info</span>
-    <span class = "prompt path">~{% if page.pwd %}{{page.pwd | prepend: "/"}}{% endif %}</span>
-    <span class = "blinking-cursor">_</span>
+    <div class="term-line"><span class="prompt host">jiahao-cai.info</span><span class="prompt path">~{% if page.pwd %}{{page.pwd | prepend: "/"}}{% endif %}</span> <span class="blinking-cursor">_</span></div>
 </footer>
