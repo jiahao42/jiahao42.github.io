@@ -173,19 +173,23 @@ details {
         &::-webkit-details-marker {
             display: none; // hide default marker (WebKit)
         }
+        // Plain inline text, so the marker sits on the row's natural baseline
+        // and lines up with the text beside it.
         &:before {
             content: "[+]";
             color: $purple;
             font-weight: bold;
-            // Mirror img.work-badge's box (2em tall, vertical-align: middle) so
-            // rows without an icon get the same line height as rows with one.
-            // The marker is on every row, so it sets a consistent floor.
-            display: inline-block;
-            height: 2em;
-            line-height: 2em;
-            vertical-align: middle;
-            // inline-block collapses the trailing space, so space it manually
             margin-right: 1ch;
+        }
+        // Invisible strut that mirrors img.work-badge's box (2em tall,
+        // vertical-align: middle). It gives rows without an icon the same
+        // height as rows with one, without disturbing the marker's alignment.
+        &:after {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 2em;
+            vertical-align: middle;
         }
         &:hover {
             background-color: rgba($purple, 0.08);
@@ -417,10 +421,29 @@ ul {
     }
 }
 
-li::marker {
-    content: "* "; /* The character you want */
+ul,
+ol {
+    list-style: none;
+}
+
+li {
+    position: relative;
+}
+
+/* The asterisk glyph is drawn high in the font - up near cap height - so a
+   marker sitting on the text baseline reads as floating above the line.
+   ::marker ignores vertical-align/position/transform, so render the bullet
+   with ::before instead and nudge it down onto the text's optical centre.
+   Absolute positioning keeps the marker outside the content box, so wrapped
+   lines still align under the text rather than under the bullet. */
+li::before {
+    content: "*";
+    position: absolute;
+    right: 100%;
+    padding-right: 0.4em;
     color: rgba($purple, 0.7);
     font-size: 120%;
+    transform: translateY(0.2em);
 }
 
 //
@@ -614,8 +637,8 @@ figure {
     margin-bottom: 0;
     margin-left: 0;
     list-style: none;
-    li::marker {
-        content: "";
+    li::before {
+        content: none;
     }
     li {
         margin-bottom: 0.15rem;
