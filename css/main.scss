@@ -430,26 +430,36 @@ li {
     position: relative;
 }
 
+// Gap between items only, so the last item adds nothing on top of the
+// list's own bottom margin.
+li + li {
+    margin-top: 0.35em;
+}
+
 /* The asterisk glyph is drawn high in the font - up near cap height - so a
    marker sitting on the text baseline reads as floating above the line.
    ::marker ignores vertical-align/position/transform, so render the bullet
    with ::before instead and nudge it down onto the text's optical centre.
    Absolute positioning keeps the marker outside the content box, so wrapped
    lines still align under the text rather than under the bullet. */
+/* U+2217 ASTERISK OPERATOR, not U+002A ASTERISK. They look alike, but the
+   plain asterisk is a reference mark: its ink is drawn high and never reaches
+   the baseline, landing ~4px above the text's optical centre. The operator is
+   drawn on the math axis, so it needs no vertical correction. CSS positions
+   glyphs by baseline and has no way to centre ink, so picking a glyph that is
+   centred by design is the only correction-free option - and it stays true in
+   whatever font a visitor actually gets.
+
+   font-size stays at 100% so the marker's box matches the text line (19px);
+   the bullet's larger size comes from scale(), which is purely visual. */
 li::before {
-    content: "*";
+    content: "\2217";
     position: absolute;
     right: 100%;
     padding-right: 0.4em;
     color: rgba($purple, 0.7);
-    /* Keep the marker's font metrics identical to the text, so its box is the
-       same height as the text line (19px) rather than the 22px a 120%
-       font-size produced. The larger bullet comes from scale(), which is
-       purely visual and leaves metrics alone. The asterisk's ink sits high in
-       the font, so drop it 0.315em to sit on the lowercase optical centre -
-       measured off rendered pixels rather than eyeballed. */
     font-size: 100%;
-    transform: translateY(0.315em) scale(1.2);
+    transform: scale(1.2);
 }
 
 //
@@ -648,6 +658,10 @@ figure {
     }
     li {
         margin-bottom: 0.15rem;
+    }
+    // the TOC keeps its own tighter rhythm
+    li + li {
+        margin-top: 0;
     }
 }
 
