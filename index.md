@@ -50,7 +50,7 @@ For example, I write code...
 </details>
 
 <details markdown="1">
-<summary>2018.08-2020.05: <strong>Security research</strong> @UVa CS Department <img src="posts/imgs/uva-logo.png" class="work-badge"></summary>
+<summary>2018.08-2020.05: <strong>Security research</strong> @UVa CS Department <img src="posts/imgs/uva-seal.png" class="work-badge" alt="University of Virginia"></summary>
 
 1. I attended the *PhD program* and then *dropped out* (with a Master degree).
 2. My research interest lies in but not limited to Program Analysis, System Security, and Programming Language.
