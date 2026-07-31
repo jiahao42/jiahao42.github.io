@@ -210,6 +210,12 @@ details a {
     text-shadow: 1px 1px 10px $light-purple;
 }
 
+.role-transition {
+    margin: 0;
+    color: $text-light-grey;
+    line-height: 1.5;
+}
+
 img.titleimage {
     float: left;
     border: 2px solid black;
@@ -488,7 +494,7 @@ ul,
 ol,
 dl {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 dt {
