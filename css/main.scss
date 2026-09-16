@@ -212,8 +212,16 @@ details a {
 
 .role-transition {
     margin: 0;
-    color: $text-light-grey;
+    color: transparent;
     line-height: 1.5;
+
+    // Hidden by default; revealed when the reader selects the text.
+    &::selection {
+        color: $text-light-grey;
+    }
+    &::-moz-selection {
+        color: $text-light-grey;
+    }
 }
 
 img.titleimage {
