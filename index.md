@@ -2,7 +2,7 @@
 layout: term
 title: Jiahao Cai Home Page
 cmd: cat about.txt
-description: Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.
+description: I like to write code to do something on code. Founder. Ex-Google Staff Engineer.
 ---
 
 # Jiahao Cai
