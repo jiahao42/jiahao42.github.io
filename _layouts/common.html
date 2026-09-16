@@ -13,6 +13,37 @@
   <meta name="description" content="{{ page.description }}">
   {% endif %}
   <title>{{ page.title }}</title>
+{% if page.url == "/" %}
+  <!-- Structured data: machine-readable identity for search engines. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jiahao Cai",
+    "url": "https://jiahao-cai.info",
+    "jobTitle": "Co-founder",
+    "description": "Founder. Builder. Metaprogrammer. Ex-Google Staff Engineer.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "DeepMorph",
+      "url": "https://deepmorph.ai/",
+      "founder": { "@type": "Person", "name": "Jiahao Cai", "url": "https://jiahao-cai.info" }
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Virginia",
+      "url": "https://www.virginia.edu/"
+    },
+    "sameAs": [
+      "https://github.com/jiahao42",
+      "https://linkedin.com/in/jiahao-cai/",
+      "https://x.com/_endif_",
+      "https://scholar.google.com/citations?user=A-kCC9EAAAAJ",
+      "https://stackoverflow.com/users/story/5685664"
+    ]
+  }
+  </script>
+{% endif %}
 
   <!-- The ?v= is a cache buster: it changes every build, so browsers fetch the
        new stylesheet instead of serving a stale cached copy. -->
